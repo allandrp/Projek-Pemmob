@@ -1,6 +1,6 @@
 package com.example.projekpemmob.model;
 
-public class Food {
+public class Food{
     String name, description;
     int price;
 
