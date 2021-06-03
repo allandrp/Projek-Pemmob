@@ -1,16 +1,16 @@
 package com.example.projekpemmob.model;
 
-public class food {
+public class Food {
     String nama, deskripsi;
     int harga;
 
-    public food(String nama, String deskripsi, int harga) {
+    public Food(String nama, String deskripsi, int harga) {
         this.nama = nama;
         this.deskripsi = deskripsi;
         this.harga = harga;
     }
 
-    public food() {
+    public Food() {
     }
 
     public String getNama() {

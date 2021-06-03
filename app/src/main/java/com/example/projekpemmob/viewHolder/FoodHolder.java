@@ -9,13 +9,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projekpemmob.R;
 
-public class holderFood extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class FoodHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     TextView tvNama, tvHarga, tvDeskripsi;
     Context context;
-    holderFood.getRvListener rvListener;
+    FoodHolder.getRvListener rvListener;
 
-    public holderFood(@NonNull View itemView, holderFood.getRvListener mRvListener) {
+    public FoodHolder(@NonNull View itemView, FoodHolder.getRvListener mRvListener) {
         super(itemView);
 
         context     = itemView.getContext();

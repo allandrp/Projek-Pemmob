@@ -14,10 +14,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.projekpemmob.R;
-import com.example.projekpemmob.adapter.adapterFood;
-import com.example.projekpemmob.model.food;
-import com.example.projekpemmob.model.foodCart;
-import com.example.projekpemmob.viewHolder.holderFood;
+import com.example.projekpemmob.adapter.FoodAdapter;
+import com.example.projekpemmob.model.Food;
+import com.example.projekpemmob.model.FoodCart;
+import com.example.projekpemmob.viewHolder.FoodHolder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,13 +28,13 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class activity_FoodList extends AppCompatActivity implements View.OnClickListener, holderFood.getRvListener {
+public class FoodListActivity extends AppCompatActivity implements View.OnClickListener, FoodHolder.getRvListener {
 
     FirebaseAuth fbAuth;
     FirebaseDatabase fbDB;
     DatabaseReference dbReference;
     RecyclerView rvFood;
-    ArrayList<food>daftarFood;
+    ArrayList<Food>daftarFood;
     Button btnProfile;
     TextView tvTotalHarga, tvQtyCart;
     CardView cvCart;
@@ -43,7 +43,7 @@ public class activity_FoodList extends AppCompatActivity implements View.OnClick
     protected void onRestart() {
         super.onRestart();
         Log.d("restart", "onRestart: ");
-        Intent intentRestart = new Intent(this, activity_FoodList.class);
+        Intent intentRestart = new Intent(this, FoodListActivity.class);
         startActivity(intentRestart);
         finish();
     }
@@ -51,7 +51,7 @@ public class activity_FoodList extends AppCompatActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity__food_list);
+        setContentView(R.layout.activity_food_list);
 
         fbAuth      = FirebaseAuth.getInstance();
         fbDB        = FirebaseDatabase.getInstance();
@@ -66,10 +66,10 @@ public class activity_FoodList extends AppCompatActivity implements View.OnClick
         cvCart.setOnClickListener(this);
         btnProfile.setOnClickListener(this);
 
-        dbReference.child("food").child("sate").setValue(new food("Sate", "makanan khas madura", 20000));
-        dbReference.child("food").child("soto").setValue(new food("Soto", "makanan khas lamongan", 10000));
-        dbReference.child("food").child("steak").setValue(new food("Steak", "makanan khas madura", 15000));
-        dbReference.child("food").child("ronde").setValue(new food("ronde", "makanan khas lamongan", 25000));
+        dbReference.child("food").child("sate").setValue(new Food("Sate", "makanan khas madura", 20000));
+        dbReference.child("food").child("soto").setValue(new Food("Soto", "makanan khas lamongan", 10000));
+        dbReference.child("food").child("steak").setValue(new Food("Steak", "makanan khas madura", 15000));
+        dbReference.child("food").child("ronde").setValue(new Food("ronde", "makanan khas lamongan", 25000));
 
 
         loadCart();
@@ -101,7 +101,7 @@ public class activity_FoodList extends AppCompatActivity implements View.OnClick
                     int jumlahPesanan = 0, totalHarga = 0;
 
                     for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
-                        foodCart dataFood = dataSnapshot.getValue(foodCart.class);
+                        FoodCart dataFood = dataSnapshot.getValue(FoodCart.class);
                         jumlahPesanan   = jumlahPesanan+dataFood.getJumlahPesan();
                         totalHarga      = totalHarga+(dataFood.getHarga()*dataFood.getJumlahPesan());
                     }
@@ -139,15 +139,15 @@ public class activity_FoodList extends AppCompatActivity implements View.OnClick
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                daftarFood = new ArrayList<food>();
+                daftarFood = new ArrayList<Food>();
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
-                    food Food = dataSnapshot.getValue(food.class);
+                    Food Food = dataSnapshot.getValue(com.example.projekpemmob.model.Food.class);
                     daftarFood.add(Food);
                 }
 
-                adapterFood adpFood = new adapterFood(daftarFood, activity_FoodList.this, activity_FoodList.this);
+                FoodAdapter adpFood = new FoodAdapter(daftarFood, FoodListActivity.this, FoodListActivity.this);
                 rvFood.setAdapter(adpFood);
-                rvFood.setLayoutManager(new LinearLayoutManager(activity_FoodList.this));
+                rvFood.setLayoutManager(new LinearLayoutManager(FoodListActivity.this));
 
 
 
@@ -167,12 +167,12 @@ public class activity_FoodList extends AppCompatActivity implements View.OnClick
 
         if(v.getId() == btnProfile.getId()){
 
-            Intent intentProfile = new Intent(this, activity_profile.class);
+            Intent intentProfile = new Intent(this, ProfileActivity.class);
             startActivity(intentProfile);
 
         }else if (v.getId() == cvCart.getId()){
 
-            Intent intentCart = new Intent(this, activity_cart.class);
+            Intent intentCart = new Intent(this, CartActivity.class);
             startActivity(intentCart);
 
         }
@@ -182,7 +182,7 @@ public class activity_FoodList extends AppCompatActivity implements View.OnClick
     @Override
     public void getRvClick(int position) {
 
-        Intent intentFood = new Intent(this, activity_food.class);
+        Intent intentFood = new Intent(this, FoodActivity.class);
         intentFood.putExtra("nama", daftarFood.get(position).getNama());
         startActivity(intentFood);
 

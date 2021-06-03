@@ -1,16 +1,16 @@
 package com.example.projekpemmob.model;
 
-public class user {
+public class User {
     private String nama, notelp, email, password;
 
-    public user(String nama, String notelp, String email, String password) {
+    public User(String nama, String notelp, String email, String password) {
         this.nama = nama;
         this.notelp = notelp;
         this.email = email;
         this.password = password;
     }
 
-    public user() {
+    public User() {
     }
 
     public String getNama() {

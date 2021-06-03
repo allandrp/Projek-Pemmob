@@ -17,7 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class activity_login extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText etEmail, etPassword;
     Button btnLogin, btnRegister;
@@ -35,7 +35,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         //cek apakah user masih login
         if(fbAuth.getCurrentUser() != null){
 
-            Intent intentLogin = new Intent (activity_login.this, activity_mainmenu.class);
+            Intent intentLogin = new Intent (LoginActivity.this, MainMenuActivity.class);
             startActivity(intentLogin);
             finish();
 
@@ -59,7 +59,7 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
         //pindah ke halaman register dengan intent
         if(v.getId() == btnRegister.getId()){
 
-            Intent intentRegister = new Intent(this, activity_register.class);
+            Intent intentRegister = new Intent(this, RegisterActivity.class);
             this.startActivityForResult(intentRegister, reqCode);
 
         }
@@ -90,13 +90,13 @@ public class activity_login extends AppCompatActivity implements View.OnClickLis
 
                     if(task.isSuccessful()){
 
-                        Intent intentLogin = new Intent (activity_login.this, activity_mainmenu.class);
+                        Intent intentLogin = new Intent (LoginActivity.this, MainMenuActivity.class);
                         startActivity(intentLogin);
                         finish();
 
                     }else{
 
-                        Toast.makeText(activity_login.this, "LOGIN FAILED", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "LOGIN FAILED", Toast.LENGTH_SHORT).show();
 
                     }
 

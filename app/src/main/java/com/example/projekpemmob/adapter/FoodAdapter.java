@@ -9,20 +9,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projekpemmob.R;
-import com.example.projekpemmob.model.food;
-import com.example.projekpemmob.viewHolder.holderFood;
+import com.example.projekpemmob.model.Food;
+import com.example.projekpemmob.viewHolder.FoodHolder;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
 
-public class adapterFood extends RecyclerView.Adapter<holderFood> {
-    private ArrayList<food> daftarFood;
+public class FoodAdapter extends RecyclerView.Adapter<FoodHolder> {
+    private ArrayList<Food> daftarFood;
     private Context context;
-    holderFood.getRvListener rvListener;
+    FoodHolder.getRvListener rvListener;
 
-    public adapterFood(ArrayList<food> daftarFood, Context context, holderFood.getRvListener rvListener) {
+    public FoodAdapter(ArrayList<Food> daftarFood, Context context, FoodHolder.getRvListener rvListener) {
         this.daftarFood = daftarFood;
         this.context    = context;
         this.rvListener = rvListener;
@@ -30,17 +30,17 @@ public class adapterFood extends RecyclerView.Adapter<holderFood> {
 
     @NonNull
     @Override
-    public holderFood onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public FoodHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_food,parent,false);
-        holderFood vhfood = new holderFood(v, rvListener);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_card_food,parent,false);
+        FoodHolder vhfood = new FoodHolder(v, rvListener);
 
         return vhfood;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull holderFood holder, int position) {
+    public void onBindViewHolder(@NonNull FoodHolder holder, int position) {
 
         holder.getTvNama().setText(daftarFood.get(position).getNama());
         holder.getTvHarga().setText("Rp. "+NumberFormat.getInstance(Locale.ITALY).format(daftarFood.get(position).getHarga()));

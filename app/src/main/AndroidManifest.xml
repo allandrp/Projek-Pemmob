@@ -9,19 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjekPemmob">
-        <activity android:name=".activity.activity_cart"></activity>
-        <activity android:name=".activity.activity_food" />
-        <activity android:name=".activity.activity_profile" />
-        <activity android:name=".activity.activity_FoodList" />
-        <activity android:name=".activity.activity_login">
+        <activity android:name=".activity.CartActivity"></activity>
+        <activity android:name=".activity.FoodActivity" />
+        <activity android:name=".activity.ProfileActivity" />
+        <activity android:name=".activity.FoodListActivity" />
+        <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.activity_register" />
-        <activity android:name=".activity.activity_mainmenu" />
+        <activity android:name=".activity.RegisterActivity" />
+        <activity android:name=".activity.MainMenuActivity" />
     </application>
 
 </manifest>

@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.projekpemmob.R;
-import com.example.projekpemmob.model.user;
+import com.example.projekpemmob.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -23,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class activity_register extends AppCompatActivity implements View.OnClickListener {
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText etNama, etNotelp, etEmail, etPassword;
     String nama, notelp, email, password;
@@ -90,7 +90,7 @@ public class activity_register extends AppCompatActivity implements View.OnClick
                 //cek jika data telah ada
                 if(snapshot.exists()){
 
-                    Toast.makeText(activity_register.this, "EMAIL TELAH TERDAFTAR", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "EMAIL TELAH TERDAFTAR", Toast.LENGTH_SHORT).show();
 
                 }else{
 
@@ -100,7 +100,7 @@ public class activity_register extends AppCompatActivity implements View.OnClick
 
                             if(task.isSuccessful()){
 
-                                user dataUser = new user(nama, notelp, email, password);
+                                User dataUser = new User(nama, notelp, email, password);
                                 dbReference.child("user").child(String.valueOf(task.getResult().getUser().getUid())).setValue(dataUser);
 
                                 //kembali ke login
@@ -120,7 +120,7 @@ public class activity_register extends AppCompatActivity implements View.OnClick
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
-                Toast.makeText(activity_register.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
         });

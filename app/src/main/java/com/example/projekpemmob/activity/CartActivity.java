@@ -7,18 +7,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.projekpemmob.R;
-import com.example.projekpemmob.adapter.adapterCart;
-import com.example.projekpemmob.adapter.adapterFood;
-import com.example.projekpemmob.model.food;
-import com.example.projekpemmob.model.foodCart;
-import com.example.projekpemmob.viewHolder.holderCart;
+import com.example.projekpemmob.adapter.CartAdapter;
+import com.example.projekpemmob.model.FoodCart;
+import com.example.projekpemmob.viewHolder.CartHolder;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,16 +28,16 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class activity_cart extends AppCompatActivity implements View.OnClickListener, holderCart.getRvListener {
+public class CartActivity extends AppCompatActivity implements View.OnClickListener, CartHolder.getRvListener {
 
     TextView tvTotalHarga;
     Button btnPesan;
-    ArrayList<foodCart>listCart = new ArrayList<>();
+    ArrayList<FoodCart>listCart = new ArrayList<>();
     FirebaseAuth fbAuth;
     FirebaseDatabase fbDB;
     DatabaseReference dbReference;
     RecyclerView rvCart;
-    adapterCart adpCart = new adapterCart(listCart, activity_cart.this, activity_cart.this);
+    CartAdapter adpCart = new CartAdapter(listCart, CartActivity.this, CartActivity.this);
     private int totalHarga = 0;
 
 
@@ -62,7 +58,7 @@ public class activity_cart extends AppCompatActivity implements View.OnClickList
         tvTotalHarga.setText(String.valueOf(totalHarga));
 
         rvCart.setAdapter(adpCart);
-        rvCart.setLayoutManager(new LinearLayoutManager(activity_cart.this));
+        rvCart.setLayoutManager(new LinearLayoutManager(CartActivity.this));
 
         loadData();
 
@@ -83,7 +79,7 @@ public class activity_cart extends AppCompatActivity implements View.OnClickList
                     adpCart.notifyDataSetChanged();
 
                     for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
-                        foodCart fCart = dataSnapshot.getValue(foodCart.class);
+                        FoodCart fCart = dataSnapshot.getValue(FoodCart.class);
                         listCart.add(fCart);
                         totalHarga = totalHarga + fCart.getHarga()*fCart.getJumlahPesan();
                     }
@@ -112,7 +108,7 @@ public class activity_cart extends AppCompatActivity implements View.OnClickList
             dbReference.child("history").child(fbAuth.getCurrentUser().getUid()).child(String.valueOf(UUID.randomUUID())).setValue(listCart);
             listCart.clear();
             dbReference.child("cart").child(fbAuth.getCurrentUser().getUid()).removeValue();
-            Intent intent = new Intent(this, activity_FoodList.class);
+            Intent intent = new Intent(this, FoodListActivity.class);
             startActivity(intent);
             finish();
 
@@ -123,7 +119,7 @@ public class activity_cart extends AppCompatActivity implements View.OnClickList
     @Override
     public void getRvClick(int position) {
 
-        Intent intent = new Intent(this, activity_food.class);
+        Intent intent = new Intent(this, FoodActivity.class);
         intent.putExtra("nama", listCart.get(position).getNama());
         startActivity(intent);
 

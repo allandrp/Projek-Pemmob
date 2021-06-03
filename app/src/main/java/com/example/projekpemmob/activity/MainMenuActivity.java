@@ -10,7 +10,7 @@ import android.widget.Button;
 import com.example.projekpemmob.R;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class activity_mainmenu extends AppCompatActivity implements View.OnClickListener {
+public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     Button btnLogout;
@@ -30,7 +30,7 @@ public class activity_mainmenu extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View view) {
 
-        Intent intent = new Intent(this, activity_FoodList.class);
+        Intent intent = new Intent(this, FoodListActivity.class);
         startActivity(intent);
 
     }

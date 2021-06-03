@@ -9,21 +9,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projekpemmob.R;
-import com.example.projekpemmob.model.foodCart;
-import com.example.projekpemmob.viewHolder.holderCart;
-import com.example.projekpemmob.viewHolder.holderFood;
+import com.example.projekpemmob.model.FoodCart;
+import com.example.projekpemmob.viewHolder.CartHolder;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class adapterCart extends RecyclerView.Adapter<holderCart>{
+public class CartAdapter extends RecyclerView.Adapter<CartHolder>{
 
-    ArrayList<foodCart>listMakanan = new ArrayList<>();
+    ArrayList<FoodCart>listMakanan = new ArrayList<>();
     private Context context;
-    holderCart.getRvListener rvListener;
+    CartHolder.getRvListener rvListener;
 
-    public adapterCart(ArrayList<foodCart> listMakanan, Context context, holderCart.getRvListener rvListener) {
+    public CartAdapter(ArrayList<FoodCart> listMakanan, Context context, CartHolder.getRvListener rvListener) {
         this.listMakanan = listMakanan;
         this.context = context;
         this.rvListener = rvListener;
@@ -31,15 +30,15 @@ public class adapterCart extends RecyclerView.Adapter<holderCart>{
 
     @NonNull
     @Override
-    public holderCart onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_cart,parent,false);
-        holderCart vhCart = new holderCart(v, rvListener);
+    public CartHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_card_cart,parent,false);
+        CartHolder vhCart = new CartHolder(v, rvListener);
 
         return vhCart;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull holderCart holder, int position) {
+    public void onBindViewHolder(@NonNull CartHolder holder, int position) {
 
         holder.getTvNama().setText(listMakanan.get(position).getNama());
         holder.getTvHarga().setText("Rp. "+ NumberFormat.getInstance(Locale.ITALY).format(listMakanan.get(position).getHarga()));

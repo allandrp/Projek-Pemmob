@@ -12,8 +12,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.projekpemmob.R;
-import com.example.projekpemmob.model.food;
-import com.example.projekpemmob.model.foodCart;
+import com.example.projekpemmob.model.Food;
+import com.example.projekpemmob.model.FoodCart;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-public class activity_food extends AppCompatActivity implements View.OnClickListener {
+public class FoodActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView tvNama, tvHarga, tvDeskripsi, tvJumlah;
     RecyclerView rvReview;
@@ -71,7 +71,7 @@ public class activity_food extends AppCompatActivity implements View.OnClickList
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Log.d("coba2", "onDataChange: "+snapshot.getValue());
-                food Food       = snapshot.getChildren().iterator().next().getValue(food.class);
+                Food Food       = snapshot.getChildren().iterator().next().getValue(com.example.projekpemmob.model.Food.class);
                 hargaMakanan    = Food.getHarga();
                 namaMakanan     = Food.getNama();
                 descMakanan     = Food.getDeskripsi();
@@ -104,7 +104,7 @@ public class activity_food extends AppCompatActivity implements View.OnClickList
                 if(snapshot.exists()){
 
                     Log.d("cobaFood", "onDataChange: "+snapshot.getValue());
-                    foodCart fCart = snapshot.getChildren().iterator().next().getValue(foodCart.class);
+                    FoodCart fCart = snapshot.getChildren().iterator().next().getValue(FoodCart.class);
                     tvJumlah.setText(String.valueOf(fCart.getJumlahPesan()));
                     counter = Integer.valueOf(fCart.getJumlahPesan());
                     Log.d("fcart", "onDataChange: "+ fCart.getJumlahPesan());
@@ -148,7 +148,7 @@ public class activity_food extends AppCompatActivity implements View.OnClickList
 
             if(Integer.valueOf(tvJumlah.getText().toString())>0){
 
-                foodCart dataMakanan = new foodCart(Integer.valueOf(tvJumlah.getText().toString()), hargaMakanan, namaMakanan);
+                FoodCart dataMakanan = new FoodCart(Integer.valueOf(tvJumlah.getText().toString()), hargaMakanan, namaMakanan);
                 dbReference.child("cart").child(fbAuth.getCurrentUser().getUid()).child(tvNama.getText().toString()).setValue(dataMakanan);
                 finish();
 

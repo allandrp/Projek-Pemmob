@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.projekpemmob.R;
-import com.example.projekpemmob.model.user;
+import com.example.projekpemmob.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class activity_profile extends AppCompatActivity implements View.OnClickListener {
+public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView tvNama, tvemail, tvPoints;
     Button btnSetting, btnEditProfile, btnCoupons, btnHistory, btnLogout;
@@ -64,7 +64,7 @@ public class activity_profile extends AppCompatActivity implements View.OnClickL
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                user User = snapshot.getValue(user.class);
+                User User = snapshot.getValue(com.example.projekpemmob.model.User.class);
 
                 tvNama.setText(User.getNama());
                 tvemail.setText(User.getEmail());
@@ -96,7 +96,7 @@ public class activity_profile extends AppCompatActivity implements View.OnClickL
         }else if(v.getId() == btnLogout.getId()){
 
             fbAuth.signOut();
-            Intent intent = new Intent(this, activity_login.class);
+            Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             finish();
 
