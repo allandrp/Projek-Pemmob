@@ -2,6 +2,7 @@ package com.example.projekpemmob.viewHolder;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,7 +12,8 @@ import com.example.projekpemmob.R;
 
 public class FoodHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    TextView tvNama, tvHarga, tvDeskripsi;
+    TextView tvName, tvPrice, tvDescription;
+    ImageView imageRating, imageFood;
     Context context;
     FoodHolder.getRvListener rvListener;
 
@@ -19,24 +21,26 @@ public class FoodHolder extends RecyclerView.ViewHolder implements View.OnClickL
         super(itemView);
 
         context     = itemView.getContext();
-        tvNama      = itemView.findViewById(R.id.tvNamaMakanan);
-        tvHarga     = itemView.findViewById(R.id.tvHargaMakanan);
-        tvDeskripsi = itemView.findViewById(R.id.tvDeskripsiMakanan);
+        tvName = itemView.findViewById(R.id.tv_food_name);
+        tvPrice = itemView.findViewById(R.id.tv_food_price);
+        tvDescription = itemView.findViewById(R.id.tv_food_description);
+        imageRating = itemView.findViewById(R.id.img_stars);
+        imageFood   = itemView.findViewById(R.id.img_food);
         this.rvListener = mRvListener;
         itemView.setOnClickListener(this);
 
     }
 
-    public TextView getTvNama() {
-        return tvNama;
+    public TextView getTvName() {
+        return tvName;
     }
 
-    public TextView getTvHarga() {
-        return tvHarga;
+    public TextView getTvPrice() {
+        return tvPrice;
     }
 
-    public TextView getTvDeskripsi() {
-        return tvDeskripsi;
+    public TextView getTvDescription() {
+        return tvDescription;
     }
 
     @Override

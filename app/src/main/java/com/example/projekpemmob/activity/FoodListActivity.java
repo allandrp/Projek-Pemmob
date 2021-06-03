@@ -57,11 +57,10 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
         fbDB        = FirebaseDatabase.getInstance();
         dbReference = fbDB.getReference();
 
-        btnProfile      = findViewById(R.id.btnFoodListProfile);
         cvCart          = findViewById(R.id.cvCart);
         tvQtyCart       = findViewById(R.id.tvQtyCart);
         tvTotalHarga    = findViewById(R.id.tvTotalHarga);
-        rvFood          = findViewById(R.id.rvFood);
+        rvFood          = findViewById(R.id.rv_foods);
 
         cvCart.setOnClickListener(this);
         btnProfile.setOnClickListener(this);
@@ -183,7 +182,7 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
     public void getRvClick(int position) {
 
         Intent intentFood = new Intent(this, FoodActivity.class);
-        intentFood.putExtra("nama", daftarFood.get(position).getNama());
+        intentFood.putExtra("nama", daftarFood.get(position).getName());
         startActivity(intentFood);
 
     }

@@ -18,12 +18,12 @@ import java.util.Locale;
 
 
 public class FoodAdapter extends RecyclerView.Adapter<FoodHolder> {
-    private ArrayList<Food> daftarFood;
+    private ArrayList<Food> foodList;
     private Context context;
     FoodHolder.getRvListener rvListener;
 
-    public FoodAdapter(ArrayList<Food> daftarFood, Context context, FoodHolder.getRvListener rvListener) {
-        this.daftarFood = daftarFood;
+    public FoodAdapter(ArrayList<Food> foodList, Context context, FoodHolder.getRvListener rvListener) {
+        this.foodList = foodList;
         this.context    = context;
         this.rvListener = rvListener;
     }
@@ -34,22 +34,21 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodHolder> {
 
 
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_card_food,parent,false);
-        FoodHolder vhfood = new FoodHolder(v, rvListener);
 
-        return vhfood;
+        return new FoodHolder(v, rvListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull FoodHolder holder, int position) {
 
-        holder.getTvNama().setText(daftarFood.get(position).getNama());
-        holder.getTvHarga().setText("Rp. "+NumberFormat.getInstance(Locale.ITALY).format(daftarFood.get(position).getHarga()));
-        holder.getTvDeskripsi().setText(daftarFood.get(position).getDeskripsi());
+        holder.getTvName().setText(foodList.get(position).getName());
+        holder.getTvPrice().setText("Rp. "+NumberFormat.getInstance(Locale.ITALY).format(foodList.get(position).getPrice()));
+        holder.getTvDescription().setText(foodList.get(position).getDescription());
 
     }
 
     @Override
     public int getItemCount() {
-        return daftarFood.size();
+        return foodList.size();
     }
 }

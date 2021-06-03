@@ -1,27 +1,27 @@
 package com.example.projekpemmob.model;
 
 public class Food {
-    String nama, deskripsi;
-    int harga;
+    String name, description;
+    int price;
 
-    public Food(String nama, String deskripsi, int harga) {
-        this.nama = nama;
-        this.deskripsi = deskripsi;
-        this.harga = harga;
+    public Food(String name, String description, int price) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
     }
 
     public Food() {
     }
 
-    public String getNama() {
-        return nama;
+    public String getName() {
+        return name;
     }
 
-    public String getDeskripsi() {
-        return deskripsi;
+    public String getDescription() {
+        return description;
     }
 
-    public int getHarga() {
-        return harga;
+    public int getPrice() {
+        return price;
     }
 }

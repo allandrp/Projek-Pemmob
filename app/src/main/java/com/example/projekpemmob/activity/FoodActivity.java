@@ -72,9 +72,9 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Log.d("coba2", "onDataChange: "+snapshot.getValue());
                 Food Food       = snapshot.getChildren().iterator().next().getValue(com.example.projekpemmob.model.Food.class);
-                hargaMakanan    = Food.getHarga();
-                namaMakanan     = Food.getNama();
-                descMakanan     = Food.getDeskripsi();
+                hargaMakanan    = Food.getPrice();
+                namaMakanan     = Food.getName();
+                descMakanan     = Food.getDescription();
                 tvNama.setText(namaMakanan);
                 tvHarga.setText("Rp. "+ NumberFormat.getInstance(Locale.ITALY).format(hargaMakanan));
                 tvDeskripsi.setText(descMakanan);
@@ -106,7 +106,7 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
                     Log.d("cobaFood", "onDataChange: "+snapshot.getValue());
                     FoodCart fCart = snapshot.getChildren().iterator().next().getValue(FoodCart.class);
                     tvJumlah.setText(String.valueOf(fCart.getJumlahPesan()));
-                    counter = Integer.valueOf(fCart.getJumlahPesan());
+                    counter = fCart.getJumlahPesan();
                     Log.d("fcart", "onDataChange: "+ fCart.getJumlahPesan());
 
                 }
@@ -146,7 +146,7 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
 
         }else if (v.getId() == btnAddChart.getId()){
 
-            if(Integer.valueOf(tvJumlah.getText().toString())>0){
+            if(Integer.parseInt(tvJumlah.getText().toString())>0){
 
                 FoodCart dataMakanan = new FoodCart(Integer.valueOf(tvJumlah.getText().toString()), hargaMakanan, namaMakanan);
                 dbReference.child("cart").child(fbAuth.getCurrentUser().getUid()).child(tvNama.getText().toString()).setValue(dataMakanan);
