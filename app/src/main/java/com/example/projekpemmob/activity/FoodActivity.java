@@ -66,12 +66,12 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
 
         Intent intent = getIntent();
         String tempNama = String.valueOf(intent.getStringExtra("nama"));
-        Query loadData = fbDB.getReference("food").orderByChild("nama").equalTo(tempNama);
+        Query loadData = fbDB.getReference("food").orderByChild("name").equalTo(tempNama);
         loadData.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Log.d("coba2", "onDataChange: "+snapshot.getValue());
-                Food Food       = snapshot.getChildren().iterator().next().getValue(com.example.projekpemmob.model.Food.class);
+                Food Food       = snapshot.getChildren().iterator().next().getValue(Food.class);
                 hargaMakanan    = Food.getPrice();
                 namaMakanan     = Food.getName();
                 descMakanan     = Food.getDescription();

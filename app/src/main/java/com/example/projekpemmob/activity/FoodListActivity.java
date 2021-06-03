@@ -61,9 +61,10 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
         tvQtyCart       = findViewById(R.id.tvQtyCart);
         tvTotalHarga    = findViewById(R.id.tvTotalHarga);
         rvFood          = findViewById(R.id.rv_foods);
+        //btnProfile      = findViewById(R.id.btnPro)
 
         cvCart.setOnClickListener(this);
-        btnProfile.setOnClickListener(this);
+        //btnProfile.setOnClickListener(this);
 
         dbReference.child("food").child("sate").setValue(new Food("Sate", "makanan khas madura", 20000));
         dbReference.child("food").child("soto").setValue(new Food("Soto", "makanan khas lamongan", 10000));
@@ -140,7 +141,7 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
 
                 daftarFood = new ArrayList<Food>();
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
-                    Food Food = dataSnapshot.getValue(com.example.projekpemmob.model.Food.class);
+                    Food Food = dataSnapshot.getValue(Food.class);
                     daftarFood.add(Food);
                 }
 
