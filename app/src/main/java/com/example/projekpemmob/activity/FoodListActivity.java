@@ -165,15 +165,15 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
 
-        if(v.getId() == btnProfile.getId()){
-
-            Intent intentProfile = new Intent(this, ProfileActivity.class);
-            startActivity(intentProfile);
-
-        }else if (v.getId() == cvCart.getId()){
+        if(v.getId() == cvCart.getId()){
 
             Intent intentCart = new Intent(this, CartActivity.class);
             startActivity(intentCart);
+
+        }else if (v.getId() == btnProfile.getId()){
+
+            Intent intentProfile = new Intent(this, ProfileActivity.class);
+            startActivity(intentProfile);
 
         }
 
