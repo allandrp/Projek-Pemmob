@@ -25,7 +25,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.UUID;
 
 public class CartActivity extends AppCompatActivity implements View.OnClickListener, CartHolder.getRvListener {
@@ -85,7 +87,7 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
                     }
 
                     adpCart.notifyDataSetChanged();
-                    tvTotalHarga.setText(String.valueOf(totalHarga));
+                    tvTotalHarga.setText("Rp. "+ NumberFormat.getInstance(Locale.ITALY).format(totalHarga));
 
 
                 }

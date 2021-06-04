@@ -26,7 +26,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class FoodListActivity extends AppCompatActivity implements View.OnClickListener, FoodHolder.getRvListener {
 
@@ -107,8 +109,7 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
                     }
 
                     tvQtyCart.setText(String.valueOf(jumlahPesanan));
-                    tvTotalHarga.setText(String.valueOf(totalHarga));
-
+                    tvTotalHarga.setText("Rp. "+ NumberFormat.getInstance(Locale.ITALY).format(totalHarga));
 
                     if(Integer.valueOf(tvQtyCart.getText().toString()) == 0){
 
