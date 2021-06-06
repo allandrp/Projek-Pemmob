@@ -1,92 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.FoodActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/maincolor">
 
-    <TextView
-        android:id="@+id/tvFoodNama"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="NamaMakanan"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:id="@+id/rlHeader"
+        android:layout_width="match_parent"
+        android:layout_height="90dp">
 
-    <TextView
-        android:id="@+id/tvFoodHarga"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:text="Harga"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/round_white_background_back"
+            android:drawableTop="@drawable/ic_back"
+            app:backgroundTint="@color/secondcolor"
+            ></Button>
 
-    <TextView
-        android:id="@+id/tvFoodDeskripsi"
-        android:layout_width="360dp"
-        android:layout_height="118dp"
-        android:layout_marginTop="72dp"
-        android:text="deskripsi"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/tvFoodNama"
+            android:text="Nama Makanan"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></TextView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvFoodReview"
-        android:layout_width="292dp"
-        android:layout_height="226dp"
-        android:layout_marginTop="200dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.588"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/tvFoodRating"
+            android:layout_below="@id/tvFoodNama"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/five_stars"
+            android:layout_width="80dp"
+            android:layout_height="20dp"></ImageView>
+
+        <ImageView
+            android:id="@+id/img_Share"
+            android:src="@drawable/ic_share"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"></ImageView>
+
+    </RelativeLayout>
+
+
+
+        <ImageView
+            android:id="@+id/img_sate"
+            android:src="@drawable/sate"
+            android:layout_below="@id/rlHeader"
+            android:layout_margin="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"></ImageView>
+
+        <TextView
+            android:id="@+id/tvFoodDeskripsi"
+            android:layout_below="@id/img_sate"
+            android:text="Deskripsi makanan panjang lebar yang panjangnya bisa sampai dua baris kalau lebih bisa dipotong menjadi tiga titik seperti itu. Lalu jika banyak baris maka ada Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            android:justificationMode="inter_word"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></TextView>
+
+
+
+    <RelativeLayout
+        android:id="@+id/rlGaris"
+        android:layout_above="@id/tvFoodHarga"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#DEDEDE"></RelativeLayout>
 
     <Button
         android:id="@+id/btnFoodMinus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="-"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvFoodReview" />
+        android:layout_alignParentBottom="true"
+        android:drawableRight="@drawable/ic_minus"
+        android:paddingRight="15dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/rectangle_buttonmin"
+        app:backgroundTint="@color/secondcolor"
+        android:layout_width="37dp"
+        android:layout_height="40dp"></Button>
+
+    <RelativeLayout
+        android:id="@+id/rlJumlah"
+        android:layout_toRightOf="@id/btnFoodMinus"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="2dp"
+        android:background="@color/secondcolor"
+        android:elevation="2dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp">
+
+        <TextView
+            android:id="@+id/tvFoodQty"
+            android:layout_centerInParent="true"
+            android:text="3"
+            android:textSize="20dp"
+            android:textColor="@color/redcolor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></TextView>
+
+    </RelativeLayout>
 
     <Button
         android:id="@+id/btnFoodPlus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="144dp"
-        android:text="+"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvFoodReview" />
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/rlJumlah"
+        android:drawableRight="@drawable/ic_plus"
+        android:paddingRight="8dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/rectangle_buttonplus"
+        app:backgroundTint="@color/secondcolor"
+        android:layout_width="37dp"
+        android:layout_height="40dp"></Button>
 
-    <TextView
-        android:id="@+id/tvFoodQty"
-        android:layout_width="32dp"
-        android:layout_height="19dp"
-        android:layout_marginTop="32dp"
-        android:text="0"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.332"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvFoodReview" />
 
     <Button
         android:id="@+id/btnFoodAddChart"
-        android:layout_width="92dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="28dp"
-        android:text="Add to Chart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvFoodReview" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:text="Add to Cart"
+        android:textColor="@color/redcolor"
+        android:textAllCaps="false"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/rectangle_buttonaddtocart"
+        app:backgroundTint="@color/secondcolor"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"></Button>
+
+    <TextView
+        android:id="@+id/tvFoodHarga"
+        android:layout_above="@id/btnFoodAddChart"
+        android:layout_marginBottom="5dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="45dp"
+        android:text="Rp.70,500.00"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></TextView>
+
+</RelativeLayout>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/maincolor">
+
+    <androidx.cardview.widget.CardView
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp"
+        android:backgroundTint="@color/secondcolor">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_coupons"
+                android:src="@drawable/breakfast"
+                android:layout_margin="15dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"></ImageView>
+
+            <TextView
+                android:id="@+id/tv_coupons_name"
+                android:layout_toRightOf="@id/img_coupons"
+                android:layout_marginTop="22dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:text="Nama Kupon"
+                android:maxLines="1"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></TextView>
+
+            <TextView
+                android:id="@+id/tv_coupons_description"
+                android:layout_toRightOf="@id/img_coupons"
+                android:layout_below="@id/tv_coupons_name"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:text="Diskon 40% (min. pembelian Rp50..."
+                android:textSize="18dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"></TextView>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

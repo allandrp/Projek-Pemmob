@@ -1,47 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.CartActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/maincolor">
+
+    <RelativeLayout
+        android:id="@+id/rlHeader"
+        android:layout_width="match_parent"
+        android:layout_height="90dp">
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/round_white_background_back"
+            android:drawableTop="@drawable/ic_back"
+            app:backgroundTint="@color/secondcolor"
+            ></Button>
+
+        <TextView
+            android:text="Cart"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></TextView>
+
+        <ImageView
+            android:id="@+id/img_Profile"
+            android:src="@drawable/ic_profile"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"></ImageView>
+
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCart"
-        android:layout_width="397dp"
-        android:layout_height="244dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/rv_Cart"
+        android:layout_below="@id/rlHeader"
+        android:layout_above="@id/rlBottomOrder"
+        android:layout_marginTop="-15dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_card_cart"></androidx.recyclerview.widget.RecyclerView>
 
-    <TextView
-        android:id="@+id/tvCartTotalHarga"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="12dp"
-        android:text="total harga"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+    <RelativeLayout
+        android:id="@+id/rlBottomOrder"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/red_orange_gradient_norounded"
+        android:layout_width="match_parent"
+        android:layout_height="90dp">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="108dp"
-        android:text="Total Harga"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvCart" />
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="18dp"
+            android:text="Total"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></TextView>
 
-    <Button
-        android:id="@+id/btnCartPesan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="108dp"
-        android:layout_marginEnd="8dp"
-        android:text="pesan"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvCart" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvCartTotalHarga"
+            android:layout_below="@id/textView3"
+            android:layout_marginLeft="30dp"
+            android:text="Rp120,000"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></TextView>
+
+        <Button
+            android:id="@+id/btnCartPesan"
+            android:background="@drawable/rectangle_buttonaddtocart"
+            app:backgroundTint="@color/secondcolor"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"
+            android:text="Order"
+            android:textAllCaps="false"
+            android:textColor="#EA3138"
+            android:layout_width="100dp"
+            android:layout_height="40dp"></Button>
+
+    </RelativeLayout>
+
+</RelativeLayout>

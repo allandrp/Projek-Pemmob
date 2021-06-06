@@ -54,7 +54,7 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
 
         tvTotalHarga    = findViewById(R.id.tvCartTotalHarga);
         btnPesan        = findViewById(R.id.btnCartPesan);
-        rvCart          = findViewById(R.id.rvCart);
+        rvCart          = findViewById(R.id.rv_Cart);
 
         btnPesan.setOnClickListener(this);
         tvTotalHarga.setText(String.valueOf(totalHarga));

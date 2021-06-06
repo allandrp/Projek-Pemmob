@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/maincolor">
+
+    <RelativeLayout
+        android:id="@+id/rlHeader"
+        android:layout_width="match_parent"
+        android:layout_height="90dp">
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/round_white_background_back"
+            android:drawableTop="@drawable/ic_back"
+            app:backgroundTint="@color/secondcolor"
+            ></Button>
+
+        <TextView
+            android:text="Coupons"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></TextView>
+
+        <ImageView
+            android:id="@+id/img_Profile"
+            android:src="@drawable/ic_profile"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"></ImageView>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btnMyCoupons"
+        android:layout_below="@id/rlHeader"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="-5dp"
+        android:text="My Coupons"
+        android:textAllCaps="false"
+        android:textColor="@color/secondcolor"
+        android:layout_width="115dp"
+        android:layout_height="45dp"
+        android:background="@drawable/red_orange_gradient"
+        app:backgroundTint="@drawable/red_orange_gradient"
+        ></Button>
+
+    <TextView
+        android:id="@+id/tvPoints"
+        android:layout_below="@id/rlHeader"
+        android:text="150 Points"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></TextView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@id/tvPoints"
+        android:id="@+id/rvCoupons"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_card_coupons"></androidx.recyclerview.widget.RecyclerView>
+
+</RelativeLayout>

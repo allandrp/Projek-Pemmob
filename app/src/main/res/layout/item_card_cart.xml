@@ -1,85 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#DEDEDE">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="100sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/maincolor">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/btnCartDelete"
-                android:layout_width="93dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="4dp"
-                android:text="delete"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <RelativeLayout
+                android:id="@+id/rlAngka"
+                android:background="@drawable/round_white_background_numbercart"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp">
 
-            <TextView
-                android:id="@+id/tvCartNama"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/tvAngka"
+                    android:layout_centerInParent="true"
+                    android:text="1"
+                    android:textSize="16dp"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></TextView>
 
-            <TextView
-                android:id="@+id/tvCartHarga"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:text="TextView"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvCartJumlah"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="88dp"
-                android:layout_marginTop="64dp"
-                android:text="TextView"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
-                app:layout_constraintTop_toTopOf="parent" />
+            </RelativeLayout>
 
             <ImageView
                 android:id="@+id/imageView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:layout_toRightOf="@id/rlAngka"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="15dp"
+                android:src="@drawable/breakfast"
+                android:layout_width="70dp"
+                android:layout_height="70dp"></ImageView>
 
-            <Button
-                android:id="@+id/btnCartMinus"
-                android:layout_width="66dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="60dp"
-                android:layout_marginEnd="8dp"
-                android:text="-"
-                app:layout_constraintEnd_toStartOf="@+id/tvCartJumlah"
-                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/tvCartNama"
+                android:layout_toRightOf="@id/imageView3"
+                android:text="Nama Makanan"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="15dp"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></TextView>
+
+            <TextView
+                android:id="@+id/tvCartDeskripsi"
+                android:layout_below="@id/tvCartNama"
+                android:layout_toRightOf="@id/imageView3"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="15dp"
+                android:text="Deskripsi makanan panjang lebar yang panjangnya bisa sampai dua baris kalau lebih bisa dipotong menjadi tiga titik seperti itu. Lalu jika banyak baris maka ada Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:justificationMode="inter_word"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"></TextView>
+
+            <TextView
+                android:id="@+id/tvCartHarga"
+                android:layout_toRightOf="@id/imageView3"
+                android:layout_below="@id/tvCartDeskripsi"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:text="Rp70,500"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></TextView>
 
             <Button
                 android:id="@+id/btnCardTambah"
-                android:layout_width="51dp"
-                android:layout_height="38dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="60dp"
-                android:text="+"
-                app:layout_constraintStart_toEndOf="@+id/tvCartJumlah"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_below="@id/tvCartDeskripsi"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:drawableRight="@drawable/ic_plus"
+                android:paddingRight="6dp"
+                android:background="@drawable/rectangle_buttonplus"
+                app:backgroundTint="@color/secondcolor"
+                android:layout_width="32dp"
+                android:layout_height="26dp"></Button>
+
+            <RelativeLayout
+                android:id="@+id/rlJumlah"
+                android:layout_toLeftOf="@id/btnCardTambah"
+                android:layout_below="@id/tvCartDeskripsi"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="2dp"
+                android:background="@color/secondcolor"
+                android:elevation="2dp"
+                android:layout_width="35dp"
+                android:layout_height="26dp">
+
+                <TextView
+                    android:id="@+id/tvCartJumlah"
+                    android:layout_centerInParent="true"
+                    android:text="3"
+                    android:textSize="18dp"
+                    android:textColor="@color/redcolor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></TextView>
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btnCartMinus"
+                android:drawableRight="@drawable/ic_minus"
+                android:paddingRight="12dp"
+                android:layout_toLeftOf="@id/rlJumlah"
+                android:layout_below="@id/tvCartDeskripsi"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="2dp"
+                android:background="@drawable/rectangle_buttonmin"
+                app:backgroundTint="@color/secondcolor"
+                android:layout_width="32dp"
+                android:layout_height="26dp"></Button>
+
+        </RelativeLayout>
+
     </androidx.cardview.widget.CardView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>
