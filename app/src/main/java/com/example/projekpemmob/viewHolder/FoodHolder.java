@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projekpemmob.R;
 
+import org.w3c.dom.Text;
+
 public class FoodHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     TextView tvName, tvPrice, tvDescription;

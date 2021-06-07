@@ -21,6 +21,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartHolder>{
     ArrayList<FoodCart>listMakanan = new ArrayList<>();
     private Context context;
     CartHolder.getRvListener rvListener;
+    int angka = 0;
 
     public CartAdapter(ArrayList<FoodCart> listMakanan, Context context, CartHolder.getRvListener rvListener) {
         this.listMakanan = listMakanan;
@@ -43,6 +44,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartHolder>{
         holder.getTvNama().setText(listMakanan.get(position).getNama());
         holder.getTvHarga().setText("Rp. "+ NumberFormat.getInstance(Locale.ITALY).format(listMakanan.get(position).getHarga()));
         holder.getTvJumlahPesan().setText(String.valueOf(listMakanan.get(position).getJumlahPesan()));
+        holder.getNo().setText();
 
     }
 

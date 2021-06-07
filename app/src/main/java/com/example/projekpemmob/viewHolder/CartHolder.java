@@ -11,7 +11,7 @@ import com.example.projekpemmob.R;
 
 public class CartHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    TextView tvNama, tvHarga, tvJumlahPesan, tvTotal;
+    TextView tvNama, tvHarga, tvJumlahPesan, tvTotal, no;
     Button  btnDelete, btnTambah, btnMinus;
     CartHolder.getRvListener rvListener;
 
@@ -21,13 +21,12 @@ public class CartHolder extends RecyclerView.ViewHolder implements View.OnClickL
         tvHarga         = itemView.findViewById(R.id.tvCartHarga);
         tvJumlahPesan   = itemView.findViewById(R.id.tvCartJumlah);
         tvTotal         = itemView.findViewById(R.id.tvCartTotalHarga);
-        //btnDelete       = itemView.findViewById(R.id.btnCartDelete);
         btnTambah       = itemView.findViewById(R.id.btnCardTambah);
         btnMinus        = itemView.findViewById(R.id.btnCartMinus);
+        no              = itemView.findViewById(R.id.tvAngka);
         this.rvListener = mrvListener;
 
         itemView.setOnClickListener(this);
-        //btnDelete.setOnClickListener(this);
         btnTambah.setOnClickListener(this);
         btnMinus.setOnClickListener(this);
 
@@ -63,6 +62,10 @@ public class CartHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
     public getRvListener getRvListener() {
         return rvListener;
+    }
+
+    public TextView getNo() {
+        return no;
     }
 
     @Override
