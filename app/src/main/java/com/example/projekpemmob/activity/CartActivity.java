@@ -79,17 +79,14 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
                     listCart.clear();
                     totalHarga = 0;
                     adpCart.notifyDataSetChanged();
-
+                    
                     for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
                         FoodCart fCart = dataSnapshot.getValue(FoodCart.class);
                         listCart.add(fCart);
                         totalHarga = totalHarga + fCart.getHarga()*fCart.getJumlahPesan();
                     }
-
                     adpCart.notifyDataSetChanged();
                     tvTotalHarga.setText("Rp. "+ NumberFormat.getInstance(Locale.ITALY).format(totalHarga));
-
-
                 }
 
             }
@@ -142,6 +139,10 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
 
             dbReference.child("cart").child(fbAuth.getCurrentUser().getUid()).child(listCart.get(position).getNama()).child("jumlahPesan").setValue(listCart.get(position).getJumlahPesan()-1);
             adpCart.notifyDataSetChanged();
+
+        }else{
+
+            onDeleteClick(position);
 
         }
     }

@@ -49,7 +49,7 @@ public class FoodActivity extends AppCompatActivity implements View.OnClickListe
         tvNama      = findViewById(R.id.tvFoodNama);
         tvDeskripsi = findViewById(R.id.tvFoodDeskripsi);
         tvHarga     = findViewById(R.id.tvFoodHarga);
-        rvReview    = findViewById(R.id.rvFoodReview);
+        //rvReview    = findViewById(R.id.rvFoodReview);
         tvJumlah    = findViewById(R.id.tvFoodQty);
         btnAddChart = findViewById(R.id.btnFoodAddChart);
         btnMinus    = findViewById(R.id.btnFoodMinus);

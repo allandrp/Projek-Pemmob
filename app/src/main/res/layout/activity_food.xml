@@ -104,12 +104,12 @@
 
         <TextView
             android:id="@+id/tvFoodQty"
-            android:layout_centerInParent="true"
-            android:text="3"
-            android:textSize="20dp"
-            android:textColor="@color/redcolor"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></TextView>
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="0"
+            android:textColor="@color/redcolor"
+            android:textSize="20dp"></TextView>
 
     </RelativeLayout>
 
@@ -143,14 +143,14 @@
 
     <TextView
         android:id="@+id/tvFoodHarga"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_above="@id/btnFoodAddChart"
-        android:layout_marginBottom="5dp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="45dp"
-        android:text="Rp.70,500.00"
+        android:layout_marginBottom="5dp"
+        android:text="0"
         android:textColor="@color/black"
-        android:textSize="18dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></TextView>
+        android:textSize="18dp"></TextView>
 
 </RelativeLayout>

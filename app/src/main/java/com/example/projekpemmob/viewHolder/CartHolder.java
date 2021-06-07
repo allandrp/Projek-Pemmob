@@ -21,13 +21,13 @@ public class CartHolder extends RecyclerView.ViewHolder implements View.OnClickL
         tvHarga         = itemView.findViewById(R.id.tvCartHarga);
         tvJumlahPesan   = itemView.findViewById(R.id.tvCartJumlah);
         tvTotal         = itemView.findViewById(R.id.tvCartTotalHarga);
-        btnDelete       = itemView.findViewById(R.id.btnCartDelete);
+        //btnDelete       = itemView.findViewById(R.id.btnCartDelete);
         btnTambah       = itemView.findViewById(R.id.btnCardTambah);
         btnMinus        = itemView.findViewById(R.id.btnCartMinus);
         this.rvListener = mrvListener;
 
         itemView.setOnClickListener(this);
-        btnDelete.setOnClickListener(this);
+        //btnDelete.setOnClickListener(this);
         btnTambah.setOnClickListener(this);
         btnMinus.setOnClickListener(this);
 
@@ -68,10 +68,10 @@ public class CartHolder extends RecyclerView.ViewHolder implements View.OnClickL
     @Override
     public void onClick(View view) {
 
-        if(view.getId() == btnDelete.getId()){
+        /*if(view.getId() == btnDelete.getId()){
             rvListener.onDeleteClick(getAdapterPosition());
 
-        }else if(view.getId() == btnTambah.getId()){
+        }*/if(view.getId() == btnTambah.getId()){
             rvListener.onAddClick(getAdapterPosition());
         }else if(view.getId() == btnMinus.getId()){
             rvListener.onMinusClick(getAdapterPosition());
