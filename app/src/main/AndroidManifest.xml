@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjekPemmob">
-        <activity android:name=".activity.CartActivity"></activity>
+        <activity android:name=".activity.EditProfileActivity"></activity>
+        <activity android:name=".activity.CartActivity" />
         <activity android:name=".activity.FoodActivity" />
         <activity android:name=".activity.ProfileActivity" />
         <activity android:name=".activity.FoodListActivity" />
