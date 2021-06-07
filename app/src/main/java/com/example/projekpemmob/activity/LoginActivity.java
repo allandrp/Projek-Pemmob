@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.projekpemmob.R;
@@ -20,7 +21,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText etEmail, etPassword;
-    Button btnLogin, btnRegister;
+    Button btnLogin, btnLoginGoogle;
+    TextView tvRegister;
     FirebaseAuth fbAuth;
     int reqCode = 1;
 
@@ -42,14 +44,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
         //pair item layout dengan variabel
-        etEmail     = findViewById(R.id.etLoginEmail);
-        etPassword  = findViewById(R.id.etLoginPassword);
-        btnLogin    = findViewById(R.id.btnLoginLogin);
-        btnRegister = findViewById(R.id.btnLoginRegister);
+        etEmail        = findViewById(R.id.id_txEmailLogin);
+        etPassword     = findViewById(R.id.id_txPwLogin);
+        btnLogin       = findViewById(R.id.id_btnLoginSignIn);
+        btnLoginGoogle = findViewById(R.id.id_btnLoginSignInGoogle);
+        tvRegister     = findViewById(R.id.id_tvLoginRegister);
 
         //set button ke listener onClick
         btnLogin.setOnClickListener(this);
-        btnRegister.setOnClickListener(this);
+        btnLoginGoogle.setOnClickListener(this);
+        tvRegister.setOnClickListener(this);
 
     }
 
@@ -57,7 +61,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
 
         //pindah ke halaman register dengan intent
-        if(v.getId() == btnRegister.getId()){
+        if(v.getId() == tvRegister.getId()){
 
             Intent intentRegister = new Intent(this, RegisterActivity.class);
             this.startActivityForResult(intentRegister, reqCode);

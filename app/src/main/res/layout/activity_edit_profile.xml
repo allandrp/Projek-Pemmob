@@ -30,18 +30,18 @@
 
     <EditText
         android:id="@+id/id_txNamaEP"
-        android:layout_width="wrap_content"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/edit_text_box"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
         android:ems="10"
         android:hint="John John"
         android:inputType="textPersonName"
+        android:paddingStart="12dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewNamaEditProfile" />
 
@@ -58,18 +58,18 @@
 
     <EditText
         android:id="@+id/id_txEmailEP"
-        android:layout_width="wrap_content"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/edit_text_box"
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
         android:ems="10"
         android:hint="example@gmail.com"
         android:inputType="textEmailAddress"
+        android:paddingStart="12dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewEmailEP" />
 
@@ -87,13 +87,14 @@
 
     <Button
         android:id="@+id/id_btSaveEP"
-        android:layout_width="310dp"
-        android:layout_height="wrap_content"
+        android:layout_width="330dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="32dp"
         android:backgroundTint="@color/white"
         android:shadowColor="@color/red_main"
-        android:text="Save Profile"
         android:textColor="@color/red_main"
+        android:text="Save Profile"
+        android:textAllCaps="false"
         app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
