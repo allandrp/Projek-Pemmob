@@ -19,16 +19,15 @@
             android:layout_marginLeft="30dp"
             android:background="@drawable/round_white_background_back"
             android:drawableTop="@drawable/ic_back"
-            app:backgroundTint="@color/secondcolor"
-            ></Button>
+            app:backgroundTint="@color/secondcolor" />
 
         <TextView
-            android:text="Cart"
+            android:text="@string/cart"
             android:textColor="@color/black"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></TextView>
+            android:layout_height="wrap_content" />
 
         <ImageView
             android:id="@+id/img_Profile"
@@ -37,7 +36,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="30dp"
             android:layout_width="45dp"
-            android:layout_height="45dp"></ImageView>
+            android:layout_height="45dp" />
 
     </RelativeLayout>
 
@@ -48,7 +47,7 @@
         android:layout_marginTop="-15dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_card_cart"></androidx.recyclerview.widget.RecyclerView>
+        tools:listitem="@layout/item_card_cart" />
 
     <RelativeLayout
         android:id="@+id/rlBottomOrder"
@@ -61,20 +60,20 @@
             android:id="@+id/textView3"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="18dp"
-            android:text="Total"
+            android:text="@string/total"
             android:textColor="@color/white"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></TextView>
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/tvCartTotalHarga"
             android:layout_below="@id/textView3"
             android:layout_marginLeft="30dp"
-            android:text="Rp120,000"
-            android:textSize="20dp"
+            android:text="@string/food_price"
+            android:textSize="20sp"
             android:textColor="@color/white"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></TextView>
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/btnCartPesan"
@@ -83,11 +82,11 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="30dp"
-            android:text="Order"
+            android:text="@string/order"
             android:textAllCaps="false"
             android:textColor="#EA3138"
             android:layout_width="100dp"
-            android:layout_height="40dp"></Button>
+            android:layout_height="40dp" />
 
     </RelativeLayout>
 
