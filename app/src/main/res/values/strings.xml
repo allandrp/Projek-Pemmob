@@ -17,4 +17,11 @@
     <string name="favorite">Favorite</string>
     <string name="qty_default">0</string>
     <string name="profile">profile</string>
+    <string name="cart">Cart</string>
+    <string name="number">1</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="zero">0</string>
+    <string name="points">150 Points</string>
+    <string name="my_coupons">My Coupons</string>
+    <string name="coupons">Coupons</string>
 </resources>

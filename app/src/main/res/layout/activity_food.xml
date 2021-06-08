@@ -18,17 +18,16 @@
             android:layout_marginLeft="30dp"
             android:background="@drawable/round_white_background_back"
             android:drawableTop="@drawable/ic_back"
-            app:backgroundTint="@color/secondcolor"
-            ></Button>
+            app:backgroundTint="@color/secondcolor" />
 
         <TextView
             android:id="@+id/tvFoodNama"
-            android:text="Nama Makanan"
+            android:text="@string/food_name"
             android:textColor="@color/black"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></TextView>
+            android:layout_height="wrap_content" />
 
         <ImageView
             android:id="@+id/tvFoodRating"
@@ -36,7 +35,7 @@
             android:layout_centerHorizontal="true"
             android:src="@drawable/five_stars"
             android:layout_width="80dp"
-            android:layout_height="20dp"></ImageView>
+            android:layout_height="20dp" />
 
         <ImageView
             android:id="@+id/img_Share"
@@ -45,30 +44,28 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="30dp"
             android:layout_width="35dp"
-            android:layout_height="35dp"></ImageView>
+            android:layout_height="35dp" />
 
     </RelativeLayout>
 
 
+    <ImageView
+        android:id="@+id/img_sate"
+        android:src="@drawable/sate"
+        android:layout_below="@id/rlHeader"
+        android:layout_margin="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
 
-        <ImageView
-            android:id="@+id/img_sate"
-            android:src="@drawable/sate"
-            android:layout_below="@id/rlHeader"
-            android:layout_margin="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"></ImageView>
-
-        <TextView
-            android:id="@+id/tvFoodDeskripsi"
-            android:layout_below="@id/img_sate"
-            android:text="Deskripsi makanan panjang lebar yang panjangnya bisa sampai dua baris kalau lebih bisa dipotong menjadi tiga titik seperti itu. Lalu jika banyak baris maka ada Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-            android:justificationMode="inter_word"
-            android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></TextView>
-
+    <TextView
+        android:id="@+id/tvFoodDeskripsi"
+        android:layout_below="@id/img_sate"
+        android:text="@string/food_description"
+        android:justificationMode="inter_word"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 
     <RelativeLayout
@@ -77,7 +74,7 @@
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="#DEDEDE"></RelativeLayout>
+        android:background="#DEDEDE" />
 
     <Button
         android:id="@+id/btnFoodMinus"
@@ -89,7 +86,7 @@
         android:background="@drawable/rectangle_buttonmin"
         app:backgroundTint="@color/secondcolor"
         android:layout_width="37dp"
-        android:layout_height="40dp"></Button>
+        android:layout_height="40dp" />
 
     <RelativeLayout
         android:id="@+id/rlJumlah"
@@ -107,9 +104,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="0"
+            android:text="@string/zero"
             android:textColor="@color/redcolor"
-            android:textSize="20dp"></TextView>
+            android:textSize="20sp" />
 
     </RelativeLayout>
 
@@ -124,12 +121,12 @@
         android:background="@drawable/rectangle_buttonplus"
         app:backgroundTint="@color/secondcolor"
         android:layout_width="37dp"
-        android:layout_height="40dp"></Button>
+        android:layout_height="40dp" />
 
 
     <Button
         android:id="@+id/btnFoodAddChart"
-        android:text="Add to Cart"
+        android:text="@string/add_to_cart"
         android:textColor="@color/redcolor"
         android:textAllCaps="false"
         android:layout_alignParentBottom="true"
@@ -139,7 +136,7 @@
         android:background="@drawable/rectangle_buttonaddtocart"
         app:backgroundTint="@color/secondcolor"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"></Button>
+        android:layout_height="40dp" />
 
     <TextView
         android:id="@+id/tvFoodHarga"
@@ -149,8 +146,8 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="45dp"
         android:layout_marginBottom="5dp"
-        android:text="0"
+        android:text="@string/food_price"
         android:textColor="@color/black"
-        android:textSize="18dp"></TextView>
+        android:textSize="18sp" />
 
 </RelativeLayout>
