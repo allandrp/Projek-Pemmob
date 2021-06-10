@@ -32,4 +32,6 @@
     <string name="sign_in">Sign In</string>
     <string name="sign_in_with_google">Sign In with Google</string>
     <string name="create_new_account_click_here">Create new account? Click here!</string>
+    <string name="register">register</string>
+    <string name="register_cap">Register</string>
 </resources>
