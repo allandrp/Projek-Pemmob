@@ -43,8 +43,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         dbReference = fbDb.getReference();
 
         //pair item layout dengan variabel
-        etNama      = findViewById(R.id.etRegisterNama);
-        etNotelp    = findViewById(R.id.etRegisterNotelp);
         etEmail     = findViewById(R.id.etRegisterEmail);
         etPassword  = findViewById(R.id.etRegisterPassword);
         btnRegister = findViewById(R.id.btnRegisterRegister);
