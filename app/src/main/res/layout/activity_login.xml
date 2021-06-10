@@ -91,7 +91,7 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="16sp"
-        app:backgroundTint="@drawable/red_orange_gradient_fullyrounded"
+        app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="@+id/id_txPwLogin"
         app:layout_constraintStart_toStartOf="@+id/id_txPwLogin"
         app:layout_constraintTop_toBottomOf="@+id/id_txPwLogin" />

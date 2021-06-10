@@ -66,10 +66,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Intent intentRegister = new Intent(this, RegisterActivity.class);
             this.startActivityForResult(intentRegister, reqCode);
 
-        }
-
-        //masuk ke halaman utama dengan firebase auth
-        else if(v.getId() == btnLogin.getId()){
+        } else if(v.getId() == btnLogin.getId()){ //masuk ke halaman utama dengan firebase auth
 
             //memberi notifikasi jika kolom email kosong
             if(TextUtils.isEmpty(etEmail.getText().toString().trim())){
@@ -107,7 +104,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
             });
 
-        }
+        } else if (v.getId() == btnLoginGoogle.getId()) {
 
+        }
     }
 }
