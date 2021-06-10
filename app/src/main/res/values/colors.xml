@@ -20,4 +20,7 @@
     <color name="maincolor">#F1F1F1</color>
     <color name="secondcolor">#F9F9F9</color>
     <color name="redcolor">#EA3138</color>
+
+    <color name="dark_grey_grad">#AAAAAA</color>
+    <color name="light_grey_grad">#D8D8D8</color>
 </resources>

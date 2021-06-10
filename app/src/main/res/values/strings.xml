@@ -24,4 +24,12 @@
     <string name="points">150 Points</string>
     <string name="my_coupons">My Coupons</string>
     <string name="coupons">Coupons</string>
+    <string name="password_hint">********</string>
+    <string name="password">Password</string>
+    <string name="email_hint">example@email.com</string>
+    <string name="email">Email</string>
+    <string name="login">login</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_in_with_google">Sign In with Google</string>
+    <string name="create_new_account_click_here">Create new account? Click here!</string>
 </resources>
