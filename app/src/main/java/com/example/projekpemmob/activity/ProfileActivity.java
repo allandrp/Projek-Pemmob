@@ -39,13 +39,11 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         tvemail     = findViewById(R.id.tvProfileEmail);
         tvPoints    = findViewById(R.id.tvProfilepoints);
 
-        btnSetting      = findViewById(R.id.btnSetting);
         btnEditProfile  = findViewById(R.id.btnEditProfile);
         btnHistory      = findViewById(R.id.btnProfileHistory);
         btnCoupons      = findViewById(R.id.btnProfileCoupons);
         btnLogout       = findViewById(R.id.btnProfileLogout);
 
-        btnSetting.setOnClickListener(this);
         btnEditProfile.setOnClickListener(this);
         btnHistory.setOnClickListener(this);
         btnCoupons.setOnClickListener(this);

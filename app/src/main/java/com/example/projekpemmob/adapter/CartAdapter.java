@@ -14,6 +14,7 @@ import com.example.projekpemmob.viewHolder.CartHolder;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Locale;
 
 public class CartAdapter extends RecyclerView.Adapter<CartHolder>{
@@ -44,7 +45,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartHolder>{
         holder.getTvNama().setText(listMakanan.get(position).getNama());
         holder.getTvHarga().setText("Rp. "+ NumberFormat.getInstance(Locale.ITALY).format(listMakanan.get(position).getHarga()));
         holder.getTvJumlahPesan().setText(String.valueOf(listMakanan.get(position).getJumlahPesan()));
-        holder.getNo().setText();
+        holder.getNo().setText(Arrays.asList(listMakanan).indexOf(listMakanan.get(position).getNama()));
 
     }
 

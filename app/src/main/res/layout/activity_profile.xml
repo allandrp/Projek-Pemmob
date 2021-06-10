@@ -40,7 +40,7 @@
         android:layout_height="90dp"/>
 
     <TextView
-        android:id="@+id/Tv_Nama"
+        android:id="@+id/tvProfileNama"
         android:layout_toRightOf="@id/I_Profile"
         android:layout_below="@id/RL_Header"
         android:layout_marginTop="10dp"
@@ -52,19 +52,19 @@
         android:layout_height="wrap_content"/>
 
     <TextView
-        android:id="@+id/Tv_Email"
+        android:id="@+id/tvProfileEmail"
         android:layout_toRightOf="@id/I_Profile"
         android:layout_marginLeft="10dp"
-        android:layout_below="@id/Tv_Nama"
+        android:layout_below="@id/tvProfileNama"
         android:text="email@email.com"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <TextView
-        android:id="@+id/Tv_Points"
+        android:id="@+id/tvProfilepoints"
         android:layout_toRightOf="@id/I_Profile"
         android:layout_marginLeft="10dp"
-        android:layout_below="@id/Tv_Email"
+        android:layout_below="@id/tvProfileEmail"
         android:layout_marginTop="5dp"
         android:text="150 Points"
         android:textColor="@color/black"
@@ -73,7 +73,7 @@
         android:layout_height="wrap_content"/>
 
     <Button
-        android:id="@+id/B_EditProfile"
+        android:id="@+id/btnEditProfile"
         android:layout_below="@id/I_Profile"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="40dp"
@@ -88,8 +88,8 @@
         android:layout_height="wrap_content"/>
 
     <Button
-        android:id="@+id/B_History"
-        android:layout_below="@id/B_EditProfile"
+        android:id="@+id/btnProfileHistory"
+        android:layout_below="@id/btnEditProfile"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="40dp"
         android:background="@drawable/rectangle_buttonaddtocart"
@@ -106,8 +106,8 @@
         android:layout_height="100dp"/>
 
     <Button
-        android:id="@+id/B_Coupons"
-        android:layout_below="@id/B_EditProfile"
+        android:id="@+id/btnProfileCoupons"
+        android:layout_below="@id/btnEditProfile"
         android:layout_alignParentRight="true"
         android:layout_marginTop="20dp"
         android:layout_marginRight="40dp"
@@ -125,13 +125,17 @@
         android:layout_height="100dp"/>
 
     <Button
+        android:id="@+id/btnProfileLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_margin="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/rectangle_buttonaddtocart"
-        app:backgroundTint="@color/redcolor"
         android:text="Logout"
         android:textAllCaps="false"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        app:backgroundTint="@color/redcolor" />
 
 </RelativeLayout>
