@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-public class FoodActivity extends AppCompatActivity implements View.OnClickListener {
+public class FoodDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView tvNama, tvHarga, tvDeskripsi, tvJumlah;
     RecyclerView rvReview;

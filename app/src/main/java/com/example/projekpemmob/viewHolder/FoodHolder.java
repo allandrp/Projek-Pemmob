@@ -45,6 +45,14 @@ public class FoodHolder extends RecyclerView.ViewHolder implements View.OnClickL
         return tvDescription;
     }
 
+    public ImageView getImageRating() {
+        return imageRating;
+    }
+
+    public ImageView getImageFood() {
+        return imageFood;
+    }
+
     @Override
     public void onClick(View view) {
 
