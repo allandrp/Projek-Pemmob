@@ -1,6 +1,8 @@
 package com.example.projekpemmob.adapter;
 
 import android.content.Context;
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.projekpemmob.R;
 import com.example.projekpemmob.model.Food;
 import com.example.projekpemmob.viewHolder.FoodHolder;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -73,10 +76,14 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodHolder> {
                 .apply(new RequestOptions().override(200, 200))
                 .into(holder.getImageRating());
 
-        Glide.with(holder.itemView.getContext())
-                .load(gsRef)
-                .apply(new RequestOptions().override(300, 300))
-                .into(holder.getImageFood());
+        gsRef.getDownloadUrl().addOnSuccessListener(uri -> {
+            Log.e("IMAGE_URL", "uri: " + uri.toString());
+
+            Glide.with(holder.itemView.getContext())
+                    .load(uri)
+                    .apply(new RequestOptions().override(300, 300))
+                    .into(holder.getImageFood());
+        });
     }
 
     @Override

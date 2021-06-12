@@ -30,7 +30,7 @@
             android:layout_height="wrap_content" />
 
         <ImageView
-            android:id="@+id/tvFoodRating"
+            android:id="@+id/imgFoodRating"
             android:layout_below="@id/tvFoodNama"
             android:layout_centerHorizontal="true"
             android:src="@drawable/five_stars"
@@ -50,18 +50,18 @@
 
 
     <ImageView
-        android:id="@+id/img_sate"
-        android:src="@drawable/sate"
+        android:id="@+id/img_food"
         android:layout_below="@id/rlHeader"
         android:layout_margin="30dp"
         android:layout_width="match_parent"
-        android:layout_height="200dp" />
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:layout_height="230dp" />
 
     <TextView
         android:id="@+id/tvFoodDeskripsi"
-        android:layout_below="@id/img_sate"
+        android:layout_below="@id/img_food"
         android:text="@string/food_description"
-        android:justificationMode="inter_word"
         android:layout_marginRight="30dp"
         android:layout_marginLeft="30dp"
         android:layout_width="match_parent"

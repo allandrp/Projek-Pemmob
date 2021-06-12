@@ -174,7 +174,7 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
     public void getRvClick(int position) {
 
         Intent intentFood = new Intent(this, FoodDetailActivity.class);
-        intentFood.putExtra("nama", daftarFood.get(position).getName());
+        intentFood.putExtra(FoodDetailActivity.EXTRA_NAME, daftarFood.get(position).getName());
         startActivity(intentFood);
 
     }
