@@ -58,11 +58,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         //cek apakah user masih login
         if(fbAuth.getCurrentUser() != null){
+            dbReference.child("user").child(fbAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    User user = dataSnapshot.getValue(User.class);
+                    if (user.getName().equals("-")) {
+                        Intent intentLogin = new Intent (LoginActivity.this, RegisterDataActivity.class);
+                        startActivity(intentLogin);
+                        finish();
+                    } else {
+                        Intent intentLogin = new Intent (LoginActivity.this, MainMenuActivity.class);
+                        startActivity(intentLogin);
+                        finish();
+                    }
+                }
 
-            Intent intentLogin = new Intent (LoginActivity.this, MainMenuActivity.class);
-            startActivity(intentLogin);
-            finish();
-
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    System.out.println("The read failed: " + databaseError.getCode());
+                }
+            });
         }
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
