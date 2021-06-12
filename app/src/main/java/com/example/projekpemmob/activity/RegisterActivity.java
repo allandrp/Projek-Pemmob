@@ -25,8 +25,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
-    EditText etNama, etNotelp, etEmail, etPassword;
-    String nama, notelp, email, password;
+    EditText etEmail, etPassword;
+    String email, password;
     Button btnRegister;
     FirebaseAuth fbAuth;
     FirebaseDatabase fbDb;
@@ -73,8 +73,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
 
         //memasukkan data isian ke variabel
-        nama        = etNama.getText().toString().trim();
-        notelp      = etNotelp.getText().toString().trim();
         email       = etEmail.getText().toString().trim();
         password    = etPassword.getText().toString().trim();
 
@@ -87,10 +85,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                 //cek jika data telah ada
                 if(snapshot.exists()){
-
-                    Toast.makeText(RegisterActivity.this, "EMAIL TELAH TERDAFTAR", Toast.LENGTH_SHORT).show();
-
-                }else{
+                    Toast.makeText(RegisterActivity.this, R.string.email_taken_message, Toast.LENGTH_SHORT).show();
+                } else {
 
                     fbAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -98,14 +94,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                             if(task.isSuccessful()){
 
-                                User dataUser = new User(nama, notelp, email, password);
+                                User dataUser = new User("-", "-", email, password);
                                 dbReference.child("user").child(String.valueOf(task.getResult().getUser().getUid())).setValue(dataUser);
 
                                 //kembali ke login
                                 setResult(RESULT_OK);
                                 finish();
-
-
                             }
 
                         }

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.projekpemmob.R;
+import com.example.projekpemmob.model.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -26,13 +27,21 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText etEmail, etPassword;
     private Button btnLogin, btnLoginGoogle;
     private TextView tvRegister;
+
     private FirebaseAuth fbAuth;
+    private FirebaseDatabase fbDb;
+    private DatabaseReference dbReference;
     private GoogleSignInClient mGoogleSignInClient;
     private static final int RC_SIGN_IN = 9001;
     int reqCode = 1;
@@ -44,6 +53,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         //get instance firebase
         fbAuth = FirebaseAuth.getInstance();
+        fbDb = FirebaseDatabase.getInstance();
+        dbReference = fbDb.getReference();
 
         //cek apakah user masih login
         if(fbAuth.getCurrentUser() != null){
@@ -107,13 +118,28 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
 
-                    if(task.isSuccessful()){
+                    if (task.isSuccessful()) {
+                        dbReference.child("user").child(fbAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                User user = dataSnapshot.getValue(User.class);
+                                if (user.getName().equals("-")) {
+                                    Intent intentLogin = new Intent (LoginActivity.this, RegisterDataActivity.class);
+                                    startActivity(intentLogin);
+                                    finish();
+                                } else {
+                                    Intent intentLogin = new Intent (LoginActivity.this, MainMenuActivity.class);
+                                    startActivity(intentLogin);
+                                    finish();
+                                }
+                            }
 
-                        Intent intentLogin = new Intent (LoginActivity.this, MainMenuActivity.class);
-                        startActivity(intentLogin);
-                        finish();
-
-                    }else{
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                                System.out.println("The read failed: " + databaseError.getCode());
+                            }
+                        });
+                    } else {
 
                         Toast.makeText(LoginActivity.this, "LOGIN FAILED", Toast.LENGTH_SHORT).show();
 
@@ -170,8 +196,35 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             Log.d("TEST_GOOGLE_LOGIN", "signInWithCredential:success");
                             FirebaseUser user = fbAuth.getCurrentUser();
 
-                            Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
-                            startActivity(intent);
+                            dbReference.child("user").child(user.getUid()).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    try {
+                                        User user = dataSnapshot.getValue(User.class);
+                                        if (user.getName().equals("-")) {
+                                            Intent intentLogin = new Intent (LoginActivity.this, RegisterDataActivity.class);
+                                            startActivity(intentLogin);
+                                            finish();
+                                        } else {
+                                            Intent intentLogin = new Intent (LoginActivity.this, MainMenuActivity.class);
+                                            startActivity(intentLogin);
+                                            finish();
+                                        }
+                                    } catch (NullPointerException e) {
+                                        User dataUser = new User("-", "-", user.getEmail(), "id10sd18d280912dhj20jdase");
+                                        dbReference.child("user").child(String.valueOf(task.getResult().getUser().getUid())).setValue(dataUser);
+
+                                        Intent intentLogin = new Intent (LoginActivity.this, RegisterDataActivity.class);
+                                        startActivity(intentLogin);
+                                        finish();
+                                    }
+
+                                }
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("TEST_GOOGLE_LOGIN", "signInWithCredential:failure", task.getException());
