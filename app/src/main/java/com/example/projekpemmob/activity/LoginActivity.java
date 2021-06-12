@@ -59,7 +59,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //cek apakah user masih login
         if(fbAuth.getCurrentUser() != null){
 
-            //fbAuth.signOut();
             Intent intentLogin = new Intent (LoginActivity.this, MainMenuActivity.class);
             startActivity(intentLogin);
             finish();
