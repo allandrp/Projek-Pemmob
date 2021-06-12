@@ -56,6 +56,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         fbDb = FirebaseDatabase.getInstance();
         dbReference = fbDb.getReference();
 
+        fbAuth.signOut();
         //cek apakah user masih login
         if(fbAuth.getCurrentUser() != null){
             dbReference.child("user").child(fbAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {

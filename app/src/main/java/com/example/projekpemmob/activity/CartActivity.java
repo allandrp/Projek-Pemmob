@@ -119,7 +119,7 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
     public void getRvClick(int position) {
 
         Intent intent = new Intent(this, FoodDetailActivity.class);
-        intent.putExtra("nama", listCart.get(position).getNama());
+        intent.putExtra(FoodDetailActivity.EXTRA_NAME, listCart.get(position).getNama());
         startActivity(intent);
 
     }
