@@ -42,5 +42,7 @@
     <string name="foods_list">Foods List</string>
     <string name="foods">Foods</string>
     <string name="see_all">See All</string>
+    <string name="detail">Detail</string>
+    <string name="history">History</string>
 
 </resources>
