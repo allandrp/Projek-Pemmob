@@ -1,5 +1,6 @@
 package com.example.projekpemmob.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
@@ -27,12 +28,12 @@ import java.util.Locale;
 
 public class FoodAdapter extends RecyclerView.Adapter<FoodHolder> {
     private ArrayList<Food> foodList;
-    private Context context;
+    private Activity activity;
     FoodHolder.getRvListener rvListener;
 
-    public FoodAdapter(ArrayList<Food> foodList, Context context, FoodHolder.getRvListener rvListener) {
+    public FoodAdapter(ArrayList<Food> foodList, Activity activity, FoodHolder.getRvListener rvListener) {
         this.foodList = foodList;
-        this.context    = context;
+        this.activity    = activity;
         this.rvListener = rvListener;
     }
 
@@ -71,18 +72,23 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodHolder> {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference gsRef = storage.getReferenceFromUrl(food.getImagePath());
 
-        Glide.with(holder.itemView.getContext())
-                .load(ratingImage)
-                .apply(new RequestOptions().override(200, 200))
-                .into(holder.getImageRating());
+        if (!activity.isFinishing()) {
+            Glide.with(holder.itemView.getContext())
+                    .load(ratingImage)
+                    .apply(new RequestOptions().override(200, 200))
+                    .into(holder.getImageRating());
+        }
 
         gsRef.getDownloadUrl().addOnSuccessListener(uri -> {
             Log.e("IMAGE_URL", "uri: " + uri.toString());
 
-            Glide.with(holder.itemView.getContext())
-                    .load(uri)
-                    .apply(new RequestOptions().override(300, 300))
-                    .into(holder.getImageFood());
+            if (!activity.isFinishing()) {
+                Glide.with(holder.itemView.getContext())
+                        .load(uri)
+                        .apply(new RequestOptions().override(300, 300))
+                        .into(holder.getImageFood());
+            }
+
         });
     }
 

@@ -43,7 +43,7 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
     private FirebaseAuth fbAuth;
     private int counter = 0;
     private int hargaMakanan, jumlahPesan;
-    private String namaMakanan = "soto", descMakanan, userID;
+    private String namaMakanan = "soto", descMakanan, userID, categoryIntent;
 
     private FirebaseStorage fbStorage;
 

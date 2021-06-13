@@ -41,12 +41,14 @@
         app:layout_constraintTop_toTopOf="@+id/textView9" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/tvClock"
+        style="@style/PrimaryText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
         android:layout_marginTop="76dp"
-        android:text="TextView"
+        android:text="@string/main_menu_date"
+        android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -59,7 +61,7 @@
         android:layout_marginTop="80dp"
         android:text="@string/foods"
         app:layout_constraintStart_toStartOf="@+id/rvFood"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/tvClock" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvFood"

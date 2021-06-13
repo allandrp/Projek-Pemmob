@@ -24,13 +24,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener {
 
 
-    private TextView tvSeeAllFood;
-    private TextView tvSeeAllDrink;
+    private TextView tvSeeAllFood, tvSeeAllDrink, tvClock;
     private Button btnAllCategories;
     private FirebaseAuth fbAuth;
     private RecyclerView rvFood;
@@ -52,6 +53,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         tvSeeAllFood = findViewById(R.id.tvSeeAllFood);
         tvSeeAllDrink = findViewById(R.id.tvSeeAllDrink);
         btnAllCategories = findViewById(R.id.btnAllFood);
+        tvClock = findViewById(R.id.tvClock);
 
         tvSeeAllFood.setOnClickListener(this);
         tvSeeAllDrink.setOnClickListener(this);
@@ -65,19 +67,28 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
     private void loadAllData() {
         loadData(Food.CATEGORIES.Food, rvFood);
         loadData(Food.CATEGORIES.Drink, rvDrink);
+
+        String currentDateTimeString = DateFormat.getDateInstance().format(new Date());
+        tvClock.setText(currentDateTimeString);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        FoodListActivity.categoryState = "ALL";
     }
 
     @Override
     public void onClick(View view) {
         if (view.getId() == tvSeeAllFood.getId()) {
             Intent intent = new Intent(this, FoodListActivity.class);
-            intent.putExtra(FoodListActivity.EXTRA_CATEGORY, Food.CATEGORY_FOOD);
+            FoodListActivity.categoryState = Food.CATEGORY_FOOD;
             startActivity(intent);
         }
 
         if (view.getId() == tvSeeAllDrink.getId()) {
             Intent intent = new Intent(this, FoodListActivity.class);
-            intent.putExtra(FoodListActivity.EXTRA_CATEGORY, Food.CATEGORY_DRINK);
+            FoodListActivity.categoryState = Food.CATEGORY_DRINK;
             startActivity(intent);
         }
 

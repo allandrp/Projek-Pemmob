@@ -53,6 +53,7 @@
         android:id="@+id/img_food"
         android:layout_below="@id/rlHeader"
         android:layout_margin="30dp"
+        android:src="@color/dark_grey_grad"
         android:layout_width="match_parent"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"

@@ -33,6 +33,7 @@ import java.util.Locale;
 public class FoodListActivity extends AppCompatActivity implements View.OnClickListener, FoodHolder.getRvListener {
 
     public static final String EXTRA_CATEGORY = "category";
+    public static String categoryState = "ALL";
 
     private FirebaseAuth fbAuth;
     private FirebaseDatabase fbDB;
@@ -71,16 +72,8 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
         cvCart.setOnClickListener(this);
         //btnProfile.setOnClickListener(this);
 
-        String categoryIntent = "";
-
-        if (getIntent().getExtras() != null) {
-            categoryIntent = getIntent().getExtras().getString(EXTRA_CATEGORY);
-        } else {
-            categoryIntent = "ALL";
-        }
-
         loadCart();
-        loadData(categoryIntent);
+        loadData(categoryState);
 
         if (Integer.valueOf(tvQtyCart.getText().toString()) == 0) {
 
@@ -159,6 +152,7 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
                         }
                     } else {
                         daftarFood.add(food);
+                        categoryState = "ALL";
                     }
                 }
 
