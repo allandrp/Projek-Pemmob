@@ -23,7 +23,7 @@
         <TextView
             android:text="Profile"
             android:textColor="@color/black"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -45,9 +45,9 @@
         android:layout_below="@id/RL_Header"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
-        android:text="John John"
+        android:text="@string/name_hint"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -56,7 +56,7 @@
         android:layout_toRightOf="@id/I_Profile"
         android:layout_marginLeft="10dp"
         android:layout_below="@id/tvProfileNama"
-        android:text="email@email.com"
+        android:text="@string/email_hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -66,9 +66,9 @@
         android:layout_marginLeft="10dp"
         android:layout_below="@id/tvProfileEmail"
         android:layout_marginTop="5dp"
-        android:text="150 Points"
+        android:text="@string/points"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -78,7 +78,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:text="Edit Profile"
+        android:text="@string/edit_profile"
         android:textAllCaps="false"
         android:textColor="#EA3138"
         android:background="@drawable/rectangle_buttonaddtocart"
@@ -97,7 +97,7 @@
         android:drawableTop="@drawable/ic_history"
         android:paddingTop="15dp"
         android:paddingRight="20dp"
-        android:text="History"
+        android:text="@string/history"
         android:textAllCaps="false"
         android:textAlignment="gravity"
         android:textColor="@color/black"
@@ -116,7 +116,7 @@
         android:drawableTop="@drawable/ic_coupons"
         android:paddingTop="20dp"
         android:paddingRight="20dp"
-        android:text="Coupons"
+        android:text="@string/coupons"
         android:textAllCaps="false"
         android:textAlignment="gravity"
         android:textColor="@color/black"
@@ -134,7 +134,7 @@
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="40dp"
         android:background="@drawable/rectangle_buttonaddtocart"
-        android:text="Logout"
+        android:text="@string/logout"
         android:textAllCaps="false"
         app:backgroundTint="@color/redcolor" />
 

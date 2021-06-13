@@ -44,5 +44,10 @@
     <string name="see_all">See All</string>
     <string name="detail">Detail</string>
     <string name="history">History</string>
+    <string name="drinks">Drinks</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="logout">Logout</string>
+    <string name="coupons_description">Diskon 40% (min. pembelian Rp50...</string>
+    <string name="date">21 Oktober 2020</string>
 
 </resources>

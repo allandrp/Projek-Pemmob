@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjekPemmob">
         <activity android:name=".activity.HistoryDetailsActivity"></activity>
-        <activity android:name=".HistoryActivity" />
+        <activity android:name=".activity.HistoryActivity" />
         <activity android:name=".activity.RegisterDataActivity" />
         <activity android:name=".activity.EditProfileActivity" />
         <activity android:name=".activity.CartActivity" />

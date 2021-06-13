@@ -22,6 +22,7 @@
             app:backgroundTint="@color/secondcolor" />
 
         <TextView
+            android:id="@+id/tvFoodListsTitle"
             android:text="@string/foods_list"
             android:textColor="@color/black"
             android:textSize="20sp"

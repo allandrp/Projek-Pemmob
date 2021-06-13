@@ -7,6 +7,40 @@
     tools:context=".activity.MainMenuActivity">
 
     <TextView
+        android:id="@+id/textView9"
+        style="@style/PrimaryText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/drinks"
+        app:layout_constraintStart_toStartOf="@+id/rvDrink"
+        app:layout_constraintTop_toBottomOf="@+id/rvFood" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvDrink"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        tools:listitem="@layout/item_card_mini_food" />
+
+    <TextView
+        android:id="@+id/tvSeeAllDrink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:text="@string/see_all"
+        android:textColor="@color/orange_main"
+        app:layout_constraintBottom_toBottomOf="@+id/textView9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView9" />
+
+    <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,7 +69,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
-        tools:listitem="@layout/item_card_mini_food" />
+        tools:listitem="@layout/item_card_mini_food"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
     <TextView
         android:id="@+id/tvSeeAllFood"
@@ -47,6 +83,16 @@
         app:layout_constraintBottom_toBottomOf="@+id/textView6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView6"/>
+
+    <Button
+        android:id="@+id/btnAllFood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Foods and Drinks"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvDrink" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,8 +1,10 @@
-package com.example.projekpemmob;
+package com.example.projekpemmob.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.projekpemmob.R;
 
 public class HistoryActivity extends AppCompatActivity {
 

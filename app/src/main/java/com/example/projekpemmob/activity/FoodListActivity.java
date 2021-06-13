@@ -32,13 +32,15 @@ import java.util.Locale;
 
 public class FoodListActivity extends AppCompatActivity implements View.OnClickListener, FoodHolder.getRvListener {
 
+    public static final String EXTRA_CATEGORY = "category";
+
     private FirebaseAuth fbAuth;
     private FirebaseDatabase fbDB;
     private DatabaseReference dbReference;
     private RecyclerView rvFood;
     private ArrayList<Food> daftarFood;
     private Button btnProfile;
-    private TextView tvTotalHarga, tvQtyCart;
+    private TextView tvTotalHarga, tvQtyCart, tvFoodListsTitle;
     private CardView cvCart;
 
     @Override
@@ -63,13 +65,22 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
         tvQtyCart = findViewById(R.id.tvQtyCart);
         tvTotalHarga = findViewById(R.id.tvTotalHarga);
         rvFood = findViewById(R.id.rv_foods);
+        tvFoodListsTitle = findViewById(R.id.tvFoodListsTitle);
         //btnProfile      = findViewById(R.id.btnPro)
 
         cvCart.setOnClickListener(this);
         //btnProfile.setOnClickListener(this);
 
+        String categoryIntent = "";
+
+        if (getIntent().getExtras() != null) {
+            categoryIntent = getIntent().getExtras().getString(EXTRA_CATEGORY);
+        } else {
+            categoryIntent = "ALL";
+        }
+
         loadCart();
-        loadData();
+        loadData(categoryIntent);
 
         if (Integer.valueOf(tvQtyCart.getText().toString()) == 0) {
 
@@ -124,7 +135,7 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
-    void loadData() {
+    void loadData(String category) {
 
         Query checkUser = fbDB.getReference("foods");
 
@@ -136,7 +147,19 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Food food = dataSnapshot.getValue(Food.class);
                     Log.d("TEST_TOSTRING", food.toString());
-                    daftarFood.add(food);
+                    if (category.equals(Food.CATEGORY_FOOD)) {
+                        if (food.getCategory().equals(Food.CATEGORY_FOOD)) {
+                            daftarFood.add(food);
+                            tvFoodListsTitle.setText(R.string.foods);
+                        }
+                    } else if (category.equals(Food.CATEGORY_DRINK)) {
+                        if (food.getCategory().equals(Food.CATEGORY_DRINK)) {
+                            daftarFood.add(food);
+                            tvFoodListsTitle.setText(R.string.drinks);
+                        }
+                    } else {
+                        daftarFood.add(food);
+                    }
                 }
 
                 FoodAdapter adpFood = new FoodAdapter(daftarFood, FoodListActivity.this, FoodListActivity.this);
