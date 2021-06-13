@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="230dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="3dp"
+    android:layout_marginBottom="3dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="3dp"
+    app:cardCornerRadius="14dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_food"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            tools:src="@tools:sample/avatars"
+            android:layout_margin="16dp"
+            android:scaleType="centerCrop"/>
+
+        <ImageView
+            android:id="@+id/img_favorite"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="16dp"/>
+
+        <LinearLayout
+            android:id="@+id/layout_food_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/img_food"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp">
+
+            <ImageView
+                android:id="@+id/img_stars"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:src="@drawable/no_stars"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"/>
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_food_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/img_food"
+            android:layout_marginRight="16dp"
+            android:ellipsize="end"
+            style="@style/SecondaryText"
+            android:text="@string/food_name"
+            android:layout_below="@id/layout_food_info"/>
+
+        <TextView
+            android:id="@+id/tv_food_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_below="@id/tv_food_name"
+            android:layout_toRightOf="@id/img_food"
+            android:gravity="left"
+            android:text="@string/food_price"
+            style="@style/SecondaryText"/>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
