@@ -64,7 +64,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
                 User User = snapshot.getValue(com.example.projekpemmob.model.User.class);
 
-                tvNama.setText(User.getNama());
+                tvNama.setText(User.getName());
                 tvemail.setText(User.getEmail());
 
             }

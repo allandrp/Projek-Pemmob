@@ -32,14 +32,14 @@ import java.util.Locale;
 
 public class FoodListActivity extends AppCompatActivity implements View.OnClickListener, FoodHolder.getRvListener {
 
-    FirebaseAuth fbAuth;
-    FirebaseDatabase fbDB;
-    DatabaseReference dbReference;
-    RecyclerView rvFood;
-    ArrayList<Food>daftarFood;
-    Button btnProfile;
-    TextView tvTotalHarga, tvQtyCart;
-    CardView cvCart;
+    private FirebaseAuth fbAuth;
+    private FirebaseDatabase fbDB;
+    private DatabaseReference dbReference;
+    private RecyclerView rvFood;
+    private ArrayList<Food> daftarFood;
+    private Button btnProfile;
+    private TextView tvTotalHarga, tvQtyCart;
+    private CardView cvCart;
 
     @Override
     protected void onRestart() {
@@ -55,42 +55,34 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_list);
 
-        fbAuth      = FirebaseAuth.getInstance();
-        fbDB        = FirebaseDatabase.getInstance();
+        fbAuth = FirebaseAuth.getInstance();
+        fbDB = FirebaseDatabase.getInstance();
         dbReference = fbDB.getReference();
 
-        cvCart          = findViewById(R.id.cvCart);
-        tvQtyCart       = findViewById(R.id.tvQtyCart);
-        tvTotalHarga    = findViewById(R.id.tvTotalHarga);
-        rvFood          = findViewById(R.id.rv_foods);
+        cvCart = findViewById(R.id.cvCart);
+        tvQtyCart = findViewById(R.id.tvQtyCart);
+        tvTotalHarga = findViewById(R.id.tvTotalHarga);
+        rvFood = findViewById(R.id.rv_foods);
         //btnProfile      = findViewById(R.id.btnPro)
 
         cvCart.setOnClickListener(this);
         //btnProfile.setOnClickListener(this);
 
-        dbReference.child("food").child("sate").setValue(new Food("Sate", "makanan khas madura", 20000));
-        dbReference.child("food").child("soto").setValue(new Food("Soto", "makanan khas lamongan", 10000));
-        dbReference.child("food").child("steak").setValue(new Food("Steak", "makanan khas madura", 15000));
-        dbReference.child("food").child("ronde").setValue(new Food("ronde", "makanan khas lamongan", 25000));
-
-
         loadCart();
         loadData();
 
-        if(Integer.valueOf(tvQtyCart.getText().toString()) == 0){
+        if (Integer.valueOf(tvQtyCart.getText().toString()) == 0) {
 
             cvCart.setVisibility(View.INVISIBLE);
 
-        }else{
+        } else {
 
             cvCart.setVisibility(View.VISIBLE);
 
         }
-
-
     }
 
-    private void loadCart(){
+    private void loadCart() {
 
         Query dataCart = dbReference.child("cart").child(fbAuth.getCurrentUser().getUid());
 
@@ -98,24 +90,24 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                if(snapshot.exists()){
-                    Log.d("coba3", "onDataChange: "+snapshot.getValue());
+                if (snapshot.exists()) {
+                    Log.d("coba3", "onDataChange: " + snapshot.getValue());
                     int jumlahPesanan = 0, totalHarga = 0;
 
-                    for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         FoodCart dataFood = dataSnapshot.getValue(FoodCart.class);
-                        jumlahPesanan   = jumlahPesanan+dataFood.getJumlahPesan();
-                        totalHarga      = totalHarga+(dataFood.getHarga()*dataFood.getJumlahPesan());
+                        jumlahPesanan = jumlahPesanan + dataFood.getJumlahPesan();
+                        totalHarga = totalHarga + (dataFood.getHarga() * dataFood.getJumlahPesan());
                     }
 
                     tvQtyCart.setText(String.valueOf(jumlahPesanan));
-                    tvTotalHarga.setText("Rp. "+ NumberFormat.getInstance(Locale.ITALY).format(totalHarga));
+                    tvTotalHarga.setText("Rp. " + NumberFormat.getInstance(Locale.ITALY).format(totalHarga));
 
-                    if(Integer.valueOf(tvQtyCart.getText().toString()) == 0){
+                    if (Integer.valueOf(tvQtyCart.getText().toString()) == 0) {
 
                         cvCart.setVisibility(View.INVISIBLE);
 
-                    }else{
+                    } else {
 
                         cvCart.setVisibility(View.VISIBLE);
 
@@ -132,26 +124,24 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
-    void loadData(){
+    void loadData() {
 
-        Query checkUser = fbDB.getReference("food");
+        Query checkUser = fbDB.getReference("foods");
 
         checkUser.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 daftarFood = new ArrayList<Food>();
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
-                    Food Food = dataSnapshot.getValue(Food.class);
-                    daftarFood.add(Food);
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Food food = dataSnapshot.getValue(Food.class);
+                    Log.d("TEST_TOSTRING", food.toString());
+                    daftarFood.add(food);
                 }
 
                 FoodAdapter adpFood = new FoodAdapter(daftarFood, FoodListActivity.this, FoodListActivity.this);
                 rvFood.setAdapter(adpFood);
                 rvFood.setLayoutManager(new LinearLayoutManager(FoodListActivity.this));
-
-
-
             }
 
             @Override
@@ -166,12 +156,12 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
 
-        if(v.getId() == cvCart.getId()){
+        if (v.getId() == cvCart.getId()) {
 
             Intent intentCart = new Intent(this, CartActivity.class);
             startActivity(intentCart);
 
-        }else if (v.getId() == btnProfile.getId()){
+        } else if (v.getId() == btnProfile.getId()) {
 
             Intent intentProfile = new Intent(this, ProfileActivity.class);
             startActivity(intentProfile);
@@ -183,8 +173,8 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void getRvClick(int position) {
 
-        Intent intentFood = new Intent(this, FoodActivity.class);
-        intentFood.putExtra("nama", daftarFood.get(position).getName());
+        Intent intentFood = new Intent(this, FoodDetailActivity.class);
+        intentFood.putExtra(FoodDetailActivity.EXTRA_NAME, daftarFood.get(position).getName());
         startActivity(intentFood);
 
     }
