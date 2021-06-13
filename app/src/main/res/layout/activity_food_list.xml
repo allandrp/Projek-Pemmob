@@ -22,7 +22,7 @@
             app:backgroundTint="@color/secondcolor" />
 
         <TextView
-            android:text="@string/food_list"
+            android:text="@string/foods_list"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:layout_centerInParent="true"

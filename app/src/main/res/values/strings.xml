@@ -39,5 +39,6 @@
     <string name="name_hint">John John</string>
     <string name="name">Name</string>
     <string name="phone_number">Phone Number</string>
+    <string name="foods_list">Foods List</string>
 
 </resources>
