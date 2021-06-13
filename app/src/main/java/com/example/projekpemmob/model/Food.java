@@ -1,16 +1,17 @@
 package com.example.projekpemmob.model;
 
 public class Food{
-    private String name, description, imagePath;
+    private String name, description, imagePath, category;
     private int price;
     private double rating;
 
-    public Food(String name, String description, String imagePath, int price, double rating) {
+    public Food(String name, String description, String imagePath, int price, double rating, String category) {
         this.name = name;
         this.description = description;
         this.imagePath = imagePath;
         this.price = price;
         this.rating = rating;
+        this.category = category;
     }
 
     public Food() {

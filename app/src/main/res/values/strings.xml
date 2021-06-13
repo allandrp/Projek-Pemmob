@@ -40,5 +40,7 @@
     <string name="name">Name</string>
     <string name="phone_number">Phone Number</string>
     <string name="foods_list">Foods List</string>
+    <string name="foods">Foods</string>
+    <string name="see_all">See All</string>
 
 </resources>
