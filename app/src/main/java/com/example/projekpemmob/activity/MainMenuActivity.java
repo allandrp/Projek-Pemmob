@@ -26,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener, MiniFoodHolder.getRvListener {
+public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     private TextView tvSeeAllFood;
@@ -97,7 +97,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                daftarFood = new ArrayList<Food>();
+                daftarFood = new ArrayList<>();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Food food = dataSnapshot.getValue(Food.class);
                     Log.d("TEST_TOSTRING", food.toString());
@@ -112,7 +112,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
                     }
                 }
 
-                MiniFoodAdapter adpFood = new MiniFoodAdapter(daftarFood, MainMenuActivity.this, MainMenuActivity.this);
+                MiniFoodAdapter adpFood = new MiniFoodAdapter(daftarFood, MainMenuActivity.this);
                 recyclerView.setAdapter(adpFood);
                 recyclerView.setLayoutManager(new LinearLayoutManager(MainMenuActivity.this, LinearLayoutManager.HORIZONTAL, false));
             }
@@ -122,14 +122,5 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
             }
         });
-    }
-
-    @Override
-    public void getRvClick(int position) {
-
-        Intent intentFood = new Intent(this, FoodDetailActivity.class);
-        intentFood.putExtra(FoodDetailActivity.EXTRA_NAME, daftarFood.get(position).getName());
-        startActivity(intentFood);
-
     }
 }

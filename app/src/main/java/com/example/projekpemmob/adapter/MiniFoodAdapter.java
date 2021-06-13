@@ -1,6 +1,7 @@
 package com.example.projekpemmob.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.projekpemmob.R;
+import com.example.projekpemmob.activity.FoodDetailActivity;
 import com.example.projekpemmob.model.Food;
 import com.example.projekpemmob.viewHolder.MiniFoodHolder;
 import com.google.firebase.storage.FirebaseStorage;
@@ -25,12 +27,10 @@ import java.util.Locale;
 public class MiniFoodAdapter extends RecyclerView.Adapter<MiniFoodHolder> {
     private ArrayList<Food> foodList;
     private Context context;
-    MiniFoodHolder.getRvListener rvListener;
 
-    public MiniFoodAdapter(ArrayList<Food> foodList, Context context, MiniFoodHolder.getRvListener rvListener) {
+    public MiniFoodAdapter(ArrayList<Food> foodList, Context context) {
         this.foodList = foodList;
         this.context    = context;
-        this.rvListener = rvListener;
     }
 
     @NonNull
@@ -38,7 +38,7 @@ public class MiniFoodAdapter extends RecyclerView.Adapter<MiniFoodHolder> {
     public MiniFoodHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_card_mini_food,parent,false);
 
-        return new MiniFoodHolder(v, rvListener);
+        return new MiniFoodHolder(v);
     }
 
     @Override
@@ -79,6 +79,15 @@ public class MiniFoodAdapter extends RecyclerView.Adapter<MiniFoodHolder> {
                     .load(uri)
                     .apply(new RequestOptions().override(300, 300))
                     .into(holder.getImageFood());
+        });
+
+        holder.getCvMiniFoodCard().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentFood = new Intent(context, FoodDetailActivity.class);
+                intentFood.putExtra(FoodDetailActivity.EXTRA_NAME, food.getName());
+                context.startActivity(intentFood);
+            }
         });
     }
 
