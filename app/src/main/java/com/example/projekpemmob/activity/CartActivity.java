@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,6 +19,7 @@ import com.example.projekpemmob.adapter.CartAdapter;
 import com.example.projekpemmob.model.FoodCart;
 import com.example.projekpemmob.viewHolder.CartHolder;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +28,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -71,7 +77,48 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    private void getImage() {
+        Query qImage = dbReference.child("profile image").child(fbAuth.getCurrentUser().getUid());
+        qImage.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if (snapshot.exists()){
+
+                    FirebaseStorage fbStorage       = FirebaseStorage.getInstance();
+                    StorageReference stReference    = fbStorage.getReference("user");
+                    stReference = stReference.child(fbAuth.getCurrentUser().getUid()).child(snapshot.getValue().toString());
+
+                    stReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+
+                            Log.d("uri", "alamat : "+uri.toString());
+                            Picasso.with(CartActivity.this).load(uri).into(imgProfile);
+
+                        }
+                    });
+
+
+
+                }else{
+
+                    imgProfile.setImageResource(R.drawable.ic_profile);
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
     private void loadData() {
+
+        getImage();
 
         Query dataChart = dbReference.child("cart").child(fbAuth.getCurrentUser().getUid());
 
