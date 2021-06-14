@@ -78,7 +78,7 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
         loadCart();
         loadData(categoryState);
 
-        if (Integer.valueOf(tvQtyCart.getText().toString()) == 0) {
+        if (Integer.parseInt(tvQtyCart.getText().toString()) == 0) {
 
             cvCart.setVisibility(View.INVISIBLE);
 

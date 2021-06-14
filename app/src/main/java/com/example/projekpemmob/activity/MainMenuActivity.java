@@ -32,14 +32,15 @@ import java.util.Date;
 public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener {
 
 
-    private TextView tvSeeAllFood, tvSeeAllDrink, tvClock;
+    private TextView tvSeeAllFood, tvSeeAllDrink, tvClock, tvProfileName;
     private CardView btnAllCategories;
-    private FirebaseAuth fbAuth;
     private RecyclerView rvFood;
     private RecyclerView rvDrink;
-    private FirebaseDatabase fbDB;
-    private DatabaseReference dbReference;
     private ArrayList<Food> daftarFood;
+
+    private FirebaseAuth fbAuth = FirebaseAuth.getInstance();
+    private FirebaseDatabase fbDB = FirebaseDatabase.getInstance();
+    private DatabaseReference dbReference = fbDB.getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +50,12 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         fbAuth = FirebaseAuth.getInstance();
         rvFood = findViewById(R.id.rvFood);
         rvDrink = findViewById(R.id.rvDrink);
-        fbDB = FirebaseDatabase.getInstance();
-        dbReference = fbDB.getReference();
         tvSeeAllFood = findViewById(R.id.tvSeeAllFood);
         tvSeeAllDrink = findViewById(R.id.tvSeeAllDrink);
         btnAllCategories = findViewById(R.id.btnAllFood);
 
         tvClock = findViewById(R.id.tvClock);
+        tvProfileName = findViewById(R.id.tvProfileNama);
 
         tvSeeAllFood.setOnClickListener(this);
         tvSeeAllDrink.setOnClickListener(this);

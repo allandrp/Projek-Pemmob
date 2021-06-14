@@ -34,7 +34,7 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
 
     public static final String EXTRA_NAME = "food_name";
 
-    private TextView tvNama, tvHarga, tvDeskripsi, tvJumlah;
+    private TextView tvNama, tvHarga, tvDeskripsi, tvJumlah, tvHargaTotal;
     private ImageView imgFood, imgRating;
     private RecyclerView rvReview;
     private Button btnAddChart, btnPlus, btnMinus, btnBack;
@@ -67,6 +67,7 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
         btnPlus     = findViewById(R.id.btnFoodPlus);
         imgFood     = findViewById(R.id.img_food);
         imgRating   = findViewById(R.id.imgFoodRating);
+        tvHargaTotal= findViewById(R.id.tvTotalHarga);
 
         btnPlus.setOnClickListener(this);
         btnMinus.setOnClickListener(this);
@@ -170,24 +171,25 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
 
-        if(v.getId() == btnPlus.getId()){
+        if (v.getId() == btnPlus.getId()) {
 
             counter = counter + 1;
             tvJumlah.setText(String.valueOf(counter));
+            int total = hargaMakanan * counter;
+            tvHargaTotal.setText("Rp. "+ NumberFormat.getInstance(Locale.ITALY).format(total));
 
-        }else if (v.getId() == btnMinus.getId()){
+        } else if (v.getId() == btnMinus.getId()) {
 
-            if(counter <= 0){
-
+            if (counter <= 0) {
                 counter = 0;
                 tvJumlah.setText(String.valueOf(counter));
-
-            }else{
-
+            } else {
                 counter = counter - 1;
                 tvJumlah.setText(String.valueOf(counter));
-
             }
+
+            int total = hargaMakanan * counter;
+            tvHargaTotal.setText("Rp. "+ NumberFormat.getInstance(Locale.ITALY).format(total));
 
         }else if (v.getId() == btnAddChart.getId()){
 
