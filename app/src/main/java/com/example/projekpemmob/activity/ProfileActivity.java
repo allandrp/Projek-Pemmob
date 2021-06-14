@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView tvNama, tvemail, tvPoints;
-    Button btnSetting, btnEditProfile, btnCoupons, btnHistory, btnLogout;
+    Button btnSetting, btnEditProfile, btnCoupons, btnHistory, btnLogout, btnBack;
     FirebaseDatabase fbDB;
     DatabaseReference dbReference;
     FirebaseAuth fbAuth;
@@ -43,11 +43,13 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         btnHistory      = findViewById(R.id.btnProfileHistory);
         btnCoupons      = findViewById(R.id.btnProfileCoupons);
         btnLogout       = findViewById(R.id.btnProfileLogout);
+        btnBack         = findViewById(R.id.btnProfileBack);
 
         btnEditProfile.setOnClickListener(this);
         btnHistory.setOnClickListener(this);
         btnCoupons.setOnClickListener(this);
         btnLogout.setOnClickListener(this);
+        btnBack.setOnClickListener(this);
 
         loadProfile();
 
@@ -79,24 +81,29 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
 
-        if(v.getId() == btnCoupons.getId()){
-
-
-        }else if(v.getId() == btnEditProfile.getId()){
-
-
-        }else if (v.getId() == btnHistory.getId()){
-
-
-        }else if (v.getId() == btnSetting.getId()){
-
-
-        }else if(v.getId() == btnLogout.getId()){
+        if(v.getId() == btnLogout.getId()){
 
             fbAuth.signOut();
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             finish();
+
+        }else if(v.getId() == btnEditProfile.getId()){
+
+            Intent intent = new Intent(this, EditProfileActivity.class);
+            startActivity(intent);
+
+        }else if (v.getId() == btnHistory.getId()){
+
+
+        }else if (v.getId() == btnBack.getId()){
+
+            finish();
+
+        }else if(v.getId() == btnCoupons.getId()){
+
+
+        }else if (v.getId() == btnSetting.getId()){
 
         }
 

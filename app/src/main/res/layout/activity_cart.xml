@@ -31,12 +31,13 @@
 
         <ImageView
             android:id="@+id/img_Profile"
-            android:src="@drawable/ic_profile"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="30dp"
             android:layout_width="45dp"
-            android:layout_height="45dp" />
+            android:layout_height="45dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"
+            android:clickable="true"
+            android:src="@drawable/ic_profile" />
 
     </RelativeLayout>
 

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.projekpemmob.R;
@@ -33,6 +34,7 @@ import java.util.UUID;
 public class CartActivity extends AppCompatActivity implements View.OnClickListener, CartHolder.getRvListener {
 
     TextView tvTotalHarga;
+    ImageView imgProfile;
     Button btnPesan, btnBack;
     ArrayList<FoodCart>listCart = new ArrayList<>();
     FirebaseAuth fbAuth;
@@ -55,9 +57,11 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
         btnPesan        = findViewById(R.id.btnCartPesan);
         btnBack         = findViewById(R.id.btnBack);
         rvCart          = findViewById(R.id.rv_Cart);
+        imgProfile      = findViewById(R.id.img_Profile);
 
         btnPesan.setOnClickListener(this);
         btnBack.setOnClickListener(this);
+        imgProfile.setOnClickListener(this);
         tvTotalHarga.setText(String.valueOf(totalHarga));
 
         rvCart.setAdapter(adpCart);
@@ -113,7 +117,14 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
             finish();
 
         }else if (view.getId() == btnBack.getId()){
+
             finish();
+
+        }else if (view.getId() == imgProfile.getId()){
+
+            Intent intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
+
         }
 
     }

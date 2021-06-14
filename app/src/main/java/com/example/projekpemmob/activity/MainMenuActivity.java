@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.projekpemmob.R;
@@ -37,6 +38,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
     private RecyclerView rvFood;
     private RecyclerView rvDrink;
     private ArrayList<Food> daftarFood;
+    private ImageView imgProfile;
 
     private FirebaseAuth fbAuth = FirebaseAuth.getInstance();
     private FirebaseDatabase fbDB = FirebaseDatabase.getInstance();
@@ -47,12 +49,13 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fbAuth = FirebaseAuth.getInstance();
-        rvFood = findViewById(R.id.rvFood);
-        rvDrink = findViewById(R.id.rvDrink);
-        tvSeeAllFood = findViewById(R.id.tvSeeAllFood);
-        tvSeeAllDrink = findViewById(R.id.tvSeeAllDrink);
-        btnAllCategories = findViewById(R.id.btnAllFood);
+        fbAuth              = FirebaseAuth.getInstance();
+        rvFood              = findViewById(R.id.rvFood);
+        rvDrink             = findViewById(R.id.rvDrink);
+        tvSeeAllFood        = findViewById(R.id.tvSeeAllFood);
+        tvSeeAllDrink       = findViewById(R.id.tvSeeAllDrink);
+        btnAllCategories    = findViewById(R.id.btnAllFood);
+        imgProfile          = findViewById(R.id.img_Profile);
 
         tvClock = findViewById(R.id.tvClock);
         tvProfileName = findViewById(R.id.tvProfileNama);
@@ -60,6 +63,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         tvSeeAllFood.setOnClickListener(this);
         tvSeeAllDrink.setOnClickListener(this);
         btnAllCategories.setOnClickListener(this);
+        imgProfile.setOnClickListener(this);
 
         loadAllData();
 //        btnLogout = findViewById(R.id.btnFoodList);
@@ -67,6 +71,23 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void loadAllData() {
+
+        Query AccountName   = dbReference.child("user").child(fbAuth.getCurrentUser().getUid()).child("name");
+        AccountName.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    Log.d("nama", "onDataChange: "+snapshot.getValue());
+                    tvProfileName.setText(snapshot.getValue().toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         loadData(Food.CATEGORIES.Food, rvFood);
         loadData(Food.CATEGORIES.Drink, rvDrink);
 
@@ -97,6 +118,13 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         if (view.getId() == btnAllCategories.getId()) {
             Intent intent = new Intent(this, FoodListActivity.class);
             startActivity(intent);
+        }
+
+        if(view.getId() == imgProfile.getId()){
+
+            Intent intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
+
         }
     }
 
