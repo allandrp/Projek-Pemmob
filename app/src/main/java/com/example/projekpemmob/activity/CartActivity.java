@@ -33,7 +33,7 @@ import java.util.UUID;
 public class CartActivity extends AppCompatActivity implements View.OnClickListener, CartHolder.getRvListener {
 
     TextView tvTotalHarga;
-    Button btnPesan;
+    Button btnPesan, btnBack;
     ArrayList<FoodCart>listCart = new ArrayList<>();
     FirebaseAuth fbAuth;
     FirebaseDatabase fbDB;
@@ -41,7 +41,6 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
     RecyclerView rvCart;
     CartAdapter adpCart = new CartAdapter(listCart, CartActivity.this, CartActivity.this);
     private int totalHarga = 0;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +53,11 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
 
         tvTotalHarga    = findViewById(R.id.tvCartTotalHarga);
         btnPesan        = findViewById(R.id.btnCartPesan);
+        btnBack         = findViewById(R.id.btnBack);
         rvCart          = findViewById(R.id.rv_Cart);
 
         btnPesan.setOnClickListener(this);
+        btnBack.setOnClickListener(this);
         tvTotalHarga.setText(String.valueOf(totalHarga));
 
         rvCart.setAdapter(adpCart);
@@ -111,6 +112,8 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
             finish();
 
+        }else if (view.getId() == btnBack.getId()){
+            finish();
         }
 
     }

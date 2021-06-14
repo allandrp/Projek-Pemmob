@@ -43,7 +43,7 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
     private Button btnProfile;
     private TextView tvTotalHarga, tvQtyCart, tvFoodListsTitle;
     private CardView cvCart;
-    Button btnback;
+    private Button btnback;
 
     @Override
     protected void onRestart() {

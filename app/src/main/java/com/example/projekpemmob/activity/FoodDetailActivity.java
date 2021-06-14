@@ -204,6 +204,8 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
 
             }
 
+        }else if(v.getId() == btnBack.getId()){
+            finish();
         }
     }
 }
