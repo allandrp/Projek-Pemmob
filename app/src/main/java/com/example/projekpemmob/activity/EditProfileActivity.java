@@ -51,7 +51,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     FirebaseStorage fbStor;
     StorageReference stReference;
     ProgressBar pb;
-    String tempUrl;
+    String tempUrl = "temp";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
