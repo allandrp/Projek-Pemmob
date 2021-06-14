@@ -145,7 +145,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         }else if (v.getId() == btnHistory.getId()){
 
-            Intent intent = new Intent();
+            Intent intent = new Intent(this, HistoryActivity.class);
+            startActivity(intent);
 
         }else if (v.getId() == btnBack.getId()){
 

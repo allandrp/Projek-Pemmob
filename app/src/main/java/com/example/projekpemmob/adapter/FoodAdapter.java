@@ -32,8 +32,8 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodHolder> {
     FoodHolder.getRvListener rvListener;
 
     public FoodAdapter(ArrayList<Food> foodList, Activity activity, FoodHolder.getRvListener rvListener) {
-        this.foodList = foodList;
-        this.activity    = activity;
+        this.foodList   = foodList;
+        this.activity   = activity;
         this.rvListener = rvListener;
     }
 

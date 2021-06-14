@@ -21,12 +21,12 @@ public class MiniFoodHolder extends RecyclerView.ViewHolder {
     public MiniFoodHolder(@NonNull View itemView) {
         super(itemView);
 
-        context     = itemView.getContext();
-        tvName = itemView.findViewById(R.id.tv_food_name);
-        tvPrice = itemView.findViewById(R.id.tv_food_price);
-        imageRating = itemView.findViewById(R.id.img_stars);
-        imageFood   = itemView.findViewById(R.id.img_food);
-        cvMiniFoodCard = itemView.findViewById(R.id.cvMiniFoodCard);
+        context         = itemView.getContext();
+        tvName          = itemView.findViewById(R.id.tv_food_name);
+        tvPrice         = itemView.findViewById(R.id.tv_food_price);
+        imageRating     = itemView.findViewById(R.id.img_stars);
+        imageFood       = itemView.findViewById(R.id.img_food);
+        cvMiniFoodCard  = itemView.findViewById(R.id.cvMiniFoodCard);
 
     }
 
