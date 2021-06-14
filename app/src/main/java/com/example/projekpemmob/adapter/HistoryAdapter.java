@@ -33,7 +33,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull  HistoryHolder holder, int position) {
-        holder.getTvHarga().setText("Rp"+ NumberFormat.getInstance(Locale.ITALY).format(listHistory.get(position).getTotalPrice()));
+        holder.getTvHarga().setText("Rp "+ NumberFormat.getInstance(Locale.ITALY).format(listHistory.get(position).getTotalPrice()));
         holder.getTvTanggal().setText(listHistory.get(position).getDate());
     }
 

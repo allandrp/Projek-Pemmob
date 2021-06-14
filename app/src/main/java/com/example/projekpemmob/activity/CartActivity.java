@@ -209,6 +209,12 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
         }else{
 
             onDeleteClick(position);
+            if(listCart.size() == 0){
+
+                finish();
+
+            }
+
 
         }
     }
