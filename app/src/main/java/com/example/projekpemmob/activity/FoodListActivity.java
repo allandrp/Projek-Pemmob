@@ -43,6 +43,7 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
     private Button btnProfile;
     private TextView tvTotalHarga, tvQtyCart, tvFoodListsTitle;
     private CardView cvCart;
+    Button btnback;
 
     @Override
     protected void onRestart() {
@@ -62,14 +63,16 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
         fbDB = FirebaseDatabase.getInstance();
         dbReference = fbDB.getReference();
 
-        cvCart = findViewById(R.id.cvCart);
-        tvQtyCart = findViewById(R.id.tvQtyCart);
-        tvTotalHarga = findViewById(R.id.tvTotalHarga);
-        rvFood = findViewById(R.id.rv_foods);
-        tvFoodListsTitle = findViewById(R.id.tvFoodListsTitle);
+        cvCart              = findViewById(R.id.cvCart);
+        tvQtyCart           = findViewById(R.id.tvQtyCart);
+        tvTotalHarga        = findViewById(R.id.tvTotalHarga);
+        rvFood              = findViewById(R.id.rv_foods);
+        tvFoodListsTitle    = findViewById(R.id.tvFoodListsTitle);
+        btnback             = findViewById(R.id.btnBack);
         //btnProfile      = findViewById(R.id.btnPro)
 
         cvCart.setOnClickListener(this);
+        btnback.setOnClickListener(this);
         //btnProfile.setOnClickListener(this);
 
         loadCart();
@@ -178,10 +181,9 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
             Intent intentCart = new Intent(this, CartActivity.class);
             startActivity(intentCart);
 
-        } else if (v.getId() == btnProfile.getId()) {
+        } else if (v.getId() == btnback.getId()) {
 
-            Intent intentProfile = new Intent(this, ProfileActivity.class);
-            startActivity(intentProfile);
+            finish();
 
         }
 

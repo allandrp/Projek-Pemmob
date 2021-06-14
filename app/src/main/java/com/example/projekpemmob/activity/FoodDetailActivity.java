@@ -37,7 +37,7 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
     private TextView tvNama, tvHarga, tvDeskripsi, tvJumlah;
     private ImageView imgFood, imgRating;
     private RecyclerView rvReview;
-    private Button btnAddChart, btnPlus, btnMinus;
+    private Button btnAddChart, btnPlus, btnMinus, btnBack;
     private FirebaseDatabase fbDB;
     private DatabaseReference dbReference;
     private FirebaseAuth fbAuth;
@@ -63,6 +63,7 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
         tvJumlah    = findViewById(R.id.tvFoodQty);
         btnAddChart = findViewById(R.id.btnFoodAddChart);
         btnMinus    = findViewById(R.id.btnFoodMinus);
+        btnBack     = findViewById(R.id.btnBack);
         btnPlus     = findViewById(R.id.btnFoodPlus);
         imgFood     = findViewById(R.id.img_food);
         imgRating   = findViewById(R.id.imgFoodRating);
@@ -70,6 +71,7 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
         btnPlus.setOnClickListener(this);
         btnMinus.setOnClickListener(this);
         btnAddChart.setOnClickListener(this);
+        btnBack.setOnClickListener(this);
 
         fbStorage = FirebaseStorage.getInstance();
 
