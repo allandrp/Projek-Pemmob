@@ -6,16 +6,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.projekpemmob.R;
 import com.example.projekpemmob.adapter.CartAdapter;
 import com.example.projekpemmob.model.FoodCart;
+import com.example.projekpemmob.model.History;
 import com.example.projekpemmob.viewHolder.CartHolder;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -24,16 +29,22 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 import java.util.UUID;
 
 public class CartActivity extends AppCompatActivity implements View.OnClickListener, CartHolder.getRvListener {
 
     TextView tvTotalHarga;
-    Button btnPesan;
+    ImageView imgProfile;
+    Button btnPesan, btnBack;
     ArrayList<FoodCart>listCart = new ArrayList<>();
     FirebaseAuth fbAuth;
     FirebaseDatabase fbDB;
@@ -41,7 +52,6 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
     RecyclerView rvCart;
     CartAdapter adpCart = new CartAdapter(listCart, CartActivity.this, CartActivity.this);
     private int totalHarga = 0;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +64,13 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
 
         tvTotalHarga    = findViewById(R.id.tvCartTotalHarga);
         btnPesan        = findViewById(R.id.btnCartPesan);
+        btnBack         = findViewById(R.id.btnBack);
         rvCart          = findViewById(R.id.rv_Cart);
+        imgProfile      = findViewById(R.id.img_Profile);
 
         btnPesan.setOnClickListener(this);
+        btnBack.setOnClickListener(this);
+        imgProfile.setOnClickListener(this);
         tvTotalHarga.setText(String.valueOf(totalHarga));
 
         rvCart.setAdapter(adpCart);
@@ -66,7 +80,48 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    private void getImage() {
+        Query qImage = dbReference.child("profile image").child(fbAuth.getCurrentUser().getUid());
+        qImage.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if (snapshot.exists()){
+
+                    FirebaseStorage fbStorage       = FirebaseStorage.getInstance();
+                    StorageReference stReference    = fbStorage.getReference("user");
+                    stReference = stReference.child(fbAuth.getCurrentUser().getUid()).child(snapshot.getValue().toString());
+
+                    stReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+
+                            Log.d("uri", "alamat : "+uri.toString());
+                            Picasso.with(CartActivity.this).load(uri).into(imgProfile);
+
+                        }
+                    });
+
+
+
+                }else{
+
+                    imgProfile.setImageResource(R.drawable.ic_profile);
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
     private void loadData() {
+
+        getImage();
 
         Query dataChart = dbReference.child("cart").child(fbAuth.getCurrentUser().getUid());
 
@@ -104,12 +159,23 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
 
         if(view.getId() == btnPesan.getId()){
 
-            dbReference.child("history").child(fbAuth.getCurrentUser().getUid()).child(String.valueOf(UUID.randomUUID())).setValue(listCart);
+            String currentDateTimeString    = DateFormat.getDateInstance().format(new Date());
+            History history                 = new History(listCart, currentDateTimeString, totalHarga);
+            dbReference.child("history").child(fbAuth.getCurrentUser().getUid()).child(String.valueOf(UUID.randomUUID())).setValue(history);
             listCart.clear();
             dbReference.child("cart").child(fbAuth.getCurrentUser().getUid()).removeValue();
-            Intent intent = new Intent(this, FoodListActivity.class);
+            Intent intent = new Intent(this, MainMenuActivity.class);
             startActivity(intent);
             finish();
+
+        }else if (view.getId() == btnBack.getId()){
+
+            finish();
+
+        }else if (view.getId() == imgProfile.getId()){
+
+            Intent intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
 
         }
 

@@ -7,10 +7,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.projekpemmob.R;
@@ -18,6 +20,7 @@ import com.example.projekpemmob.adapter.FoodAdapter;
 import com.example.projekpemmob.model.Food;
 import com.example.projekpemmob.model.FoodCart;
 import com.example.projekpemmob.viewHolder.FoodHolder;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,6 +28,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -43,6 +49,8 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
     private Button btnProfile;
     private TextView tvTotalHarga, tvQtyCart, tvFoodListsTitle;
     private CardView cvCart;
+    private Button btnback;
+    private ImageView imgProfile;
 
     @Override
     protected void onRestart() {
@@ -62,20 +70,22 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
         fbDB = FirebaseDatabase.getInstance();
         dbReference = fbDB.getReference();
 
-        cvCart = findViewById(R.id.cvCart);
-        tvQtyCart = findViewById(R.id.tvQtyCart);
-        tvTotalHarga = findViewById(R.id.tvTotalHarga);
-        rvFood = findViewById(R.id.rv_foods);
-        tvFoodListsTitle = findViewById(R.id.tvFoodListsTitle);
-        //btnProfile      = findViewById(R.id.btnPro)
+        cvCart              = findViewById(R.id.cvCart);
+        tvQtyCart           = findViewById(R.id.tvQtyCart);
+        tvTotalHarga        = findViewById(R.id.tvTotalHarga);
+        rvFood              = findViewById(R.id.rv_foods);
+        tvFoodListsTitle    = findViewById(R.id.tvFoodListsTitle);
+        btnback             = findViewById(R.id.btnBack);
+        imgProfile          = findViewById(R.id.img_Profile);
 
         cvCart.setOnClickListener(this);
-        //btnProfile.setOnClickListener(this);
+        btnback.setOnClickListener(this);
+        imgProfile.setOnClickListener(this);
 
         loadCart();
         loadData(categoryState);
 
-        if (Integer.valueOf(tvQtyCart.getText().toString()) == 0) {
+        if (Integer.parseInt(tvQtyCart.getText().toString()) == 0) {
 
             cvCart.setVisibility(View.INVISIBLE);
 
@@ -130,6 +140,8 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
 
     void loadData(String category) {
 
+        getImage();
+
         Query checkUser = fbDB.getReference("foods");
 
         checkUser.addValueEventListener(new ValueEventListener() {
@@ -170,6 +182,46 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
+    private void getImage() {
+        Query qImage = dbReference.child("profile image").child(fbAuth.getCurrentUser().getUid());
+        qImage.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if (snapshot.exists()){
+
+                    FirebaseStorage fbStorage       = FirebaseStorage.getInstance();
+                    StorageReference stReference    = fbStorage.getReference("user");
+                    stReference = stReference.child(fbAuth.getCurrentUser().getUid()).child(snapshot.getValue().toString());
+
+                    stReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+
+                            Log.d("uri", "alamat : "+uri.toString());
+                            Picasso.with(FoodListActivity.this).load(uri).into(imgProfile);
+
+                        }
+                    });
+
+
+
+                }else{
+
+                    imgProfile.setImageResource(R.drawable.ic_profile);
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     @Override
     public void onClick(View v) {
 
@@ -178,10 +230,14 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
             Intent intentCart = new Intent(this, CartActivity.class);
             startActivity(intentCart);
 
-        } else if (v.getId() == btnProfile.getId()) {
+        } else if (v.getId() == btnback.getId()) {
 
-            Intent intentProfile = new Intent(this, ProfileActivity.class);
-            startActivity(intentProfile);
+            finish();
+
+        }else if (v.getId() == imgProfile.getId()){
+
+            Intent intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
 
         }
 

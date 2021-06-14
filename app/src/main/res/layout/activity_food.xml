@@ -140,7 +140,7 @@
         android:layout_height="40dp" />
 
     <TextView
-        android:id="@+id/tvFoodHarga"
+        android:id="@+id/tvTotalHarga"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/btnFoodAddChart"
@@ -150,5 +150,16 @@
         android:text="@string/food_price"
         android:textColor="@color/black"
         android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvFoodHarga"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/rlJumlah"
+        android:layout_marginLeft="44dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/food_price"
+        android:textColor="@color/dark_grey_grad"
+        style="@style/SecondaryText"/>
 
 </RelativeLayout>

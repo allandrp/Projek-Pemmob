@@ -34,10 +34,10 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
 
     public static final String EXTRA_NAME = "food_name";
 
-    private TextView tvNama, tvHarga, tvDeskripsi, tvJumlah;
+    private TextView tvNama, tvHarga, tvDeskripsi, tvJumlah, tvHargaTotal;
     private ImageView imgFood, imgRating;
     private RecyclerView rvReview;
-    private Button btnAddChart, btnPlus, btnMinus;
+    private Button btnAddChart, btnPlus, btnMinus, btnBack;
     private FirebaseDatabase fbDB;
     private DatabaseReference dbReference;
     private FirebaseAuth fbAuth;
@@ -63,13 +63,16 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
         tvJumlah    = findViewById(R.id.tvFoodQty);
         btnAddChart = findViewById(R.id.btnFoodAddChart);
         btnMinus    = findViewById(R.id.btnFoodMinus);
+        btnBack     = findViewById(R.id.btnBack);
         btnPlus     = findViewById(R.id.btnFoodPlus);
         imgFood     = findViewById(R.id.img_food);
         imgRating   = findViewById(R.id.imgFoodRating);
+        tvHargaTotal= findViewById(R.id.tvTotalHarga);
 
         btnPlus.setOnClickListener(this);
         btnMinus.setOnClickListener(this);
         btnAddChart.setOnClickListener(this);
+        btnBack.setOnClickListener(this);
 
         fbStorage = FirebaseStorage.getInstance();
 
@@ -168,24 +171,25 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
 
-        if(v.getId() == btnPlus.getId()){
+        if (v.getId() == btnPlus.getId()) {
 
             counter = counter + 1;
             tvJumlah.setText(String.valueOf(counter));
+            int total = hargaMakanan * counter;
+            tvHargaTotal.setText("Rp. "+ NumberFormat.getInstance(Locale.ITALY).format(total));
 
-        }else if (v.getId() == btnMinus.getId()){
+        } else if (v.getId() == btnMinus.getId()) {
 
-            if(counter <= 0){
-
+            if (counter <= 0) {
                 counter = 0;
                 tvJumlah.setText(String.valueOf(counter));
-
-            }else{
-
+            } else {
                 counter = counter - 1;
                 tvJumlah.setText(String.valueOf(counter));
-
             }
+
+            int total = hargaMakanan * counter;
+            tvHargaTotal.setText("Rp. "+ NumberFormat.getInstance(Locale.ITALY).format(total));
 
         }else if (v.getId() == btnAddChart.getId()){
 
@@ -202,6 +206,8 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
 
             }
 
+        }else if(v.getId() == btnBack.getId()){
+            finish();
         }
     }
 }

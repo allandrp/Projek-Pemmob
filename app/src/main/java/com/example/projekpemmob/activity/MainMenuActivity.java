@@ -7,16 +7,20 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.projekpemmob.R;
 import com.example.projekpemmob.adapter.MiniFoodAdapter;
 import com.example.projekpemmob.model.Food;
+import com.example.projekpemmob.model.FoodCart;
 import com.example.projekpemmob.viewHolder.MiniFoodHolder;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,6 +28,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -32,46 +39,110 @@ import java.util.Date;
 public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener {
 
 
-    private TextView tvSeeAllFood, tvSeeAllDrink, tvClock;
+    private TextView tvSeeAllFood, tvSeeAllDrink, tvClock, tvProfileName;
     private CardView btnAllCategories;
-    private FirebaseAuth fbAuth;
     private RecyclerView rvFood;
     private RecyclerView rvDrink;
-    private FirebaseDatabase fbDB;
-    private DatabaseReference dbReference;
     private ArrayList<Food> daftarFood;
+    private ImageView imgProfile;
+
+    private FirebaseAuth fbAuth = FirebaseAuth.getInstance();
+    private FirebaseDatabase fbDB = FirebaseDatabase.getInstance();
+    private DatabaseReference dbReference = fbDB.getReference();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fbAuth = FirebaseAuth.getInstance();
-        rvFood = findViewById(R.id.rvFood);
-        rvDrink = findViewById(R.id.rvDrink);
-        fbDB = FirebaseDatabase.getInstance();
-        dbReference = fbDB.getReference();
-        tvSeeAllFood = findViewById(R.id.tvSeeAllFood);
-        tvSeeAllDrink = findViewById(R.id.tvSeeAllDrink);
-        btnAllCategories = findViewById(R.id.btnAllFood);
+        fbAuth              = FirebaseAuth.getInstance();
+        rvFood              = findViewById(R.id.rvFood);
+        rvDrink             = findViewById(R.id.rvDrink);
+        tvSeeAllFood        = findViewById(R.id.tvSeeAllFood);
+        tvSeeAllDrink       = findViewById(R.id.tvSeeAllDrink);
+        btnAllCategories    = findViewById(R.id.btnAllFood);
+        imgProfile          = findViewById(R.id.img_Profile);
 
         tvClock = findViewById(R.id.tvClock);
+        tvProfileName = findViewById(R.id.tvProfileNama);
 
         tvSeeAllFood.setOnClickListener(this);
         tvSeeAllDrink.setOnClickListener(this);
         btnAllCategories.setOnClickListener(this);
+        imgProfile.setOnClickListener(this);
 
         loadAllData();
 //        btnLogout = findViewById(R.id.btnFoodList);
 //        btnLogout.setOnClickListener(this);
     }
 
+
     private void loadAllData() {
+
+        getImage();
+
+        Query AccountName   = dbReference.child("user").child(fbAuth.getCurrentUser().getUid()).child("name");
+        AccountName.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    Log.d("nama", "onDataChange: "+snapshot.getValue());
+                    tvProfileName.setText(snapshot.getValue().toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         loadData(Food.CATEGORIES.Food, rvFood);
         loadData(Food.CATEGORIES.Drink, rvDrink);
 
         String currentDateTimeString = DateFormat.getDateInstance().format(new Date());
         tvClock.setText(currentDateTimeString);
+    }
+
+    private void getImage() {
+        Query qImage = dbReference.child("profile image").child(fbAuth.getCurrentUser().getUid());
+        qImage.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if (snapshot.exists()){
+
+                    FirebaseStorage fbStorage       = FirebaseStorage.getInstance();
+                    StorageReference stReference    = fbStorage.getReference("user");
+                    stReference = stReference.child(fbAuth.getCurrentUser().getUid()).child(snapshot.getValue().toString());
+
+                    stReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+
+                            Log.d("uri", "alamat : "+uri.toString());
+                            Picasso.with(MainMenuActivity.this).load(uri).into(imgProfile);
+
+                        }
+                    });
+
+
+
+                }else{
+
+                    imgProfile.setImageResource(R.drawable.ic_profile);
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     @Override
@@ -97,6 +168,13 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         if (view.getId() == btnAllCategories.getId()) {
             Intent intent = new Intent(this, FoodListActivity.class);
             startActivity(intent);
+        }
+
+        if(view.getId() == imgProfile.getId()){
+
+            Intent intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
+
         }
     }
 

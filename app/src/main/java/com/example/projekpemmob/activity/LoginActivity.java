@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.projekpemmob.R;
+import com.example.projekpemmob.model.FoodCart;
 import com.example.projekpemmob.model.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -31,7 +32,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -46,6 +50,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private static final int RC_SIGN_IN = 9001;
     int reqCode = 1;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +61,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         fbDb = FirebaseDatabase.getInstance();
         dbReference = fbDb.getReference();
 
-//        fbAuth.signOut();
+
+
+        //jangan dihapus buat percobaan
+        /*
+        */
+
+        //fbAuth.signOut();
         //cek apakah user masih login
         if(fbAuth.getCurrentUser() != null){
             dbReference.child("user").child(fbAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
