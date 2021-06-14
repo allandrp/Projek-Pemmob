@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.projekpemmob.R;
+import com.example.projekpemmob.model.FoodCart;
 import com.example.projekpemmob.model.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -31,7 +32,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -45,6 +49,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private GoogleSignInClient mGoogleSignInClient;
     private static final int RC_SIGN_IN = 9001;
     int reqCode = 1;
+    ArrayList<ArrayList<FoodCart>> listHistory = new ArrayList<>();
+    ArrayList<ArrayList<ArrayList<FoodCart>>> listHistory2 = new ArrayList<ArrayList<ArrayList<FoodCart>>>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +61,31 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         fbAuth = FirebaseAuth.getInstance();
         fbDb = FirebaseDatabase.getInstance();
         dbReference = fbDb.getReference();
+
+
+
+        //jangan dihapus buat percobaan
+        Query dataHistory = dbReference.child("history").child(fbAuth.getCurrentUser().getUid());
+        dataHistory.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for (DataSnapshot Snapshot: snapshot.getChildren()) {
+                    listHistory = (ArrayList<ArrayList<FoodCart>>) Snapshot.getValue();
+                    listHistory2.add(listHistory);
+                }
+
+                Log.d("coba history", "onDataChange: "+listHistory2.size());
+                Log.d("coba history", "onDataChange: "+listHistory2.get(0));
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        //
 
         //fbAuth.signOut();
         //cek apakah user masih login

@@ -112,7 +112,7 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
             dbReference.child("history").child(fbAuth.getCurrentUser().getUid()).child(String.valueOf(UUID.randomUUID())).setValue(listCart);
             listCart.clear();
             dbReference.child("cart").child(fbAuth.getCurrentUser().getUid()).removeValue();
-            Intent intent = new Intent(this, FoodListActivity.class);
+            Intent intent = new Intent(this, MainMenuActivity.class);
             startActivity(intent);
             finish();
 

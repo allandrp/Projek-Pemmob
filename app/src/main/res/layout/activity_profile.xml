@@ -30,7 +30,7 @@
 
     </RelativeLayout>
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/I_Profile"
         android:layout_below="@id/RL_Header"
         android:src="@drawable/ic_profile"

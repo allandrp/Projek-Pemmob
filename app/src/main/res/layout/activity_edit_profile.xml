@@ -6,11 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".activity.EditProfileActivity">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/id_imgViewPhotoEP"
         android:layout_width="138dp"
         android:layout_height="130dp"
         android:layout_marginTop="32dp"
+        android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7"
@@ -47,25 +48,25 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewNamaEditProfile" />
 
     <TextView
-        android:id="@+id/textViewEmailEP"
+        android:id="@+id/textViewPhoneEP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="32dp"
-        android:textColor="@color/red_main"
-        android:text="Email"
+        android:text="Phone"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/red_main"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_txNamaEP" />
 
     <EditText
-        android:id="@+id/id_txEmailEP"
+        android:id="@+id/id_txPhoneEP"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@drawable/edit_text_box"
         android:ems="10"
-        android:hint="example@gmail.com"
+        android:hint="081xxxxxxxx"
         android:inputType="textEmailAddress"
         android:paddingStart="12dp"
         android:paddingTop="10dp"
@@ -73,7 +74,7 @@
         android:paddingBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewEmailEP" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewPhoneEP" />
 
     <TextView
         android:id="@+id/id_tvUploadPhotoEP"
