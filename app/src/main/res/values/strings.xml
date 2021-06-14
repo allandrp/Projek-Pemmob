@@ -53,5 +53,8 @@
     <string name="closed">Closed</string>
     <string name="open">Open</string>
     <string name="categories">Categories</string>
+    <string name="coupons_button_text">Get discount up to 50%, see all here.</string>
+    <string name="all">All</string>
+    <string name="recommended">Recommended</string>
 
 </resources>

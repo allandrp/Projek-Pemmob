@@ -2,6 +2,7 @@ package com.example.projekpemmob.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,7 +33,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
 
     private TextView tvSeeAllFood, tvSeeAllDrink, tvClock;
-    private Button btnAllCategories;
+    private CardView btnAllCategories;
     private FirebaseAuth fbAuth;
     private RecyclerView rvFood;
     private RecyclerView rvDrink;
@@ -53,6 +54,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         tvSeeAllFood = findViewById(R.id.tvSeeAllFood);
         tvSeeAllDrink = findViewById(R.id.tvSeeAllDrink);
         btnAllCategories = findViewById(R.id.btnAllFood);
+
         tvClock = findViewById(R.id.tvClock);
 
         tvSeeAllFood.setOnClickListener(this);
