@@ -49,8 +49,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private GoogleSignInClient mGoogleSignInClient;
     private static final int RC_SIGN_IN = 9001;
     int reqCode = 1;
-    ArrayList<ArrayList<FoodCart>> listHistory = new ArrayList<>();
-    ArrayList<ArrayList<ArrayList<FoodCart>>> listHistory2 = new ArrayList<ArrayList<ArrayList<FoodCart>>>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,27 +64,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
         //jangan dihapus buat percobaan
-        Query dataHistory = dbReference.child("history").child(fbAuth.getCurrentUser().getUid());
-        dataHistory.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                for (DataSnapshot Snapshot: snapshot.getChildren()) {
-                    listHistory = (ArrayList<ArrayList<FoodCart>>) Snapshot.getValue();
-                    listHistory2.add(listHistory);
-                }
-
-                Log.d("coba history", "onDataChange: "+listHistory2.size());
-                Log.d("coba history", "onDataChange: "+listHistory2.get(0));
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        //
+        /*
+        */
 
         //fbAuth.signOut();
         //cek apakah user masih login

@@ -5,22 +5,28 @@ import java.util.Date;
 
 public class History{
 
-    ArrayList<Object>listMakanan;
-    Date date;
+    ArrayList<FoodCart>listMakanan;
+    String date;
+    int totalPrice;
 
     public History() {
     }
 
-    public History(ArrayList<Object> listMakanan, Date date) {
-        this.listMakanan = listMakanan;
-        this.date = date;
+    public History(ArrayList<FoodCart> listMakanan, String date, int total) {
+        this.listMakanan    = listMakanan;
+        this.date           = date;
+        this.totalPrice     = total;
     }
 
-    public ArrayList<Object> getListMakanan() {
+    public ArrayList<FoodCart> getListMakanan() {
         return listMakanan;
     }
 
-    public Date getDate() {
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public String getDate() {
         return date;
     }
 }

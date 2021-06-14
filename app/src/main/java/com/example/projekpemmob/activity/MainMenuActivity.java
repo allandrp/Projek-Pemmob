@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.example.projekpemmob.R;
 import com.example.projekpemmob.adapter.MiniFoodAdapter;
 import com.example.projekpemmob.model.Food;
+import com.example.projekpemmob.model.FoodCart;
 import com.example.projekpemmob.viewHolder.MiniFoodHolder;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -48,6 +49,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
     private FirebaseAuth fbAuth = FirebaseAuth.getInstance();
     private FirebaseDatabase fbDB = FirebaseDatabase.getInstance();
     private DatabaseReference dbReference = fbDB.getReference();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

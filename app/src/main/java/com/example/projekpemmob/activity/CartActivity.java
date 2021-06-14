@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.example.projekpemmob.R;
 import com.example.projekpemmob.adapter.CartAdapter;
 import com.example.projekpemmob.model.FoodCart;
+import com.example.projekpemmob.model.History;
 import com.example.projekpemmob.viewHolder.CartHolder;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -32,8 +33,10 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 import java.util.UUID;
 
@@ -156,7 +159,9 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
 
         if(view.getId() == btnPesan.getId()){
 
-            dbReference.child("history").child(fbAuth.getCurrentUser().getUid()).child(String.valueOf(UUID.randomUUID())).setValue(listCart);
+            String currentDateTimeString    = DateFormat.getDateInstance().format(new Date());
+            History history                 = new History(listCart, currentDateTimeString, totalHarga);
+            dbReference.child("history").child(fbAuth.getCurrentUser().getUid()).child(String.valueOf(UUID.randomUUID())).setValue(history);
             listCart.clear();
             dbReference.child("cart").child(fbAuth.getCurrentUser().getUid()).removeValue();
             Intent intent = new Intent(this, MainMenuActivity.class);
