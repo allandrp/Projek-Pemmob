@@ -149,7 +149,12 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
                     FoodCart fCart = snapshot.getChildren().iterator().next().getValue(FoodCart.class);
                     tvJumlah.setText(String.valueOf(fCart.getJumlahPesan()));
                     counter = fCart.getJumlahPesan();
+                    tvHargaTotal.setText("Rp. "+ NumberFormat.getInstance(Locale.ITALY).format(hargaMakanan*fCart.getJumlahPesan()));
                     Log.d("fcart", "onDataChange: "+ fCart.getJumlahPesan());
+
+                }else{
+
+                    tvHargaTotal.setText("Rp. "+ NumberFormat.getInstance(Locale.ITALY).format(0));
 
                 }
 

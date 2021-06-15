@@ -121,7 +121,7 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-    private void updateData(FoodCart cart){
+    private void updateData(ArrayList<FoodCart> list){
 
         Query dataFood = dbReference.child("foods");
 
@@ -129,22 +129,22 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                int status = 0;
+                String deleteData;
 
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
                     Food food = dataSnapshot.getValue(Food.class);
-                    status = 0;
-                    if(cart.getNama().equalsIgnoreCase(food.getName())){
+                    deleteData = food.getName();
 
-                        status = 1;
-                        dbReference.child("cart").child(fbAuth.getCurrentUser().getUid()).child(cart.getNama()).child("harga").setValue(food.getPrice());
+                    for(int i = 0; i < list.size(); i++){
+
+                        int temp = i;
+                        if(list.get(i).getNama().equalsIgnoreCase(food.getName())){
+
+                            dbReference.child("cart").child(fbAuth.getCurrentUser().getUid()).child(list.get(i).getNama()).child("harga").setValue(food.getPrice());
+
+                        }
 
                     }
-                }
-
-                if(status == 0){
-
-                    dbReference.child("cart").child(fbAuth.getCurrentUser().getUid()).child(cart.getNama()).removeValue();
 
                 }
 
@@ -176,12 +176,15 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
                     
                     for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
                         FoodCart fCart = dataSnapshot.getValue(FoodCart.class);
-                        updateData(fCart);
                         listCart.add(fCart);
                         totalHarga = totalHarga + fCart.getHarga()*fCart.getJumlahPesan();
                     }
+
+                    updateData(listCart);
+
                     adpCart.notifyDataSetChanged();
                     tvTotalHarga.setText("Rp. "+ NumberFormat.getInstance(Locale.ITALY).format(totalHarga));
+
                 }
 
             }
