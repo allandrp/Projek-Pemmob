@@ -25,8 +25,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -63,13 +61,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartHolder>{
         Query foodQuery = dbFoodReference.orderByChild("name").equalTo(foodCart.getNama());
         foodQuery.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Food food = snapshot.getChildren().iterator().next().getValue(Food.class);
                 holder.getTvNama().setText(food.getName());
                 holder.getTvDescription().setText(food.getDescription());
 
                 FirebaseStorage storage = FirebaseStorage.getInstance();
-                StorageReference gsRef = storage.getReferenceFromUrl(food.getImagePath());
+                StorageReference gsRef = storage.getReference("foods").child(food.getName()).child(food.getImagePath());
 
                 gsRef.getDownloadUrl().addOnSuccessListener(uri -> {
                     Log.e("IMAGE_URL", "uri: " + uri.toString());
@@ -85,7 +83,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartHolder>{
             }
 
             @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });

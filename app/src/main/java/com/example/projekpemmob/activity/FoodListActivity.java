@@ -112,7 +112,6 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
                         FoodCart dataFood = dataSnapshot.getValue(FoodCart.class);
                         jumlahPesanan = jumlahPesanan + dataFood.getJumlahPesan();
                         totalHarga = totalHarga + (dataFood.getHarga() * dataFood.getJumlahPesan());
-
                     }
 
                     tvQtyCart.setText(String.valueOf(jumlahPesanan));
@@ -142,7 +141,7 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
     void loadData(String category) {
 
         getImage();
-        loadCart();
+
 
         Query checkUser = fbDB.getReference("foods");
 
@@ -168,8 +167,11 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
                         daftarFood.add(food);
                         categoryState = "ALL";
                     }
+
+
                 }
 
+                loadCart();
                 adpFood = new FoodAdapter(daftarFood, FoodListActivity.this, FoodListActivity.this);
                 rvFood.setAdapter(adpFood);
                 rvFood.setLayoutManager(new LinearLayoutManager(FoodListActivity.this));

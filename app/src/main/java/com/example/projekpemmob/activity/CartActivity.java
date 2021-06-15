@@ -122,13 +122,6 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-    private void updateData(ArrayList<FoodCart> list){
-
-
-
-
-
-    }
 
     private void loadData() {
 
