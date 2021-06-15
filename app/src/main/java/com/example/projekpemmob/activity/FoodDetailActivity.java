@@ -133,10 +133,6 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
             }
         });
 
-
-
-
-
     }
 
     public void loadQty(){

@@ -14,6 +14,18 @@ public class FoodCart {
         this.nama = nama;
     }
 
+    public void setJumlahPesan(int jumlahPesan) {
+        this.jumlahPesan = jumlahPesan;
+    }
+
+    public void setHarga(int harga) {
+        this.harga = harga;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
     public int getJumlahPesan() {
         return jumlahPesan;
     }
