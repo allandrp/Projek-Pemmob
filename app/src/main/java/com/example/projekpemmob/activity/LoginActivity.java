@@ -71,18 +71,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //fbAuth.signOut();
         //cek apakah user masih login
         if(fbAuth.getCurrentUser() != null){
+            pb.setVisibility(View.VISIBLE);
             dbReference.child("user").child(fbAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     User user = dataSnapshot.getValue(User.class);
                     if (user.getName().equals("-")) {
                         Intent intentLogin = new Intent (LoginActivity.this, RegisterDataActivity.class);
-                        pb.setVisibility(View.INVISIBLE);
                         startActivity(intentLogin);
                         finish();
                     } else {
                         Intent intentLogin = new Intent (LoginActivity.this, MainMenuActivity.class);
-                        pb.setVisibility(View.INVISIBLE);
                         startActivity(intentLogin);
                         finish();
                     }
@@ -93,6 +92,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     System.out.println("The read failed: " + databaseError.getCode());
                 }
             });
+        } else {
+            pb.setVisibility(View.INVISIBLE);
         }
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

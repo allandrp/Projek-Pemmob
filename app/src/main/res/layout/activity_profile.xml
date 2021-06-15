@@ -32,60 +32,47 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/I_Profile"
-        android:layout_below="@id/RL_Header"
-        android:src="@drawable/ic_profile"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="40dp"
         android:layout_width="90dp"
-        android:layout_height="90dp"/>
+        android:layout_height="90dp"
+        android:layout_below="@id/RL_Header"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_profile" />
 
     <TextView
         android:id="@+id/tvProfileNama"
-        android:layout_toRightOf="@id/I_Profile"
-        android:layout_below="@id/RL_Header"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/I_Profile"
+        android:layout_marginTop="33dp"
+        android:layout_centerHorizontal="true"
         android:text="@string/name_hint"
         android:textColor="@color/black"
-        android:textSize="20sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/tvProfileEmail"
-        android:layout_toRightOf="@id/I_Profile"
-        android:layout_marginLeft="10dp"
         android:layout_below="@id/tvProfileNama"
+        android:layout_centerHorizontal="true"
         android:text="@string/email_hint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:id="@+id/tvProfilepoints"
-        android:layout_toRightOf="@id/I_Profile"
-        android:layout_marginLeft="10dp"
-        android:layout_below="@id/tvProfileEmail"
-        android:layout_marginTop="5dp"
-        android:text="@string/points"
-        android:textColor="@color/black"
-        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <Button
         android:id="@+id/btnEditProfile"
-        android:layout_below="@id/I_Profile"
-        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvProfileEmail"
         android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="40dp"
+        android:background="@drawable/rectangle_buttonaddtocart"
+        android:elevation="5dp"
         android:text="@string/edit_profile"
         android:textAllCaps="false"
         android:textColor="#EA3138"
-        android:background="@drawable/rectangle_buttonaddtocart"
-        app:backgroundTint="@color/secondcolor"
-        android:elevation="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        app:backgroundTint="@color/secondcolor" />
 
     <Button
         android:id="@+id/btnProfileHistory"
@@ -106,17 +93,17 @@
         android:layout_height="100dp"/>
 
     <Button
-        android:id="@+id/btnProfileCoupons"
+        android:id="@+id/btnProfileCart"
         android:layout_below="@id/btnEditProfile"
         android:layout_alignParentRight="true"
         android:layout_marginTop="20dp"
         android:layout_marginRight="40dp"
         android:background="@drawable/rectangle_buttonaddtocart"
         app:backgroundTint="@color/secondcolor"
-        android:drawableTop="@drawable/ic_coupons"
+        android:drawableTop="@drawable/ic_redcart"
         android:paddingTop="20dp"
         android:paddingRight="20dp"
-        android:text="@string/coupons"
+        android:text="@string/cart"
         android:textAllCaps="false"
         android:textAlignment="gravity"
         android:textColor="@color/black"

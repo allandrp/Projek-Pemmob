@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -41,6 +42,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
     private TextView tvSeeAllFood, tvSeeAllDrink, tvClock, tvProfileName;
     private CardView btnAllCategories, btnFoodCategory, btnDrinkCategory, btnRecommendedCategory;
+    private ImageButton btnProfileHistory;
     private RecyclerView rvFood;
     private RecyclerView rvDrink;
     private ArrayList<Food> daftarFood;
@@ -66,6 +68,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         btnDrinkCategory    = findViewById(R.id.btnCategoryDrink);
         btnRecommendedCategory    = findViewById(R.id.btnCategoryRecommended);
         imgProfile          = findViewById(R.id.img_Profile);
+        btnProfileHistory   = findViewById(R.id.btnProfileHistory);
 
         tvClock = findViewById(R.id.tvClock);
         tvProfileName = findViewById(R.id.tvProfileNama);
@@ -77,6 +80,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         btnDrinkCategory.setOnClickListener(this);
         btnRecommendedCategory.setOnClickListener(this);
         imgProfile.setOnClickListener(this);
+        btnProfileHistory.setOnClickListener(this);
 
         loadAllData();
 
@@ -180,6 +184,11 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
             Intent intent = new Intent(this, ProfileActivity.class);
             startActivity(intent);
 
+        }
+
+        if (view.getId() == btnProfileHistory.getId()) {
+            Intent intent = new Intent(this, HistoryActivity.class);
+            startActivity(intent);
         }
     }
 

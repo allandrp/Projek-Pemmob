@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.projekpemmob.R;
 import com.example.projekpemmob.adapter.CartAdapter;
@@ -203,6 +204,10 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
+                } else {
+                    Toast.makeText(CartActivity.this, R.string.card_null, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(CartActivity.this, MainMenuActivity.class);
+                    startActivity(intent);
                 }
 
             }
