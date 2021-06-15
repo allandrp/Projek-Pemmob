@@ -55,8 +55,8 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
     ProgressBar pbFoto;
     int PICK_IMAGE_REQUEST = 1;
     Uri imageUri;
+    Uri imageUriUpdate;
     String tempUrl = "temp";
-    String tempPath = "";
 
     @Override
     protected void onCreate(@Nullable  Bundle savedInstanceState) {
@@ -143,6 +143,7 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
                         @Override
                         public void onSuccess(Uri uri) {
 
+                            imageUriUpdate = uri;
                             Log.d("uri", "alamat : "+uri.toString());
                             Picasso.with(AddFoodActivity.this).load(uri).into(imgView);
                             pbFoto.setVisibility(View.GONE);
@@ -179,7 +180,7 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View view) {
 
-        if(view.getId() == imgView.getId()){
+        if (view.getId() == imgView.getId()) {
 
             Intent intent = new Intent();
             intent.setType("image/*");
@@ -188,6 +189,50 @@ public class AddFoodActivity extends AppCompatActivity implements View.OnClickLi
 
         }
 
+        if (view.getId() == btnSave.getId()) {
+
+            String name = etFoodName.getText().toString();
+            String desc = etFoodDesc.getText().toString();
+            String imgPath = tempUrl;
+            int price = Integer.valueOf(etFoodPrice.getText().toString());
+            double rating = (double) rbFood.getRating();
+            String category = categoryIntent;
+
+            Food food = new Food(name, desc, imgPath, price, rating, category);
+            dbReference = dbReference.child("foods");
+
+            if(name.equalsIgnoreCase(nameIntent)){
+
+                dbReference.child(name).setValue(food).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+
+                        Toast.makeText(AddFoodActivity.this, "UPDATE SUCCESSFUL", Toast.LENGTH_SHORT).show();
+                        finish();
+
+                    }
+                });
+
+            }else{
+
+//                stReference = fbStor.getReference();
+//                dbReference.child(nameIntent).removeValue();
+//                stReference.child("foods").child(name).child(name+"."+getExtension(imageUriUpdate)).putFile(imageUriUpdate);
+//                stReference.child("foods").child(tempUrl).delete();
+//                dbReference.child(name).setValue(food).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void unused) {
+//
+//                        Toast.makeText(AddFoodActivity.this, "UPDATE SUCCESSFUL", Toast.LENGTH_SHORT).show();
+//                        finish();
+//
+//                    }
+//                });
+
+            }
+
+
+        }
     }
 
     private String getExtension(Uri uri){

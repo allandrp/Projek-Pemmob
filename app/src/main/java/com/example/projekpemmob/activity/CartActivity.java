@@ -189,8 +189,7 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
 
                 } else {
                     Toast.makeText(CartActivity.this, R.string.card_null, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(CartActivity.this, MainMenuActivity.class);
-                    startActivity(intent);
+                    finish();
                 }
 
             }
