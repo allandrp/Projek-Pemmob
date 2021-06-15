@@ -75,7 +75,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     User user = dataSnapshot.getValue(User.class);
-                    if (user.getName().equals("-")) {
+                    if(fbAuth.getCurrentUser().getEmail().equalsIgnoreCase("admin@gmail.com")){
+
+                        Intent intentLogin = new Intent (LoginActivity.this, AdminMenu.class);
+                        pb.setVisibility(View.INVISIBLE);
+                        startActivity(intentLogin);
+                        finish();
+
+                    } else if (user.getName().equals("-")) {
                         Intent intentLogin = new Intent (LoginActivity.this, RegisterDataActivity.class);
                         pb.setVisibility(View.INVISIBLE);
                         startActivity(intentLogin);
@@ -153,7 +160,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 User user = dataSnapshot.getValue(User.class);
-                                if (user.getName().equals("-")) {
+
+                                if(fbAuth.getCurrentUser().getEmail().equalsIgnoreCase("admin@gmail.com")){
+
+                                    Intent intentLogin = new Intent (LoginActivity.this, AdminMenu.class);
+                                    startActivity(intentLogin);
+                                    finish();
+
+                                } else if (user.getName().equals("-")) {
                                     Intent intentLogin = new Intent (LoginActivity.this, RegisterDataActivity.class);
                                     startActivity(intentLogin);
                                     finish();
