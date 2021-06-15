@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         /*
         */
 
-        //fbAuth.signOut();
+        fbAuth.signOut();
         //cek apakah user masih login
         if(fbAuth.getCurrentUser() != null){
             dbReference.child("user").child(fbAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
@@ -100,6 +100,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     System.out.println("The read failed: " + databaseError.getCode());
                 }
             });
+        }else{
+            pb.setVisibility(View.GONE);
         }
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

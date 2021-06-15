@@ -115,7 +115,7 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
 
                 imgRating.setImageResource(ratingImage);
 
-                StorageReference gsRef = fbStorage.getReferenceFromUrl(food.getImagePath());
+                StorageReference gsRef = fbStorage.getReference().child("foods").child(food.getName()).child(food.getImagePath());
                 gsRef.getDownloadUrl().addOnSuccessListener(uri -> {
                     Log.e("IMAGE_URL", "uri: " + uri.toString());
 
