@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.projekpemmob.R;
 import com.example.projekpemmob.adapter.CartAdapter;
+import com.example.projekpemmob.model.Food;
 import com.example.projekpemmob.model.FoodCart;
 import com.example.projekpemmob.model.History;
 import com.example.projekpemmob.viewHolder.CartHolder;
@@ -119,6 +120,44 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
+
+    private void updateData(FoodCart cart){
+
+        Query dataFood = dbReference.child("foods");
+
+        dataFood.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                int status = 0;
+
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
+                    Food food = dataSnapshot.getValue(Food.class);
+                    status = 0;
+                    if(cart.getNama().equalsIgnoreCase(food.getName())){
+
+                        status = 1;
+                        dbReference.child("cart").child(fbAuth.getCurrentUser().getUid()).child(cart.getNama()).child("harga").setValue(food.getPrice());
+
+                    }
+                }
+
+                if(status == 0){
+
+                    dbReference.child("cart").child(fbAuth.getCurrentUser().getUid()).child(cart.getNama()).removeValue();
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
     private void loadData() {
 
         getImage();
@@ -137,6 +176,7 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
                     
                     for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
                         FoodCart fCart = dataSnapshot.getValue(FoodCart.class);
+                        updateData(fCart);
                         listCart.add(fCart);
                         totalHarga = totalHarga + fCart.getHarga()*fCart.getJumlahPesan();
                     }
