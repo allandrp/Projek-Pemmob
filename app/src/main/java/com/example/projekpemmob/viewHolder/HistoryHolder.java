@@ -11,7 +11,7 @@ import com.example.projekpemmob.R;
 
 public class HistoryHolder extends RecyclerView.ViewHolder {
 
-    TextView tvHarga, tvTanggal;
+    TextView tvHarga, tvTanggal, tvDeskripsi;
     Context context;
 
     public HistoryHolder(@NonNull View itemView) {
@@ -19,8 +19,13 @@ public class HistoryHolder extends RecyclerView.ViewHolder {
 
         tvHarga     = itemView.findViewById(R.id.tv_harga_history);
         tvTanggal   = itemView.findViewById(R.id.tv_date_history);
+        tvDeskripsi = itemView.findViewById(R.id.tvDeskripsi_History);
         context     = itemView.getContext();
 
+    }
+
+    public TextView getTvDeskripsi() {
+        return tvDeskripsi;
     }
 
     public TextView getTvHarga() {

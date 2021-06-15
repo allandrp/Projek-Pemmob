@@ -33,8 +33,32 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull  HistoryHolder holder, int position) {
-        holder.getTvHarga().setText("Rp "+ NumberFormat.getInstance(Locale.ITALY).format(listHistory.get(position).getTotalPrice()));
+
+        int itemCount = 0;
+
+        for(int i = 0; i<listHistory.get(position).getListMakanan().size(); i++){
+
+            itemCount = itemCount+listHistory.get(position).getListMakanan().get(i).getJumlahPesan();
+
+        }
+
+        holder.getTvHarga().setText(itemCount+" items, "+"Rp "+ NumberFormat.getInstance(Locale.ITALY).format(listHistory.get(position).getTotalPrice()));
+        String strHistory = "";
+
+        for(int j = 0; j<listHistory.get(position).getListMakanan().size(); j++){
+
+            if(j == listHistory.get(position).getListMakanan().size()-1){
+                strHistory = strHistory + listHistory.get(position).getListMakanan().get(j).getJumlahPesan()+" "+listHistory.get(position).getListMakanan().get(j).getNama();
+            }else{
+                strHistory = strHistory + listHistory.get(position).getListMakanan().get(j).getJumlahPesan()+" "+listHistory.get(position).getListMakanan().get(j).getNama()+", ";
+            }
+
+        }
+
         holder.getTvTanggal().setText(listHistory.get(position).getDate());
+        holder.getTvDeskripsi().setText(strHistory);
+
+
     }
 
     @Override
