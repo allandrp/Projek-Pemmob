@@ -121,6 +121,7 @@ public class ProcessOrderActivity extends AppCompatActivity implements OnMapRead
         listCart.clear();
         dbReference.child("cart").child(fbAuth.getCurrentUser().getUid()).removeValue();
         Intent intent = new Intent(this, MainMenuActivity.class);
+        Toast.makeText(this, R.string.order_successful, Toast.LENGTH_SHORT).show();
         startActivity(intent);
         finish();
     }
