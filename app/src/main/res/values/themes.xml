@@ -22,4 +22,9 @@
         <item name="android:textColor">@color/secondary_text</item>
         <item name="android:textSize">14sp</item>
     </style>
+
+    <style name="SplashScreenTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_image</item>
+        <item name="android:statusBarColor">@color/red_main</item>
+    </style>
 </resources>
