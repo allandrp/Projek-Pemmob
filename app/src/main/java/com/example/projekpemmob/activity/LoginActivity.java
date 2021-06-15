@@ -64,27 +64,34 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         dbReference = fbDb.getReference();
         pb = findViewById(R.id.progressBarFoto);
 
-        //jangan dihapus buat percobaan
-        /*
-        */
-
-        //fbAuth.signOut();
         //cek apakah user masih login
         if(fbAuth.getCurrentUser() != null){
             dbReference.child("user").child(fbAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     User user = dataSnapshot.getValue(User.class);
-                    if (user.getName().equals("-")) {
+
+                    if(fbAuth.getCurrentUser().getEmail().toString().equalsIgnoreCase("admin@gmail.com")){
+
+                        Intent intent = new Intent(LoginActivity.this, AdminMenu.class);
+                        pb.setVisibility(View.INVISIBLE);
+                        startActivity(intent);
+                        finish();
+
+                    }else if (user.getName().equals("-")) {
+
                         Intent intentLogin = new Intent (LoginActivity.this, RegisterDataActivity.class);
                         pb.setVisibility(View.INVISIBLE);
                         startActivity(intentLogin);
                         finish();
-                    } else {
+
+                    }else {
+
                         Intent intentLogin = new Intent (LoginActivity.this, MainMenuActivity.class);
                         pb.setVisibility(View.INVISIBLE);
                         startActivity(intentLogin);
                         finish();
+
                     }
                 }
 
@@ -93,6 +100,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     System.out.println("The read failed: " + databaseError.getCode());
                 }
             });
+        }else{
+            pb.setVisibility(View.GONE);
         }
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -153,7 +162,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 User user = dataSnapshot.getValue(User.class);
-                                if (user.getName().equals("-")) {
+                                if(fbAuth.getCurrentUser().getEmail().toString().equalsIgnoreCase("admin@gmail.com")) {
+                                    Intent intent = new Intent(LoginActivity.this, AdminMenu.class);
+                                    startActivity(intent);
+                                    finish();
+                                } else if (user.getName().equals("-")) {
                                     Intent intentLogin = new Intent (LoginActivity.this, RegisterDataActivity.class);
                                     startActivity(intentLogin);
                                     finish();

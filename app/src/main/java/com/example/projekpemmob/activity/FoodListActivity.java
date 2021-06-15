@@ -51,6 +51,7 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
     private CardView cvCart;
     private Button btnback;
     private ImageView imgProfile;
+    FoodAdapter adpFood = new FoodAdapter(daftarFood, this, this);
 
     @Override
     protected void onRestart() {
@@ -82,7 +83,6 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
         btnback.setOnClickListener(this);
         imgProfile.setOnClickListener(this);
 
-        loadCart();
         loadData(categoryState);
 
         if (Integer.parseInt(tvQtyCart.getText().toString()) == 0) {
@@ -100,7 +100,7 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
 
         Query dataCart = dbReference.child("cart").child(fbAuth.getCurrentUser().getUid());
 
-        dataCart.addListenerForSingleValueEvent(new ValueEventListener() {
+        dataCart.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -112,6 +112,7 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
                         FoodCart dataFood = dataSnapshot.getValue(FoodCart.class);
                         jumlahPesanan = jumlahPesanan + dataFood.getJumlahPesan();
                         totalHarga = totalHarga + (dataFood.getHarga() * dataFood.getJumlahPesan());
+
                     }
 
                     tvQtyCart.setText(String.valueOf(jumlahPesanan));
@@ -141,6 +142,7 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
     void loadData(String category) {
 
         getImage();
+        loadCart();
 
         Query checkUser = fbDB.getReference("foods");
 
@@ -168,7 +170,7 @@ public class FoodListActivity extends AppCompatActivity implements View.OnClickL
                     }
                 }
 
-                FoodAdapter adpFood = new FoodAdapter(daftarFood, FoodListActivity.this, FoodListActivity.this);
+                adpFood = new FoodAdapter(daftarFood, FoodListActivity.this, FoodListActivity.this);
                 rvFood.setAdapter(adpFood);
                 rvFood.setLayoutManager(new LinearLayoutManager(FoodListActivity.this));
             }

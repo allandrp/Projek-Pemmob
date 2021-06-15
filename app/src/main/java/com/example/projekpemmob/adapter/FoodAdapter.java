@@ -70,7 +70,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodHolder> {
         }
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference gsRef = storage.getReferenceFromUrl(food.getImagePath());
+        StorageReference gsRef = storage.getReference().child("foods").child(food.getName()).child(food.getImagePath());
 
         if (!activity.isFinishing()) {
             Glide.with(holder.itemView.getContext())

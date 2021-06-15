@@ -153,55 +153,45 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
 
                     Query dataFood = dbReference.child("foods");
 
-                    dataFood.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for(int i = 0; i<listCart.size(); i++){
+                        int i1 = i;
+                        dataFood.addValueEventListener(new ValueEventListener() {
 
-                            String deleteData;
+                            int temp = 0;
+                            int index = 0;
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                            for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
-                                Food food = dataSnapshot.getValue(Food.class);
-                                int temp = 0, index = 100;
-                                for(int i = 0; i < listCart.size(); i++){
-
-                                    Log.d("delete data", "onDataChange: "+listCart.get(i).getNama().equals(food.getName()));
-                                    Log.d("delete data", "nama cart : "+listCart.get(i).getNama());
-                                    Log.d("delete data", "nama food : "+food.getName());
-                                    Log.d("delete data", "onDataChange: "+"panjang list = " +String.valueOf(listCart.size()));
-
-                                    index = i;
-                                    if(listCart.get(i).getNama().equalsIgnoreCase(food.getName())){
-
-                                        dbReference.child("cart").child(fbAuth.getCurrentUser().getUid()).child(listCart.get(i).getNama()).child("harga").setValue(food.getPrice());
-                                        temp = 1;
-
+                                for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
+                                    Food fCart = dataSnapshot.getValue(Food.class);
+                                    Log.d("COBA DELETE", "Data = " + listCart.get(i1).getNama().equalsIgnoreCase(fCart.getName()));
+                                    Log.d("COBA DELETE", "Cart = " + listCart.get(i1).getNama().equalsIgnoreCase(fCart.getName()));
+                                    Log.d("COBA DELETE", "Cart dan Data = " + listCart.get(i1).getNama().equalsIgnoreCase(fCart.getName()));
+                                    if(listCart.get(i1).getNama().equalsIgnoreCase(fCart.getName())){
+                                        temp    = 1;
+                                        index   = i1;
+                                        dbReference.child("cart").child(fbAuth.getCurrentUser().getUid()).child(listCart.get(i1).getNama()).child("harga").setValue(fCart.getPrice());
+                                        adpCart.notifyDataSetChanged();
+                                        return;
                                     }
-//                                    if(temp == 0){
-//                                        dbReference.child("cart").child(fbAuth.getCurrentUser().getUid()).child(listCart.get(index).getNama()).removeValue();
-//                                        listCart.remove(index);
-//                                        adpCart.notifyItemRemoved(index);
-//                                    }
+
                                 }
 
-
-
-                                adpCart.notifyDataSetChanged();
-                                tvTotalHarga.setText("Rp. "+ NumberFormat.getInstance(Locale.ITALY).format(totalHarga));
-
-
+                                if(temp == 0){
+                                    onDeleteClick(index);
+                                }
                             }
 
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
 
+                            }
+                        });
 
-                        }
+                    }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-
-
+                    adpCart.notifyDataSetChanged();
+                    tvTotalHarga.setText("Rp. "+ NumberFormat.getInstance(Locale.ITALY).format(totalHarga));
 
                 }
 

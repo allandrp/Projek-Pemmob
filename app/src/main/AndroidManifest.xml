@@ -22,6 +22,8 @@
         <activity android:name=".activity.FoodDetailActivity" />
         <activity android:name=".activity.ProfileActivity" />
         <activity android:name=".activity.FoodListActivity" />
+        <activity android:name=".activity.AdminMenu" />
+        <activity android:name=".activity.AddFoodActivity" />
         <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -17,8 +17,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.projekpemmob.R;
 import com.example.projekpemmob.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
