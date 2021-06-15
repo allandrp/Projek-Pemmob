@@ -199,14 +199,8 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
 
         if(view.getId() == btnPesan.getId()){
 
-            String currentDateTimeString    = DateFormat.getDateInstance().format(new Date());
-            History history                 = new History(listCart, currentDateTimeString, totalHarga);
-            dbReference.child("history").child(fbAuth.getCurrentUser().getUid()).child(String.valueOf(UUID.randomUUID())).setValue(history);
-            listCart.clear();
-            dbReference.child("cart").child(fbAuth.getCurrentUser().getUid()).removeValue();
-            Intent intent = new Intent(this, MainMenuActivity.class);
+            Intent intent = new Intent(this, ProcessOrderActivity.class);
             startActivity(intent);
-            finish();
 
         }else if (view.getId() == btnBack.getId()){
 

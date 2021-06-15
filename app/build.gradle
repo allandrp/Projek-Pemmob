@@ -38,8 +38,20 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:20.0.0'
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
     implementation 'com.squareup.picasso:picasso:2.5.2'
+
+    //MAPBOX
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:9.2.1@aar'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-telemetry:6.2.2'
+    implementation 'com.mapbox.mapboxsdk:mapbox-sdk-geojson:5.3.0'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-gestures:0.7.0'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-accounts:0.7.0'
+    implementation 'com.mapbox.mapboxsdk:mapbox-sdk-turf:5.3.0'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk-versions:1.1.0'
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.11.0'
+    implementation 'org.jetbrains:annotations:15.0'
+
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
     implementation 'com.google.firebase:firebase-storage:20.0.0'
     testImplementation 'junit:junit:4.+'
