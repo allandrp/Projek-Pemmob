@@ -48,25 +48,42 @@
 
     </RelativeLayout>
 
-
-    <ImageView
-        android:id="@+id/img_food"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvFoodImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/rlHeader"
         android:layout_margin="30dp"
-        android:src="@color/dark_grey_grad"
-        android:layout_width="match_parent"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        android:layout_height="230dp" />
+        app:cardCornerRadius="20dp">
+
+        <ImageView
+            android:id="@+id/img_food"
+            android:src="@color/light_grey_grad"
+            android:layout_width="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:layout_height="230dp" />
+
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/tvFoodDeskripsi"
-        android:layout_below="@id/img_food"
+        android:layout_below="@id/cvFoodImage"
         android:text="@string/food_description"
         android:layout_marginRight="30dp"
         android:layout_marginLeft="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <ProgressBar
+        android:id="@+id/progressBarFoto"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/cvFoodImage"
+        android:layout_centerHorizontal="true"
+        />
 
 
     <RelativeLayout

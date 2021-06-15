@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +51,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private static final int RC_SIGN_IN = 9001;
     int reqCode = 1;
 
+    private ProgressBar pb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +62,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         fbAuth = FirebaseAuth.getInstance();
         fbDb = FirebaseDatabase.getInstance();
         dbReference = fbDb.getReference();
-
-
+        pb = findViewById(R.id.progressBarFoto);
 
         //jangan dihapus buat percobaan
         /*
@@ -76,10 +77,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     User user = dataSnapshot.getValue(User.class);
                     if (user.getName().equals("-")) {
                         Intent intentLogin = new Intent (LoginActivity.this, RegisterDataActivity.class);
+                        pb.setVisibility(View.INVISIBLE);
                         startActivity(intentLogin);
                         finish();
                     } else {
                         Intent intentLogin = new Intent (LoginActivity.this, MainMenuActivity.class);
+                        pb.setVisibility(View.INVISIBLE);
                         startActivity(intentLogin);
                         finish();
                     }

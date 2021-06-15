@@ -55,15 +55,11 @@ public class FoodHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-
         rvListener.getRvClick(getAdapterPosition());
-
     }
 
     public interface getRvListener{
-
         void getRvClick(int position);
-
     }
 
 }

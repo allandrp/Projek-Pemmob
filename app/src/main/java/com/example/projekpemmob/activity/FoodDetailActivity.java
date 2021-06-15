@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -46,6 +47,7 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
     private String namaMakanan = "soto", descMakanan, userID, categoryIntent;
 
     private FirebaseStorage fbStorage;
+    private ProgressBar pb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,7 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
         imgFood     = findViewById(R.id.img_food);
         imgRating   = findViewById(R.id.imgFoodRating);
         tvHargaTotal= findViewById(R.id.tvTotalHarga);
+        pb = findViewById(R.id.progressBarFoto);
 
         btnPlus.setOnClickListener(this);
         btnMinus.setOnClickListener(this);
@@ -120,6 +123,8 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
                             .apply(new RequestOptions().override(720, 720))
                             .into(imgFood);
                 });
+
+                pb.setVisibility(View.INVISIBLE);
 
                 tvNama.setText(namaMakanan);
                 tvHarga.setText("Rp. "+ NumberFormat.getInstance(Locale.ITALY).format(hargaMakanan));

@@ -40,7 +40,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
 
     private TextView tvSeeAllFood, tvSeeAllDrink, tvClock, tvProfileName;
-    private CardView btnAllCategories;
+    private CardView btnAllCategories, btnFoodCategory, btnDrinkCategory, btnRecommendedCategory;
     private RecyclerView rvFood;
     private RecyclerView rvDrink;
     private ArrayList<Food> daftarFood;
@@ -62,6 +62,9 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         tvSeeAllFood        = findViewById(R.id.tvSeeAllFood);
         tvSeeAllDrink       = findViewById(R.id.tvSeeAllDrink);
         btnAllCategories    = findViewById(R.id.btnAllFood);
+        btnFoodCategory    = findViewById(R.id.btnCategoryFood);
+        btnDrinkCategory    = findViewById(R.id.btnCategoryDrink);
+        btnRecommendedCategory    = findViewById(R.id.btnCategoryRecommended);
         imgProfile          = findViewById(R.id.img_Profile);
 
         tvClock = findViewById(R.id.tvClock);
@@ -70,6 +73,9 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         tvSeeAllFood.setOnClickListener(this);
         tvSeeAllDrink.setOnClickListener(this);
         btnAllCategories.setOnClickListener(this);
+        btnFoodCategory.setOnClickListener(this);
+        btnDrinkCategory.setOnClickListener(this);
+        btnRecommendedCategory.setOnClickListener(this);
         imgProfile.setOnClickListener(this);
 
         loadAllData();
@@ -152,19 +158,19 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == tvSeeAllFood.getId()) {
+        if (view.getId() == tvSeeAllFood.getId() || view.getId() == btnFoodCategory.getId()) {
             Intent intent = new Intent(this, FoodListActivity.class);
             FoodListActivity.categoryState = Food.CATEGORY_FOOD;
             startActivity(intent);
         }
 
-        if (view.getId() == tvSeeAllDrink.getId()) {
+        if (view.getId() == tvSeeAllDrink.getId() || view.getId() == btnDrinkCategory.getId()) {
             Intent intent = new Intent(this, FoodListActivity.class);
             FoodListActivity.categoryState = Food.CATEGORY_DRINK;
             startActivity(intent);
         }
 
-        if (view.getId() == btnAllCategories.getId()) {
+        if (view.getId() == btnAllCategories.getId() || view.getId() == btnRecommendedCategory.getId()) {
             Intent intent = new Intent(this, FoodListActivity.class);
             startActivity(intent);
         }
