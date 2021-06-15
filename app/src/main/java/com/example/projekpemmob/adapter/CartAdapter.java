@@ -67,7 +67,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartHolder>{
                 holder.getTvDescription().setText(food.getDescription());
 
                 FirebaseStorage storage = FirebaseStorage.getInstance();
-                StorageReference gsRef = storage.getReference("foods").child(food.getName()).child(food.getImagePath());
+                StorageReference gsRef = storage.getReferenceFromUrl(food.getImagePath());
 
                 gsRef.getDownloadUrl().addOnSuccessListener(uri -> {
                     Log.e("IMAGE_URL", "uri: " + uri.toString());

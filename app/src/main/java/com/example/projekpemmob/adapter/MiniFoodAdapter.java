@@ -65,7 +65,7 @@ public class MiniFoodAdapter extends RecyclerView.Adapter<MiniFoodHolder> {
         }
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference gsRef = storage.getReference().child("foods").child(food.getName()).child(food.getImagePath());
+        StorageReference gsRef = storage.getReferenceFromUrl(food.getImagePath());
 
         Glide.with(holder.itemView.getContext())
                 .load(ratingImage)
