@@ -73,8 +73,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         imgProfile.setOnClickListener(this);
 
         loadAllData();
-//        btnLogout = findViewById(R.id.btnFoodList);
-//        btnLogout.setOnClickListener(this);
+
     }
 
 

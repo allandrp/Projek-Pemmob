@@ -123,38 +123,9 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
 
     private void updateData(ArrayList<FoodCart> list){
 
-        Query dataFood = dbReference.child("foods");
 
-        dataFood.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                String deleteData;
 
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
-                    Food food = dataSnapshot.getValue(Food.class);
-                    deleteData = food.getName();
-
-                    for(int i = 0; i < list.size(); i++){
-
-                        int temp = i;
-                        if(list.get(i).getNama().equalsIgnoreCase(food.getName())){
-
-                            dbReference.child("cart").child(fbAuth.getCurrentUser().getUid()).child(list.get(i).getNama()).child("harga").setValue(food.getPrice());
-
-                        }
-
-                    }
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
     }
 
@@ -180,10 +151,57 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
                         totalHarga = totalHarga + fCart.getHarga()*fCart.getJumlahPesan();
                     }
 
-                    updateData(listCart);
+                    Query dataFood = dbReference.child("foods");
 
-                    adpCart.notifyDataSetChanged();
-                    tvTotalHarga.setText("Rp. "+ NumberFormat.getInstance(Locale.ITALY).format(totalHarga));
+                    dataFood.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                            String deleteData;
+
+                            for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
+                                Food food = dataSnapshot.getValue(Food.class);
+                                int temp = 0, index = 100;
+                                for(int i = 0; i < listCart.size(); i++){
+
+                                    Log.d("delete data", "onDataChange: "+listCart.get(i).getNama().equals(food.getName()));
+                                    Log.d("delete data", "nama cart : "+listCart.get(i).getNama());
+                                    Log.d("delete data", "nama food : "+food.getName());
+                                    Log.d("delete data", "onDataChange: "+"panjang list = " +String.valueOf(listCart.size()));
+
+                                    index = i;
+                                    if(listCart.get(i).getNama().equalsIgnoreCase(food.getName())){
+
+                                        dbReference.child("cart").child(fbAuth.getCurrentUser().getUid()).child(listCart.get(i).getNama()).child("harga").setValue(food.getPrice());
+                                        temp = 1;
+
+                                    }
+//                                    if(temp == 0){
+//                                        dbReference.child("cart").child(fbAuth.getCurrentUser().getUid()).child(listCart.get(index).getNama()).removeValue();
+//                                        listCart.remove(index);
+//                                        adpCart.notifyItemRemoved(index);
+//                                    }
+                                }
+
+
+
+                                adpCart.notifyDataSetChanged();
+                                tvTotalHarga.setText("Rp. "+ NumberFormat.getInstance(Locale.ITALY).format(totalHarga));
+
+
+                            }
+
+
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+
 
                 }
 
@@ -258,7 +276,6 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onDeleteClick(int position) {
-
 
         dbReference.child("cart").child(fbAuth.getCurrentUser().getUid()).child(listCart.get(position).getNama()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
