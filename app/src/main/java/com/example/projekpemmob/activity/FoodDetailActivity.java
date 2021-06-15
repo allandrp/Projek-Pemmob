@@ -80,6 +80,7 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
         fbStorage = FirebaseStorage.getInstance();
 
         loadData();
+        pb.setVisibility(View.INVISIBLE);
     }
 
     private void loadData() {
@@ -123,8 +124,6 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
                             .apply(new RequestOptions().override(720, 720))
                             .into(imgFood);
                 });
-
-                pb.setVisibility(View.INVISIBLE);
 
                 tvNama.setText(namaMakanan);
                 tvHarga.setText("Rp. "+ NumberFormat.getInstance(Locale.ITALY).format(hargaMakanan));

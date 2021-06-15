@@ -145,7 +145,8 @@ public class ProcessOrderActivity extends AppCompatActivity implements OnMapRead
                         FoodCart fCart = dataSnapshot.getValue(FoodCart.class);
                         listCart.add(fCart);
                         totalHarga = totalHarga + fCart.getHarga() * fCart.getJumlahPesan();
-                        foodsList += "(" + fCart.getNama() + ") ";
+
+                        foodsList += "(" + fCart.getJumlahPesan() + ")" + fCart.getNama() + " ";
                     }
 
                     tvFoodsPrice.setText("Rp. "+ NumberFormat.getInstance(Locale.ITALY).format(totalHarga));

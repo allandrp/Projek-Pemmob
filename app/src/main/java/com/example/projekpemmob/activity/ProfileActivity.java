@@ -28,8 +28,8 @@ import com.squareup.picasso.Picasso;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TextView tvNama, tvemail, tvPoints;
-    Button btnSetting, btnEditProfile, btnCoupons, btnHistory, btnLogout, btnBack;
+    TextView tvNama, tvemail;
+    Button btnSetting, btnEditProfile, btnProfileCart, btnHistory, btnLogout, btnBack;
     FirebaseDatabase fbDB;
     DatabaseReference dbReference;
     FirebaseAuth fbAuth;
@@ -45,18 +45,17 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         tvNama      = findViewById(R.id.tvProfileNama);
         tvemail     = findViewById(R.id.tvProfileEmail);
-        tvPoints    = findViewById(R.id.tvProfilepoints);
         imgProfile  = findViewById(R.id.I_Profile);
 
         btnEditProfile  = findViewById(R.id.btnEditProfile);
         btnHistory      = findViewById(R.id.btnProfileHistory);
-        btnCoupons      = findViewById(R.id.btnProfileCoupons);
+        btnProfileCart  = findViewById(R.id.btnProfileCart);
         btnLogout       = findViewById(R.id.btnProfileLogout);
         btnBack         = findViewById(R.id.btnProfileBack);
 
         btnEditProfile.setOnClickListener(this);
         btnHistory.setOnClickListener(this);
-        btnCoupons.setOnClickListener(this);
+        btnProfileCart.setOnClickListener(this);
         btnLogout.setOnClickListener(this);
         btnBack.setOnClickListener(this);
 
@@ -152,8 +151,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
             finish();
 
-        }else if(v.getId() == btnCoupons.getId()){
-
+        }else if(v.getId() == btnProfileCart.getId()){
+            Intent intent = new Intent(this, CartActivity.class);
+            startActivity(intent);
 
         }else if (v.getId() == btnSetting.getId()){
 
