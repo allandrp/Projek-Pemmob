@@ -2,6 +2,7 @@ package com.example.projekpemmob.viewHolder;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,18 +12,22 @@ import com.example.projekpemmob.R;
 
 public class CartHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    TextView tvNama, tvHarga, tvJumlahPesan, tvTotal, no;
+    TextView tvNama, tvHarga, tvJumlahPesan, tvTotal, tvDescription, no;
+    ImageView imgCartFood;
     Button  btnDelete, btnTambah, btnMinus;
     CartHolder.getRvListener rvListener;
 
     public CartHolder(@NonNull View itemView, CartHolder.getRvListener mrvListener) {
         super(itemView);
+
         tvNama          = itemView.findViewById(R.id.tvCartNama);
         tvHarga         = itemView.findViewById(R.id.tvCartHarga);
         tvJumlahPesan   = itemView.findViewById(R.id.tvCartJumlah);
         tvTotal         = itemView.findViewById(R.id.tvCartTotalHarga);
+        tvDescription   = itemView.findViewById(R.id.tvCartDeskripsi);
         btnTambah       = itemView.findViewById(R.id.btnCardTambah);
         btnMinus        = itemView.findViewById(R.id.btnCartMinus);
+        imgCartFood     = itemView.findViewById(R.id.imgCartFood);
         no              = itemView.findViewById(R.id.tvAngka);
         this.rvListener = mrvListener;
 
@@ -66,6 +71,14 @@ public class CartHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
     public TextView getNo() {
         return no;
+    }
+
+    public ImageView getImgCartFood() {
+        return imgCartFood;
+    }
+
+    public TextView getTvDescription() {
+        return tvDescription;
     }
 
     @Override
