@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.projekpemmob.R;
@@ -32,6 +33,7 @@ public class AdminFinishedOrderActivity extends AppCompatActivity implements Adm
     FirebaseAuth fbAuth;
     FirebaseDatabase fbDB;
     DatabaseReference dbReference;
+    Button btnBack;
     ArrayList<History> listHistory = new ArrayList<>();
     ArrayList<String> userList = new ArrayList<>();
     ArrayList<String> historyIdList = new ArrayList<>();
@@ -45,6 +47,14 @@ public class AdminFinishedOrderActivity extends AppCompatActivity implements Adm
         fbDB        = FirebaseDatabase.getInstance();
         dbReference = fbDB.getReference();
         rvHistory   = findViewById(R.id.rvHistory);
+        btnBack     = findViewById(R.id.btnBack);
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         loadData();
     }

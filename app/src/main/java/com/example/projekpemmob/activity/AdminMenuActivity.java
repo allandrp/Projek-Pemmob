@@ -37,6 +37,8 @@ public class AdminMenuActivity extends AppCompatActivity implements View.OnClick
         btnWaitingOrders.setOnClickListener(this);
         btnFinishedOrders.setOnClickListener(this);
         btnLogout.setOnClickListener(this);
+
+
     }
 
     @Override

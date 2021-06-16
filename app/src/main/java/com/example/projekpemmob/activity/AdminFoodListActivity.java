@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.projekpemmob.R;
@@ -31,6 +33,7 @@ public class AdminFoodListActivity extends AppCompatActivity implements FoodHold
     private RecyclerView rvFood;
     private ArrayList<Food> daftarFood;
     private TextView tvFoodListsTitle;
+    private Button btnBack;
     FoodAdapter adpFood = new FoodAdapter(daftarFood, this, this);
 
     public static final String EXTRA_CATEGORY = "category";
@@ -45,6 +48,13 @@ public class AdminFoodListActivity extends AppCompatActivity implements FoodHold
         dbReference = fbDB.getReference();
         rvFood = findViewById(R.id.rv_foods);
         tvFoodListsTitle    = findViewById(R.id.tvFoodListsTitle);
+        btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         loadData();
     }

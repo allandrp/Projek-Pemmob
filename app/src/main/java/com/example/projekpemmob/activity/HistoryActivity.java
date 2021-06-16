@@ -149,8 +149,8 @@ public class HistoryActivity extends AppCompatActivity implements View.OnClickLi
             startActivity(intent);
 
         }else if (v.getId() == btnBack.getId()){
-            finish();
-
+            Intent intent = new Intent(this, MainMenuActivity.class);
+            startActivity(intent);
         }
     }
 }

@@ -66,6 +66,13 @@ public class AdminFoodDetailActivity extends AppCompatActivity implements View.O
         dbReference = fbDB.getReference();
         fbStorage = FirebaseStorage.getInstance();
 
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         loadData();
     }
 
