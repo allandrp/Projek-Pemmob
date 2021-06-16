@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.projekpemmob.R;
+import com.example.projekpemmob.model.Food;
 import com.example.projekpemmob.model.FoodCart;
 import com.example.projekpemmob.model.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -67,9 +68,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         //jangan dihapus buat percobaan
         /*
+        public Food(String name, String description, String imagePath, int price, double rating, String category)
         */
+        Food coba = new Food("coba", "coba", "gs://projek-pemmob.appspot.com/images/avocado_toast.jpg", 10000, 3.0, "drink");
+        dbReference.child("foods").child("coba").setValue(coba);
 
-        fbAuth.signOut();
+        //fbAuth.signOut();
         //cek apakah user masih login
         if(fbAuth.getCurrentUser() != null){
             dbReference.child("user").child(fbAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {

@@ -105,8 +105,6 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     });
 
-
-
                 }else{
 
                     imgProfile.setImageResource(R.drawable.ic_profile);
@@ -138,7 +136,7 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
                     listCart.clear();
                     totalHarga = 0;
                     adpCart.notifyDataSetChanged();
-                    
+
                     for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
                         FoodCart fCart = dataSnapshot.getValue(FoodCart.class);
                         listCart.add(fCart);
@@ -151,29 +149,34 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
                         int i1 = i;
                         dataFood.addValueEventListener(new ValueEventListener() {
 
-                            int temp = 0;
+                            int temp = 100000;
                             int index = 0;
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                                for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
-                                    Food fCart = dataSnapshot.getValue(Food.class);
-                                    Log.d("COBA DELETE", "Data = " + listCart.get(i1).getNama().equalsIgnoreCase(fCart.getName()));
-                                    Log.d("COBA DELETE", "Cart = " + listCart.get(i1).getNama().equalsIgnoreCase(fCart.getName()));
-                                    Log.d("COBA DELETE", "Cart dan Data = " + listCart.get(i1).getNama().equalsIgnoreCase(fCart.getName()));
-                                    if(listCart.get(i1).getNama().equalsIgnoreCase(fCart.getName())){
-                                        temp    = 1;
-                                        index   = i1;
-                                        dbReference.child("cart").child(fbAuth.getCurrentUser().getUid()).child(listCart.get(i1).getNama()).child("harga").setValue(fCart.getPrice());
-                                        adpCart.notifyDataSetChanged();
-                                        return;
+                                if(snapshot.exists()){
+                                    for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
+                                        Food fCart = dataSnapshot.getValue(Food.class);
+                                        if(listCart.get(i1).getNama().equalsIgnoreCase(fCart.getName())){
+                                            temp    = 1;
+                                            index   = i1;
+                                            dbReference.child("cart").child(fbAuth.getCurrentUser().getUid()).child(listCart.get(i1).getNama()).child("harga").setValue(fCart.getPrice());
+                                            adpCart.notifyDataSetChanged();
+                                            return;
+                                        }else{
+                                            temp = 0;
+                                        }
+
                                     }
 
+                                    if(temp == 0){
+                                        dbReference.child("cart").child(fbAuth.getCurrentUser().getUid()).child(listCart.get(index).getNama()).removeValue();
+                                        listCart.remove(index);
+                                        adpCart.notifyItemRemoved(index);
+                                        adpCart.notifyDataSetChanged();
+                                    }
                                 }
 
-                                if(temp == 0){
-                                    onDeleteClick(index);
-                                }
                             }
 
                             @Override

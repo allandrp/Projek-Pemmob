@@ -69,8 +69,21 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodHolder> {
             ratingImage = R.drawable.five_stars;
         }
 
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference gsRef = storage.getReferenceFromUrl(food.getImagePath());
+
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference gsRef = storage.getReferenceFromUrl(food.getImagePath());
+
+            gsRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                Log.e("IMAGE_URL", "uri: " + uri.toString());
+
+                if (!activity.isFinishing()) {
+                    Glide.with(holder.itemView.getContext())
+                            .load(uri)
+                            .apply(new RequestOptions().override(300, 300))
+                            .into(holder.getImageFood());
+                }
+
+            });
 
         if (!activity.isFinishing()) {
             Glide.with(holder.itemView.getContext())
@@ -79,17 +92,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodHolder> {
                     .into(holder.getImageRating());
         }
 
-        gsRef.getDownloadUrl().addOnSuccessListener(uri -> {
-            Log.e("IMAGE_URL", "uri: " + uri.toString());
 
-            if (!activity.isFinishing()) {
-                Glide.with(holder.itemView.getContext())
-                        .load(uri)
-                        .apply(new RequestOptions().override(300, 300))
-                        .into(holder.getImageFood());
-            }
-
-        });
     }
 
     @Override
