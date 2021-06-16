@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         /*
         */
 
-        fbAuth.signOut();
+//        fbAuth.signOut();
         //cek apakah user masih login
         if(fbAuth.getCurrentUser() != null){
             dbReference.child("user").child(fbAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     User user = dataSnapshot.getValue(User.class);
                     if(fbAuth.getCurrentUser().getEmail().equalsIgnoreCase("admin@gmail.com")){
 
-                        Intent intentLogin = new Intent (LoginActivity.this, AdminMenu.class);
+                        Intent intentLogin = new Intent (LoginActivity.this, AdminMenuActivity.class);
                         pb.setVisibility(View.INVISIBLE);
                         startActivity(intentLogin);
                         finish();
@@ -166,7 +166,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                                 if(fbAuth.getCurrentUser().getEmail().equalsIgnoreCase("admin@gmail.com")){
 
-                                    Intent intentLogin = new Intent (LoginActivity.this, AdminMenu.class);
+                                    Intent intentLogin = new Intent (LoginActivity.this, AdminMenuActivity.class);
                                     startActivity(intentLogin);
                                     finish();
 

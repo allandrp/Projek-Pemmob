@@ -65,5 +65,10 @@
     <string name="user_location_permission_not_granted">You didn\'t grant location permissions.</string>
     <string name="order_successful">Your order has been placed. Please wait for the food to come.</string>
     <string name="card_null">You have no food in your card right now. You can order in the menus.</string>
+    <string name="food_management">Food Management</string>
+    <string name="waiting_orders">Waiting Orders</string>
+    <string name="finished_orders">Finished Orders</string>
+    <string name="waiting">Waiting</string>
+    <string name="delivered">Delivered</string>
 
 </resources>

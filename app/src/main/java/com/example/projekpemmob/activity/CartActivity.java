@@ -158,9 +158,7 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
 
                                 for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
                                     Food fCart = dataSnapshot.getValue(Food.class);
-                                    Log.d("COBA DELETE", "Data = " + listCart.get(i1).getNama().equalsIgnoreCase(fCart.getName()));
-                                    Log.d("COBA DELETE", "Cart = " + listCart.get(i1).getNama().equalsIgnoreCase(fCart.getName()));
-                                    Log.d("COBA DELETE", "Cart dan Data = " + listCart.get(i1).getNama().equalsIgnoreCase(fCart.getName()));
+
                                     if(listCart.get(i1).getNama().equalsIgnoreCase(fCart.getName())){
                                         temp    = 1;
                                         index   = i1;

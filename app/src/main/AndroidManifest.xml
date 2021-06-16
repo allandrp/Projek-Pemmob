@@ -12,8 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjekPemmob">
-        <activity android:name=".activity.ProcessOrderActivity"></activity>
-        <activity android:name=".maps.MapsTest"></activity>
+        <activity android:name=".activity.DelivererActivity"></activity>
+        <activity android:name=".activity.AdminFoodDetailActivity" />
+        <activity android:name=".activity.AdminFinishedOrderActivity" />
+        <activity android:name=".activity.AdminWaitingOrderActivity" />
+        <activity android:name=".activity.AdminFoodListActivity" />
+        <activity android:name=".activity.AdminMenuActivity" />
+        <activity android:name=".activity.ProcessOrderActivity" />
+        <activity android:name=".maps.MapsTest" />
         <activity android:name=".activity.HistoryDetailsActivity" />
         <activity android:name=".activity.HistoryActivity" />
         <activity android:name=".activity.RegisterDataActivity" />
@@ -22,9 +28,8 @@
         <activity android:name=".activity.FoodDetailActivity" />
         <activity android:name=".activity.ProfileActivity" />
         <activity android:name=".activity.FoodListActivity" />
-        <activity android:name=".activity.AdminMenu" />
-        <activity android:name=".activity.AddFoodActivity" />
-        <activity android:name=".activity.LoginActivity"
+        <activity
+            android:name=".activity.LoginActivity"
             android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -9,30 +9,32 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projekpemmob.R;
 import com.example.projekpemmob.model.History;
-import com.example.projekpemmob.viewHolder.FoodHolder;
+import com.example.projekpemmob.viewHolder.AdminOrderHolder;
 import com.example.projekpemmob.viewHolder.HistoryHolder;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class HistoryAdapter extends RecyclerView.Adapter<HistoryHolder> {
+public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderHolder> {
 
     ArrayList<History>listHistory = new ArrayList<>();
+    AdminOrderHolder.getRvListener rvListener;
 
-    public HistoryAdapter(ArrayList<History> listHistory) {
+    public AdminOrderAdapter(ArrayList<History> listHistory, AdminOrderHolder.getRvListener rvListener) {
         this.listHistory = listHistory;
+        this.rvListener = rvListener;
     }
 
     @NonNull
     @Override
-    public HistoryHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_card_history,parent,false);
-        return new HistoryHolder(v);
+    public AdminOrderHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_card_order,parent,false);
+        return new AdminOrderHolder(v, rvListener);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull  HistoryHolder holder, int position) {
+    public void onBindViewHolder(@NonNull  AdminOrderHolder holder, int position) {
 
         int itemCount = 0;
 
@@ -43,6 +45,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryHolder> {
         }
 
         holder.getTvHarga().setText(itemCount+" items, "+"Rp "+ NumberFormat.getInstance(Locale.ITALY).format(listHistory.get(position).getTotalPrice()));
+//        holder.getTvStatus().setText(listHistory.get(position).getStatus());
         String strHistory = "";
 
         for(int j = 0; j<listHistory.get(position).getListMakanan().size(); j++){

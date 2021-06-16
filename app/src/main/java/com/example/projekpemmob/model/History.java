@@ -1,7 +1,6 @@
 package com.example.projekpemmob.model;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class History{
 
@@ -9,16 +8,18 @@ public class History{
     String date;
     double longitude, latitude;
     int totalPrice;
+    String status;
 
     public History() {
     }
 
-    public History(ArrayList<FoodCart> listMakanan, String date, int total, double longitude, double latitude) {
+    public History(ArrayList<FoodCart> listMakanan, String date, int total, double longitude, double latitude, String done) {
         this.listMakanan    = listMakanan;
         this.date           = date;
         this.totalPrice     = total;
         this.longitude      = longitude;
         this.latitude       = latitude;
+        this.status = done;
     }
 
     public ArrayList<FoodCart> getListMakanan() {
@@ -39,5 +40,9 @@ public class History{
 
     public double getLatitude() {
         return latitude;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }

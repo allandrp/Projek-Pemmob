@@ -23,16 +23,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/img_food_history"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginEnd="15dp"
-                android:src="@drawable/breakfast" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvStatus"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                app:cardCornerRadius="999dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="14dp">
+
+                <TextView
+                    android:id="@+id/tvStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/waiting" />
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/tv_date_history"
@@ -44,7 +49,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="15dp"
                 android:layout_marginRight="10dp"
-                android:layout_toEndOf="@+id/img_food_history"
+                android:layout_toEndOf="@+id/cvStatus"
                 android:maxLines="1"
                 android:text="@string/date"
                 android:textColor="@color/black"
@@ -58,7 +63,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
-                android:layout_toRightOf="@id/img_food_history"
+                android:layout_toRightOf="@id/cvStatus"
                 android:ellipsize="end"
                 android:justificationMode="inter_word"
                 android:maxLines="1"
@@ -73,7 +78,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="15dp"
                 android:layout_marginBottom="10dp"
-                android:layout_toEndOf="@+id/img_food_history"
+                android:layout_toEndOf="@+id/cvStatus"
                 android:text="@string/food_price"
                 android:textSize="16dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />

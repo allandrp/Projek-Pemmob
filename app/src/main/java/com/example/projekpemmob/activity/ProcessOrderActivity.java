@@ -105,7 +105,7 @@ public class ProcessOrderActivity extends AppCompatActivity implements OnMapRead
         tvProfileName = findViewById(R.id.tvProfileName);
         tvFoodsList = findViewById(R.id.tvFoodsList);
         tvFoodsPrice = findViewById(R.id.tvFoodPrice);
-        btnOrder = findViewById(R.id.btnOrder);
+        btnOrder = findViewById(R.id.btnDelivered);
 
         loadData();
 
@@ -116,7 +116,7 @@ public class ProcessOrderActivity extends AppCompatActivity implements OnMapRead
 
     public void onClickOrderButton(View view) {
         String currentDateTimeString    = DateFormat.getDateInstance().format(new Date());
-        History history                 = new History(listCart, currentDateTimeString, totalHarga, customerLong, customerLat);
+        History history                 = new History(listCart, currentDateTimeString, totalHarga, customerLong, customerLat, "waiting");
         dbReference.child("history").child(fbAuth.getCurrentUser().getUid()).child(String.valueOf(UUID.randomUUID())).setValue(history);
         listCart.clear();
         dbReference.child("cart").child(fbAuth.getCurrentUser().getUid()).removeValue();

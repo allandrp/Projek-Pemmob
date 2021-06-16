@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ProcessOrderActivity">
-
+    tools:context=".activity.DelivererActivity">
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="match_parent"
@@ -82,8 +81,8 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/red_orange_gradient"
-                android:onClick="onClickOrderButton"
-                android:text="@string/order"
+                android:onClick="onClickDeliveredButton"
+                android:text="@string/delivered"
                 mapbox:backgroundTint="@null"
                 mapbox:layout_constraintBottom_toBottomOf="parent"
                 mapbox:layout_constraintEnd_toEndOf="parent"
@@ -91,6 +90,4 @@
                 tools:ignore="UsingOnClickInXml" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
