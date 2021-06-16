@@ -62,6 +62,7 @@ public class AdminMenuActivity extends AppCompatActivity implements View.OnClick
     private void onClickLogoutButton() {
         Toast.makeText(this, "Logged out of admin.", Toast.LENGTH_SHORT).show();
         mAuth.signOut();
-        finish();
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 }
