@@ -70,5 +70,6 @@
     <string name="finished_orders">Finished Orders</string>
     <string name="waiting">Waiting</string>
     <string name="delivered">Delivered</string>
+    <string name="save">Save</string>
 
 </resources>

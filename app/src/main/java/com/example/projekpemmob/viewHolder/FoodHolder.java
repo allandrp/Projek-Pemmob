@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projekpemmob.R;
 
-import org.w3c.dom.Text;
-
 public class FoodHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     TextView tvName, tvPrice, tvDescription;
@@ -27,7 +25,7 @@ public class FoodHolder extends RecyclerView.ViewHolder implements View.OnClickL
         tvPrice = itemView.findViewById(R.id.tv_food_price);
         tvDescription = itemView.findViewById(R.id.tv_food_description);
         imageRating = itemView.findViewById(R.id.img_stars);
-        imageFood   = itemView.findViewById(R.id.img_food);
+        imageFood   = itemView.findViewById(R.id.imgFood);
         this.rvListener = mRvListener;
         itemView.setOnClickListener(this);
 

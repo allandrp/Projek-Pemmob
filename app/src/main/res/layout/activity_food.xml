@@ -57,7 +57,7 @@
         app:cardCornerRadius="20dp">
 
         <ImageView
-            android:id="@+id/img_food"
+            android:id="@+id/imgFood"
             android:src="@color/light_grey_grad"
             android:layout_width="match_parent"
             android:adjustViewBounds="true"

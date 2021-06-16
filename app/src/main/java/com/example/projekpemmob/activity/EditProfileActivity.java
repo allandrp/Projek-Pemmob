@@ -184,7 +184,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                 dbReference.child("user").child(fbAuth.getCurrentUser().getUid()).child("phone").setValue(tempPhone).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        Toast.makeText(EditProfileActivity.this, "UODATE PROFILE SUCCESSFUL", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditProfileActivity.this, "Profile saved.", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 });
@@ -213,7 +213,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             dbReference.child("profile image").child(fbAuth.getCurrentUser().getUid()).setValue(fbAuth.getCurrentUser().getUid()+"."+getExtension(imageUri));
-                            Toast.makeText(EditProfileActivity.this, "UPLOAD SUCCESS", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditProfileActivity.this, "Upload successful.", Toast.LENGTH_SHORT).show();
                             pb.setVisibility(View.GONE);
                         }
                     });

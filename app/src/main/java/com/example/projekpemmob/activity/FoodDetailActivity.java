@@ -67,7 +67,7 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
         btnMinus    = findViewById(R.id.btnFoodMinus);
         btnBack     = findViewById(R.id.btnBack);
         btnPlus     = findViewById(R.id.btnFoodPlus);
-        imgFood     = findViewById(R.id.img_food);
+        imgFood     = findViewById(R.id.imgFood);
         imgRating   = findViewById(R.id.imgFoodRating);
         tvHargaTotal= findViewById(R.id.tvTotalHarga);
         pb = findViewById(R.id.progressBarFoto);

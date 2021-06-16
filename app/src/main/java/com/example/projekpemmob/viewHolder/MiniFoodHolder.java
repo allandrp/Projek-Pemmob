@@ -25,7 +25,7 @@ public class MiniFoodHolder extends RecyclerView.ViewHolder {
         tvName          = itemView.findViewById(R.id.tv_food_name);
         tvPrice         = itemView.findViewById(R.id.tv_food_price);
         imageRating     = itemView.findViewById(R.id.img_stars);
-        imageFood       = itemView.findViewById(R.id.img_food);
+        imageFood       = itemView.findViewById(R.id.imgFood);
         cvMiniFoodCard  = itemView.findViewById(R.id.cvMiniFoodCard);
 
     }

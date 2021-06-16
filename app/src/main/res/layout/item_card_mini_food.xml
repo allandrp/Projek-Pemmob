@@ -20,7 +20,7 @@
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/img_food"
+            android:id="@+id/imgFood"
             android:layout_width="60dp"
             android:layout_height="60dp"
             tools:src="@tools:sample/avatars"
@@ -39,7 +39,7 @@
             android:id="@+id/layout_food_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/img_food"
+            android:layout_toEndOf="@id/imgFood"
             android:orientation="horizontal"
             android:layout_marginTop="16dp"
             android:layout_marginRight="16dp">
@@ -58,7 +58,7 @@
             android:id="@+id/tv_food_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/img_food"
+            android:layout_toEndOf="@id/imgFood"
             android:layout_marginRight="16dp"
             android:ellipsize="end"
             style="@style/SecondaryText"
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_below="@id/tv_food_name"
-            android:layout_toRightOf="@id/img_food"
+            android:layout_toRightOf="@id/imgFood"
             android:gravity="left"
             android:text="@string/food_price"
             style="@style/SecondaryText"/>
