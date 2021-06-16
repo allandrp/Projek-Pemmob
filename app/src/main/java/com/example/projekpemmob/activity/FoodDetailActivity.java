@@ -92,43 +92,51 @@ public class FoodDetailActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Log.d("coba2", "onDataChange: "+snapshot.getValue());
-                Food food       = snapshot.getChildren().iterator().next().getValue(Food.class);
-                hargaMakanan    = food.getPrice();
-                namaMakanan     = food.getName();
-                descMakanan     = food.getDescription();
 
-                int ratingImage = 0;
+                if(snapshot.exists()){
+                    Food food       = snapshot.getChildren().iterator().next().getValue(Food.class);
+                    hargaMakanan    = food.getPrice();
+                    namaMakanan     = food.getName();
+                    descMakanan     = food.getDescription();
 
-                if (food.getRating() >= 0 && food.getRating() < 0.7) {
-                    ratingImage = R.drawable.no_stars;
-                } else if (food.getRating() >= 0.7 && food.getRating() < 1.7) {
-                    ratingImage = R.drawable.one_stars;
-                } else if (food.getRating() >= 1.7 && food.getRating() < 2.7) {
-                    ratingImage = R.drawable.two_stars;
-                } else if (food.getRating() >= 2.7 && food.getRating() < 3.7) {
-                    ratingImage = R.drawable.three_stars;
-                } else if (food.getRating() >= 3.7 && food.getRating() < 4.7) {
-                    ratingImage = R.drawable.four_stars;
-                } else if (food.getRating() >= 4.7) {
-                    ratingImage = R.drawable.five_stars;
+                    int ratingImage = 0;
+
+                    if (food.getRating() >= 0 && food.getRating() < 0.7) {
+                        ratingImage = R.drawable.no_stars;
+                    } else if (food.getRating() >= 0.7 && food.getRating() < 1.7) {
+                        ratingImage = R.drawable.one_stars;
+                    } else if (food.getRating() >= 1.7 && food.getRating() < 2.7) {
+                        ratingImage = R.drawable.two_stars;
+                    } else if (food.getRating() >= 2.7 && food.getRating() < 3.7) {
+                        ratingImage = R.drawable.three_stars;
+                    } else if (food.getRating() >= 3.7 && food.getRating() < 4.7) {
+                        ratingImage = R.drawable.four_stars;
+                    } else if (food.getRating() >= 4.7) {
+                        ratingImage = R.drawable.five_stars;
+                    }
+
+                    imgRating.setImageResource(ratingImage);
+
+                    if(food.getImagePath().equalsIgnoreCase("coba")){
+
+                    }else{
+                        StorageReference gsRef = fbStorage.getReferenceFromUrl(food.getImagePath());
+                        gsRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                            Log.e("IMAGE_URL", "uri: " + uri.toString());
+
+                            Glide.with(getApplicationContext())
+                                    .load(uri)
+                                    .apply(new RequestOptions().override(720, 720))
+                                    .into(imgFood);
+                        });
+                    }
+                    tvNama.setText(namaMakanan);
+                    tvHarga.setText("Rp. "+ NumberFormat.getInstance(Locale.ITALY).format(hargaMakanan));
+                    tvDeskripsi.setText(descMakanan);
+                    loadQty();
                 }
 
-                imgRating.setImageResource(ratingImage);
 
-                StorageReference gsRef = fbStorage.getReferenceFromUrl(food.getImagePath());
-                gsRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                    Log.e("IMAGE_URL", "uri: " + uri.toString());
-
-                    Glide.with(getApplicationContext())
-                            .load(uri)
-                            .apply(new RequestOptions().override(720, 720))
-                            .into(imgFood);
-                });
-
-                tvNama.setText(namaMakanan);
-                tvHarga.setText("Rp. "+ NumberFormat.getInstance(Locale.ITALY).format(hargaMakanan));
-                tvDeskripsi.setText(descMakanan);
-                loadQty();
             }
 
             @Override

@@ -62,24 +62,27 @@ public class CartAdapter extends RecyclerView.Adapter<CartHolder>{
         foodQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Food food = snapshot.getChildren().iterator().next().getValue(Food.class);
-                holder.getTvNama().setText(food.getName());
-                holder.getTvDescription().setText(food.getDescription());
+                if(snapshot.exists()){
+                    Food food = snapshot.getChildren().iterator().next().getValue(Food.class);
+                    holder.getTvNama().setText(food.getName());
+                    holder.getTvDescription().setText(food.getDescription());
 
-                FirebaseStorage storage = FirebaseStorage.getInstance();
-                StorageReference gsRef = storage.getReferenceFromUrl(food.getImagePath());
+                    FirebaseStorage storage = FirebaseStorage.getInstance();
+                    StorageReference gsRef = storage.getReferenceFromUrl(food.getImagePath());
 
-                gsRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                    Log.e("IMAGE_URL", "uri: " + uri.toString());
+                    gsRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                        Log.e("IMAGE_URL", "uri: " + uri.toString());
 
-                    if (!activity.isFinishing()) {
-                        Glide.with(holder.itemView.getContext())
-                                .load(uri)
-                                .apply(new RequestOptions().override(300, 300))
-                                .into(holder.getImgCartFood());
-                    }
+                        if (!activity.isFinishing()) {
+                            Glide.with(holder.itemView.getContext())
+                                    .load(uri)
+                                    .apply(new RequestOptions().override(300, 300))
+                                    .into(holder.getImgCartFood());
+                        }
 
-                });
+                    });
+                }
+
             }
 
             @Override

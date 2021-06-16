@@ -64,22 +64,25 @@ public class MiniFoodAdapter extends RecyclerView.Adapter<MiniFoodHolder> {
             ratingImage = R.drawable.five_stars;
         }
 
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference gsRef = storage.getReferenceFromUrl(food.getImagePath());
+
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference gsRef = storage.getReferenceFromUrl(food.getImagePath());
+            gsRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                Log.e("IMAGE_URL", "uri: " + uri.toString());
+
+                Glide.with(holder.itemView.getContext())
+                        .load(uri)
+                        .apply(new RequestOptions().override(300, 300))
+                        .into(holder.getImageFood());
+            });
+
 
         Glide.with(holder.itemView.getContext())
                 .load(ratingImage)
                 .apply(new RequestOptions().override(200, 200))
                 .into(holder.getImageRating());
 
-        gsRef.getDownloadUrl().addOnSuccessListener(uri -> {
-            Log.e("IMAGE_URL", "uri: " + uri.toString());
 
-            Glide.with(holder.itemView.getContext())
-                    .load(uri)
-                    .apply(new RequestOptions().override(300, 300))
-                    .into(holder.getImageFood());
-        });
 
         holder.getCvMiniFoodCard().setOnClickListener(new View.OnClickListener() {
             @Override

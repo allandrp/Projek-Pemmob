@@ -39,7 +39,7 @@ import com.squareup.picasso.Picasso;
 public class EditProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
     ImageView imgProfile;
-    Button btnBack;
+    Button btnBack, btnSave;
     EditText txName, txPhone;
     FirebaseAuth fbAuth;
     FirebaseDatabase fbDB;
@@ -67,12 +67,14 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         txName          = findViewById(R.id.id_txNamaEP);
         txPhone         = findViewById(R.id.id_txPhoneEP);
         pb              = findViewById(R.id.progressBarFoto);
+        btnSave         = findViewById(R.id.id_btSaveEP);
         pb.setVisibility(View.INVISIBLE);
 
         getImage();
 
         btnBack.setOnClickListener(this);
         imgProfile.setOnClickListener(this);
+        btnSave.setOnClickListener(this);
 
         loadData();
 
@@ -156,6 +158,38 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_GET_CONTENT);
             startActivityForResult(intent, PICK_IMAGE_REQUEST);
+
+        }
+
+        if(v.getId() == btnSave.getId()){
+
+            if(txName.getText() == null){
+
+                txName.setError("Name Required !");
+
+            }
+
+            if(txPhone.getText() == null){
+
+                txPhone.setError("Phone Required");
+
+            }
+
+            if(txName.getText() != null && txPhone.getText() != null){
+
+                String tempName     = txName.getText().toString();
+                String tempPhone    = txPhone.getText().toString();
+
+                dbReference.child("user").child(fbAuth.getCurrentUser().getUid()).child("name").setValue(tempName);
+                dbReference.child("user").child(fbAuth.getCurrentUser().getUid()).child("phone").setValue(tempPhone).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(EditProfileActivity.this, "UODATE PROFILE SUCCESSFUL", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                });
+
+            }
 
         }
 
